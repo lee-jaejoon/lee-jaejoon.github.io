@@ -22,7 +22,7 @@ str(diamonds)
 ## Interpreting R's Regression Output
 R에서 회귀분석을 수행해주는 함수는 `lm()`함수이다. `lm()`함수는 변수관계를 나타내는 formula옵션과, 변수들이 소속한 데이터를 나타내주는 data옵션을 지정해주어야 한다.  formula는 `반응변수 ~ 설명변수1 + 설명변수2 + 설명변수3`의 형식으로 작성하면 된다. 만약 반응변수로 지정한 변수 외의 data 내 모든 변수들을 설명변수로 넣고 싶다면, `반응변수 ~ .`의 형식으로 작성하면 된다.  
 
-```{r, eval=TRUE}
+```{r}
 fit <- lm(price ~. , data=diamonds)
 summary(fit)
 ```
