@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+##Lee, Jae joon
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm a graduate student studying Statistics. I'm interested in Statistics and its application to various machine learning techniques.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[jaejoonlee94@gmail.com](mailto:jaejoonlee94@gmail.com)
