@@ -1,10 +1,9 @@
 ---
 layout: page
-title: 
+title: Jaejoon Lee
 permalink: /about/
 ---
 
-## Lee, Jae joon
 
 I'm a graduate student studying Statistics. I'm interested in Statistics and its application to various machine learning techniques.
 
