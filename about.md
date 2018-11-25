@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-##Lee, Jae joon
+## Lee, Jae joon
 
 I'm a graduate student studying Statistics. I'm interested in Statistics and its application to various machine learning techniques.
 
