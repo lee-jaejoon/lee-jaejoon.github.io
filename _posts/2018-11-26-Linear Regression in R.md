@@ -7,7 +7,7 @@ comments: true
 
 ## Loading Packages and Dataset
 
-```{r}
+```r
 if(!require(ggplot2)){install.packages('ggplot2')}
 library(ggplot2)
 ```
@@ -15,14 +15,14 @@ library(ggplot2)
 
 `ggplot2` 패키지에 내장된 `diamonds` 데이터를 사용하여 회귀분석을 해보려고 한다. `diamonds`는 10개의 변수, 53940개의 자료를 가진 데이터셋이다. 여러 변수가 있지만 그 중에서도 `price`변수, 즉 다이아몬드의 가격을 반응변수로 두고, 다이아몬드의 다른 특징들을 나타내는 `carat`,`cut`,`color`,`clarity` 등을 이에 대한 설명변수로 사용하자. 그 중에서도 `cut`, `color`, `clarity`는 숫자형 변수가 아닌 범주형 변수인데, 범주형 설명변수는 회귀분석에서 dummy variable을 이용하여 반영하게 된다.
 
-```{r}
+```r
 str(diamonds)
 ```
 
 ## Interpreting R's Regression Output
 R에서 회귀분석을 수행해주는 함수는 `lm()`함수이다. `lm()`함수는 변수관계를 나타내는 formula옵션과, 변수들이 소속한 데이터를 나타내주는 data옵션을 지정해주어야 한다.  formula는 `반응변수 ~ 설명변수1 + 설명변수2 + 설명변수3`의 형식으로 작성하면 된다. 만약 반응변수로 지정한 변수 외의 data 내 모든 변수들을 설명변수로 넣고 싶다면, `반응변수 ~ .`의 형식으로 작성하면 된다.  
 
-```{r}
+```r
 fit <- lm(price ~. , data=diamonds)
 summary(fit)
 ```
@@ -36,12 +36,12 @@ summary(fit)
 
 ## Interpreting R's Diagnostic Plots
 R의 `lm()`함수로 생성한 결과를 `plot()`함수에 넣으면 모형 진단에 도움이 되는 plot 네 개를 그려준다. 네 개의 plot이 각각 어떻게 그려진 plot이고, 어떤 의미가 있는지 살펴보자.
-```{r}
+```r
 plot(fit)
 ```
 
 ### 1.Residuals vs fitted
-```{r}
+```r
 reg.plot <- plot(fit, which=1)
 ```
 
@@ -49,21 +49,21 @@ reg.plot <- plot(fit, which=1)
 가로축에 fitted value를, 세로축에 residual을 그린 그림이다. 우리는 세션자료에서 평균=0, 등분산, 상호독립의 오차항을 가정했다. 하지만 우리는 오차를 관찰할 수 없으므로, 잔차의 모양을 보고 오차에 대한 내용을 추측할 수 밖에 없다. 만약 오차항에 대한세 가정이 잘 만족한다면, Residual vs fitted 그림은 residual=0의 가로선을 기준으로 규칙성 없이 오르내리며, 너비가 일정한 horizontal band 모양을 띄게 될 것이다.
 
 ### 2. Normal Q-Q
-```{r}
+```r
 reg.plot <- plot(fit, which=2)
 ```
 
 우리는 평균=0, 등분산, 상호독립 외에도 오차항이 정규분포를 따른다는 가정을 하였다. Q-Q plot은 이론적인 분포와 실제 분포가 일치하는지 판단하기 위해 그리는 그림이며, 이론적인 분포와 실제 분포가 일치한다면 우상향 대각선을 따라 점들이 위치하게 된다. R의 `lm()`함수는 얻어진 residual 값들에 대해 표준화를 한 studentized residual과 표준정규분포를 비교하는 Q-Q plot을 제공한다.
 
 ### 3. Scale-location plot
-```{r}
+```r
 reg.plot <- plot(fit, which=3)
 ```
 
 이 plot은 가로축에 fitted value를, 세로축에 residual을 그렸던 첫 번째 plot과 유사하지만, 세로축에 표준화된 잔차, studentized residual의 제곱근을 그렸다는 차이점이 있다. Residual vs fitted plot과 마찬가지로 plot에 눈에 띄는 규칙성이나 패턴, 혹은 크게 벗어난 값이 없어야 한다. 점들의 추세를 나타내는 붉은 선 역시 수평선을 이루어야 한다.
 
 ### 4. Residuals vs leverage
-```{r}
+```r
 reg.plot <- plot(fit, which=5)
 ```
 
