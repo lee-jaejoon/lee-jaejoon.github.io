@@ -3,7 +3,6 @@ layout: post
 title: "mathjax test"
 tags: [Elements of Statistical Learning]
 comments: true
-use.math: true
 ---
  
  $$
