@@ -29,8 +29,10 @@ $$
 log\frac{Pr(G=1|X=x)}{Pr(G=2|X=x)}=log\frac{Pr(G=1|X=x)}{1-Pr(G=1|X=x)}=\beta^T x=\beta_0+\beta_1 x_1+...+\beta_p x_p
 $$
 
+
 그럼 데이터가 주어졌을 때, 이 로지스틱 회귀모형을 어떻게 fit할 것인가?  
   
+
 # Fitting Logistic Regression Model  
   
 ## Likelihood Setting  
