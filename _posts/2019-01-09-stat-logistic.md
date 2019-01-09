@@ -7,28 +7,6 @@ comments: true
 
 # Introduction
 
-로지스틱 회귀분석은 반응변수 $G$가 $1$ 또는 $2$의 값을 갖는 Binary variable일 때, 혹은 $1,2,...,K$의 값을 갖는 $K$-ary variable일 때, 사용하는 회귀분석 모형이다. 이는 반응변수 $G$의 어떤 transformation이, $h(G)$, 예측변수 $X$에 대해 선형관계를 만족하는 **일반화 선형모형(Generalized Linear Model)** 의 한 종류이다. 먼저 반응변수가 Binary variable일 때의 경우를 살펴보자. 로지스틱 회귀분석은 logistic 함수(혹은 sigmoid 함수)를 이용하여, $X$가 주어졌을 때 $Y$의 조건부 확률을 다음과 같이 가정한다.
-
-$$
-Pr(G=1|X=x)= \frac{e^{\beta^T x}}{1+e^{\beta^T x}} \enspace , \enspace \enspace Pr(G=2|X=x)=1- \frac{e^{\beta^T x}}{1+e^{\beta^T x}}=\frac{1}{1+e^{\beta^T x}}
-$$
-
-위와 같은 형태로 $G$의 조건부확률을 가정한 이유는 확률은 $0\sim1$의 값을 가져야하고, logistic 함수가 다음과 같이 $0\sim1$ 사이의 값을 갖기 때문이다.
-
-$$
-logistic function \enspace : \enspace \enspace f(x)=\frac{e^x}{1+e^x}
-$$
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/45325895/50875740-0f940500-140d-11e9-8330-b0ab07cd51ce.png">
-<p/>
-
-우리는 예측변수 $X$가 변할 때, $G=1$과 $G=0$ 두 조건부확률의 차(difference)보다는 **비(ratio)** 에 관심이 있다. 예를 들어, 어떤 도시에 비가 올 확률이 $0.6$이었다고 하자. 이 상황에서 비가 내릴 확률이 두 배가 되었다는 것은 단순히 그 확률에 2를 곱하여 비가 올 확률이 $1.2$가 된다는 것이 아니라, 날씨가 갤 확률 대비 비가 올 확률, 즉 확률비(ratio)가 $\frac{0.6}{1-0.6}=1.5$에서 $\frac{0.75}{1-0.75}=3$으로 두 배가 되었다는 것을 의미하기 때문이다. 이와 같은 두 조건부 확률의 비를 $odds$라고 하고, $log(odds)$는 다음과 같이 나타낼 수 있다.
-
-$$
-log\frac{Pr(G=1|X=x)}{Pr(G=2|X=x)}=log\frac{Pr(G=1|X=x)}{1-Pr(G=1|X=x)}=\beta^T x=\beta_0+\beta_1 x_1+...+\beta_p x_p
-$$
-
 # Fitting Logistic Regression Model
 
 그럼 데이터가 주어졌을 때, 이 로지스틱 회귀모형을 어떻게 fit할 것인가?  
