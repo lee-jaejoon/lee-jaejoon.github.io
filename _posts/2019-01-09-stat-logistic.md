@@ -19,12 +19,6 @@ $$
 logistic function \enspace : \enspace \enspace f(x)=\frac{e^x}{1+e^x}
 $$
 
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/45325895/50875740-0f940500-140d-11e9-8330-b0ab07cd51ce.png">
-<p/>
-
-
 우리는 예측변수 $X$가 변할 때, $G=1$과 $G=0$ 두 조건부확률의 차(difference)보다는 **비(ratio)**에 관심이 있다. 예를 들어, 어떤 도시에 비가 올 확률이 $0.6$이었다고 하자. 이 상황에서 비가 내릴 확률이 두 배가 되었다는 것은 단순히 그 확률에 2를 곱하여 비가 올 확률이 $1.2$가 된다는 것이 아니라, 날씨가 갤 확률 대비 비가 올 확률, 즉 확률비(ratio)가 $\frac{0.6}{1-0.6}=1.5$에서 $\frac{0.75}{1-0.75}=3$으로 두 배가 되었다는 것을 의미하기 때문이다. 이와 같은 두 조건부 확률의 비를 $odds$라고 하고, $log(odds)$는 다음과 같이 나타낼 수 있다.
 
 $$
