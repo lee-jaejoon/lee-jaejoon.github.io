@@ -29,13 +29,11 @@ $$
 log\frac{Pr(G=1|X=x)}{Pr(G=2|X=x)}=log\frac{Pr(G=1|X=x)}{1-Pr(G=1|X=x)}=\beta^T x=\beta_0+\beta_1 x_1+...+\beta_p x_p
 $$
 
+# Fitting Logistic Regression Model
 
 그럼 데이터가 주어졌을 때, 이 로지스틱 회귀모형을 어떻게 fit할 것인가?  
-  
 
-# Fitting Logistic Regression Model  
-  
-## Likelihood Setting  
+## Likelihood Setting
   
 $(x_1,g_1),(x_2,g_2),...,(x_N,g_N)$과 같이, random sample로 총 $N$개의 데이터를 가지고 있다고 하자.  
 $g_i$는 $1$ 또는 $2$의 값을 갖는 binary response variable이며, $x_i$는 각각 $p$개의 예측변수와, 상수항 계수에 대응될 $x_0=1$을 포함한 $p+1$차원 벡터이다. 따라서 추정할 회귀계수는 $\beta=[\beta_0,\beta_1,...,\beta_p]^T$가 된다. random sample $(x_1,g_1),...,(x_N,g_N)$에 대한 $\beta$의 likelihood는 다음과 같다.
