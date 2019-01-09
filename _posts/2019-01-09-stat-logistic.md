@@ -121,6 +121,4 @@ $$
 ### Newton-Raphson Method
 위와 같은 log-likelihood의 일계 미분 결과는 analytic하게 그 해를 찾을 수 없으므로, Newton-Raphson method를 이용하여 그 해를 찾을 것이다. Newton-Raphson method는 어떤 함수, $f(X)$, 의 값이 $0$이 되는 점을 찾는 데 쓰이는 대표적인 numerical method이다. Newton-Raphson method는 아래의 사진과 같이, 접선을 그려 그 접선함수의 값이 0이 되는 $X$값을 찾고, 새로 찾은 $X$ 값에서 다시 접선을 그리는 작업을 반복하여 함수의 값이 $0$이 되는 점을 찾는다.
 
-<p>
 ![newton](lee-jaejoon.github.io/images/NewtonIteration_Ani.gif "newton")
-<p/>
