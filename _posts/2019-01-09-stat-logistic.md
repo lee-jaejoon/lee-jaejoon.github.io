@@ -45,7 +45,7 @@ $$
 L(\beta)=\prod_{i=1}^{N} P(G=1|X=x_i,\beta)^{y_i} P(G=2|X=x_i,\beta)^{1-y_i}
 $$
 
-표현 상 편의를 위해, $P(G=1|X=x_i,\beta)=p(x_i;\beta)=\frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}$라고 하자.
+표현 상 편의를 위해, $P(G=1 \mid X=x_i,\beta)=p(x_i;\beta)=\frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}$라고 하자.
 
 $$
 logL(\beta)=l(\beta)=\sum_{i=1}^{N} \{ y_i logp(x_i;\beta) +(1-y_i)log(1-p(x_i;\beta)) \} 
@@ -101,7 +101,7 @@ $$
 \frac{\partial^2 l(\beta)}{\partial \beta_j \partial \beta_k} = \frac{\partial }{\partial \beta_k} \sum_{i=1}^{N} \{ y_i - p(x_i;\beta)  \} x_i  =- \sum_{i=1}^{N}  x_{ij} \frac{\partial }{\partial \beta_k} p(x_i;\beta) 
 $$
 
-$p(x_i;\beta)=P(G=1|X=x_i,\beta)=\frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}$이므로,
+$p(x_i;\beta)=P(G=1 \mid X=x_i,\beta)=\frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}$이므로,
 
 $$
 \frac{\partial^2 l(\beta)}{\partial \beta_j \partial \beta_k} =- \sum_{i=1}^{N}   x_{ij}  x_{ik} p(x_i;\beta) (1-p(x_i;\beta))
