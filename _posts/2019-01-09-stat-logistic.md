@@ -4,8 +4,8 @@ title: "Logistic Regression"
 tags: [statistics]
 comments: true
 ---
-# Logistic Regression
-## Introduction
+
+# Introduction
 
 로지스틱 회귀분석은 반응변수 $G$가 $1$ 또는 $2$의 값을 갖는 Binary variable일 때, 혹은 $1,2,...,K$의 값을 갖는 $K$-ary variable일 때, 사용하는 회귀분석 모형이다. 이는 반응변수 $G$의 어떤 transformation이, $h(G)$, 예측변수 $X$에 대해 선형관계를 만족하는 **일반화 선형모형(Generalized Linear Model)**의 한 종류이다. 먼저 반응변수가 Binary variable일 때의 경우를 살펴보자. 로지스틱 회귀분석은 logistic 함수(혹은 sigmoid 함수)를 이용하여, $X$가 주어졌을 때 $Y$의 조건부 확률을 다음과 같이 가정한다.
 
