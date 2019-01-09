@@ -161,7 +161,9 @@ $$
 \beta_{new}= (X^T WX)^{-1} X^T W z
 $$
 
-여기서 위와 같이 $z= X \beta_{old} + W^{-1} (y-p) $ 로 둔다면, Newton-Raphson method의 한 step 한 step이 지나며, $W$와 $z$ 역시 $\beta$의 값이 update 됨에 따라, 함께 update 될 것이다. Newton-Raphson method의 한 step으로 얻어진 $\beta_{new}$은 **$z$를 response variable, $W$를 weight matrix로 두고 weighted least square를 수행한 결과와 같다**고 볼 수 있다. 따라서 이와 같은 방법으로 로지스틱 회귀모형의 회귀계수 $\beta$를 추정하는 것을 **Iteratively Reweighted Least Squares method**이라고도 부른다.
+여기서 위와 같이 $z= X \beta_{old} + W^{-1} (y-p) $ 로 둔다면, Newton-Raphson method의 한 step 한 step이 지나며, $W$와 $z$ 역시 $\beta$의 값이 update 됨에 따라, 함께 update 될 것이다. Newton-Raphson method의 한 step으로 얻어진 $\beta_{new}$은 **$z$를 response variable, $W$를 weight matrix로 두고 weighted least square를 수행한 결과와 같다**고 볼 수 있다. 따라서 이와 같은 방법으로 로지스틱 회귀모형의 회귀계수 $\beta$를 추정하는 것을 **Iteratively Reweighted Least Squares method**이라고도 부른다.  
+<br>
+<br>
   
   
 
