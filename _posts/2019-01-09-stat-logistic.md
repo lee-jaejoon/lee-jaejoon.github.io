@@ -32,7 +32,9 @@ $$
 그럼 데이터가 주어졌을 때, 이 로지스틱 회귀모형을 어떻게 fit할 것인가?
 
 ## Fitting Logistic Regression Model
+
 ### Likelihood Setting
+
 $(x_1,g_1),(x_2,g_2),...,(x_N,g_N)$과 같이, random sample로 총 $N$개의 데이터를 가지고 있다고 하자.  
 $g_i$는 $1$ 또는 $2$의 값을 갖는 binary response variable이며, $x_i$는 각각 $p$개의 예측변수와, 상수항 계수에 대응될 $x_0=1$을 포함한 $p+1$차원 벡터이다. 따라서 추정할 회귀계수는 $\beta=[\beta_0,\beta_1,...,\beta_p]^T$가 된다. random sample $(x_1,g_1),...,(x_N,g_N)$에 대한 $\beta$의 likelihood는 다음과 같다.
 
@@ -56,7 +58,9 @@ $$
 = \sum_{i=1}^{N} \{ y_i log{e^{\beta^T x_i}} -y_i log(1+e^{\beta^T x_i})-(1-y_i)log(1+e^{\beta^T x_i}) \}= \sum_{i=1}^{N} \{ y_i \beta^T x_i -log(1+e^{\beta^T x_i}) \}
 $$
 
+
 ### First-order Derivative
+
 log-likelihood $l(\beta)$를 $\beta=[\beta_0,\beta_1,...,\beta_p]^T$에 대해 미분하자. i번째 observation의 에측변수를 담는 벡터 $x_i$는 아래와 같다.
 
 $$
@@ -91,7 +95,9 @@ $$
 \sum_{i=1}^{N} \{ y_i - p(x_i;\beta)  \} x_i
 $$
 
+
 ### Second-order Derivative
+
 log-likelihood $l(\beta)$를 $\beta_j$와 $\beta_k$로 미분하여 이계도함수를 구하면 다음과 같다.
 
 $$
@@ -118,7 +124,9 @@ $$
 = - \sum_{i=1}^{N}  p(x_i;\beta) (1-p(x_i;\beta)) x_i x_i^T
 $$
 
+
 ### Newton-Raphson Method
+
 위와 같은 log-likelihood의 일계 미분 결과는 analytic하게 그 해를 찾을 수 없으므로, Newton-Raphson method를 이용하여 그 해를 찾을 것이다. Newton-Raphson method는 어떤 함수, $f(X)$, 의 값이 $0$이 되는 점을 찾는 데 쓰이는 대표적인 numerical method이다. Newton-Raphson method는 아래의 사진과 같이, 접선을 그려 그 접선함수의 값이 0이 되는 $X$값을 찾고, 새로 찾은 $X$ 값에서 다시 접선을 그리는 작업을 반복하여 함수의 값이 $0$이 되는 점을 찾는다.
 
 ![newton](/images/NewtonIteration_Ani.gif "newton")
