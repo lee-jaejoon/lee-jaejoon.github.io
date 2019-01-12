@@ -27,7 +27,8 @@ $$
 $$
 log\frac{Pr(G=1|X=x)}{Pr(G=2|X=x)}=log\frac{Pr(G=1|X=x)}{1-Pr(G=1|X=x)}=\beta^T x=\beta_0+\beta_1 x_1+...+\beta_p x_p
 $$
-
+<br>
+<br>
 <br>
 <br>
 
