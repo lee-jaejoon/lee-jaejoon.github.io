@@ -174,4 +174,4 @@ $$
   
   
 
-# 3. Fitting Logistic Regression Model (response with K classes)
+# 3. Fitting Logistic Regression Model (K-ary response)
