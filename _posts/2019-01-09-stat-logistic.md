@@ -4,6 +4,11 @@ title: "Logistic Regression"
 tags: [Statistics]
 comments: true
 ---
+> Contents  
+> [1. Introduction](#1-introduction)  
+> [2. Fitting Logistic Regression Model (binary response)](#2-fitting-logistic-regression-model-(binary-response))  
+> [3. Fitting Logistic Regression Model ($K$-ary response)](#3-fitting-logistics-regression-model-(k-ary-response))  
+
 
 # 1. Introduction
 
