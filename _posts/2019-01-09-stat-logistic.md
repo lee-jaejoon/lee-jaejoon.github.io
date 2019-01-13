@@ -179,5 +179,5 @@ $$
 
   
 # Reference
-> Hastie, T., Tibshirani, R.,, Friedman, J. (2001). The Elements of Statistical Learning. New York, NY, USA: Springer New York Inc.. 
+> Hastie, T., Tibshirani, R.,, Friedman, J. (2001). The Elements of Statistical Learning. New York, NY, USA: Springer New York Inc..  
 > Kutner, M. H., Nachtsheim, C., & Neter, J. (2008). Applied linear regression models. Boston: McGraw-Hill.
