@@ -1,0 +1,44 @@
+---
+layout: post
+title: "ESL: Ch 6. Kernel Smoothing Methods"
+tags: [Elements of Statistical Learning]
+comments: true
+---
+> Contents  
+> [6.1 One-Dimensional Kernel Smoothers](#61-one-dimensional-kernel-smoothers)  
+> [6.2 Selecting the Width of the Kernel](#62-selecting-the-width-of-the-kernel)  
+> [6.3 Local Regression in R^p](#63-local-regression-in-r-p)  
+> [6.4 Structured Local Regression Models in R^p](#64-structured-local-regression-models-in-rp)  
+> [6.5 Local Likelihood and Other Models](#65-local-likelihood-and-other-models)  
+> [6.6 Kernel Density Estimation and Classification](#66-kernel-density-estimation-and-classification)  
+> [6.7 Radial Basis Functions and Kernels](#67-radial-basis-functions-and-kernels)  
+> [6.8 Mixture Models for Density Estimation and Classification](#68-mixture-models-for-density-estimation-and-classification)  
+> [6.9 Computational Considerations](#69-computational-considerations)  
+
+# 6.1 One-Dimensional Kernel Smoothers
+
+
+# 6.2 Selecting the Width of the Kernel
+
+
+# 6.3 Local Regression in R^p
+
+
+# 6.4 Structured Local Regression Models in R^p
+
+
+# 6.5 Local Likelihood and Other Models
+
+
+# 6.6 Kernel Density Estimation and Classification
+
+
+# 6.7 Radial Basis Functions and Kernels
+
+
+# 6.8 Mixture Models for Density Estimation and Classification
+
+
+# 6.9 Computational Considerations
+
+
