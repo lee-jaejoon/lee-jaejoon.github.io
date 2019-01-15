@@ -20,7 +20,7 @@ $$
 
 위와 같은 형태로 $G$의 조건부확률을 가정한 이유는 확률은 $0\sim1$의 값을 가져야하고, logistic 함수($f(x)=\frac{e^x}{1+e^x}$)가 다음과 같이 $0\sim1$ 사이의 값을 갖기 때문이다.
 
-![sigmoid](/images/sigmoid.PNG)
+![sigmoid](/images/sigmoid.PNG){: .center-image}
 
 우리는 예측변수 $X$가 변할 때, $G=1$과 $G=0$ 두 조건부확률의 차(difference)보다는 **비(ratio)**에 관심이 있다. 예를 들어, 어떤 도시에 비가 올 확률이 $0.6$이었다고 하자. 이 상황에서 비가 내릴 확률이 두 배가 되었다는 것은 단순히 그 확률에 2를 곱하여 비가 올 확률이 $1.2$가 된다는 것이 아니라, 날씨가 갤 확률 대비 비가 올 확률, 즉 확률비(ratio)가 $\frac{0.6}{1-0.6}=1.5$에서 $\frac{0.75}{1-0.75}=3$으로 두 배가 되었다는 것을 의미하기 때문이다. 이와 같은 두 조건부 확률의 비를 $odds$라고 한다. 로지스틱 회귀분석은 $log(odds)$를 다음과 같이 가정한다.
 
@@ -124,7 +124,7 @@ $$
 ## 2.4. Newton-Raphson Method (Iteratively Reweighted Least Squares Method)
 위와 같은 log-likelihood의 일계 미분 결과는 analytic하게 그 해를 찾을 수 없으므로, **Newton-Raphson method**를 이용하여 그 해를 찾을 것이다. **Newton-Raphson method**는 어떤 함수, $f(X)$, 의 값이 $0$이 되는 점을 찾는 데 쓰이는 대표적인 numerical method이다. **Newton-Raphson method**는 아래의 사진과 같이, 접선을 그려 그 접선함수의 값이 0이 되는 $X$값을 찾고, 새로 찾은 $X$ 값에서 다시 접선을 그리는 작업을 반복하여 함수의 값이 $0$이 되는 점을 찾는다.
 
-![newton](/images/NewtonIteration_Ani.gif)
+![newton](/images/NewtonIteration_Ani.gif){: .center-image}
 
 우리는 log-likelihood의 일계도함수 $\frac{\partial l(\beta)}{\partial \beta}$가 0이 되는 $\beta$를 찾고자 한다. 따라서 $\frac{\partial l(\beta)}{\partial \beta}$의 접선의 방정식과 같은 아래 식을 통해 $\beta$를 update시킨다.
 
