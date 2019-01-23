@@ -26,8 +26,8 @@ navigation:
     url: /about
   - name: Archive
     url: /archive
-  - name: Tags
-    url: /tags
+  - name: Categories
+    url: /categories
 
 # Pagination
 paginate: 5
