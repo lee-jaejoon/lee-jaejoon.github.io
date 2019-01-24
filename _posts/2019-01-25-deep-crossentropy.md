@@ -25,7 +25,7 @@ $$
 = \arg \min _\theta \enspace  - \frac{1}{N} \sum_{i=1}^{N}  \log p_{model}(y_i \mid x_i,\theta)
 $$
 
-여기서 training data로 정의된 empirical distribution을 $\hat{p}_{data}$라고 한다면, 위 식은 아래와 같이 나타낼 수 있다. empirical distribution, $\hat{p}_{data}$는 training data의 각 점에서 $\frac{1}{N}$의 확률을 갖는 확률질량함수이다.
+여기서 training data로 정의된 empirical distribution을 $\hat p_{data}$라고 한다면, 위 식은 아래와 같이 나타낼 수 있다. empirical distribution, $\hat p_{data}$는 training data의 각 점에서 $\frac{1}{N}$의 확률을 갖는 확률질량함수이다.
 
 $$
 = \arg \min _\theta \enspace - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log p_{model}(y_i \mid x_i,\theta) 
@@ -44,7 +44,7 @@ $$
 D_{KL} (P \mid \mid Q)=- \sum_{x} P(x) \log ( \frac{Q(x)}{P(x)} ) =-\mathbb{E}P \log(\frac{Q(x)}{P(x)})
 $$
 
-training data의 empirical distribution, $\hat{p}_{data}$와 우리가 만든 모형의 분포, $p_{model}$ 사이의 KL Divergence를 구하면 아래와 같다. 우리는 $N$개의 점으로 이루어진 training data가 이미 주어진 것으로 생각하므로, 어떤 모형 $p_{model}$이 최적일지, 그리고 $\theta$가 어떤 값을 가져야 $p_{model}$이 주어진 training data를 잘 설명할지를 고민하는 현재의 상황에서, $ \hat{p}{data}$는 변하지 않는 주어진 분포이다. 따라서 아래의 식에 표기할 때 $\theta$에 대한 dependence를 주지 않았다.
+training data의 empirical distribution, $\hat{p}{data}$와 우리가 만든 모형의 분포, $p_{model}$ 사이의 KL Divergence를 구하면 아래와 같다. 우리는 $N$개의 점으로 이루어진 training data가 이미 주어진 것으로 생각하므로, 어떤 모형 $p_{model}$이 최적일지, 그리고 $\theta$가 어떤 값을 가져야 $p_{model}$이 주어진 training data를 잘 설명할지를 고민하는 현재의 상황에서, $ \hat{p}{data}$는 변하지 않는 주어진 분포이다. 따라서 아래의 식에 표기할 때 $\theta$에 대한 dependence를 주지 않았다.
 
 $$
 D_{KL} (\hat{p}_{data} \mid \mid p_{model})
