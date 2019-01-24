@@ -6,7 +6,7 @@ comments: true
 ---
 Deep learning을 처음 공부하다 보면 cross-entropy 혹은 cross-entropy cost function를 자주 접하게 된다. 단순히 "아 식이 이렇게 정의되는구나"하고 넘어가는 것보다, 통계학과 어떻게 맞닿아 있는지를 생각하면 cross-entropy cost function을 더 잘 이해할 수 있을 것이라고 생각한다. 또한 KL Divergence를 통해 바라본 cross-entropy cost function의 의미도 정리해보았다. 먼저 Maximum likelihood를 이용한 neural network parameter 추정에 대해 생각해보자.  
 <br>
-대부분의 neural network 모델은 Maximum likelihood를 이용하여 훈련(train)된다. 이 때, 최적 parameter 값 결정을 위해 최소화하고자 하는 target 함수, 즉 cost function은 negative log-likelihood가 된다. 다시 말해서, Cost function인 **negative log-likelihood를 최소화**하는 것은 **maximum likelihood를 달성하는 parameter의 값을 찾는 것**이다. 이처럼 negative log-likelihood를 이용한 cost function은 어떤 의미가 있는지 간단히 살펴보자.  
+대부분의 neural network 모델은 Maximum likelihood를 이용하여 훈련(train)된다. 이 때, 최적 parameter 값 결정을 위해 최소화하고자 하는 target 함수, 즉 cost function은 negative log-likelihood가 된다. 다시 말해서, Cost function인 **negative log-likelihood를 최소화**하는 것은 **maximum likelihood를 달성하는 weight, bias의 값을 찾는 것**이다. 이처럼 negative log-likelihood를 이용한 cost function은 어떤 의미가 있는지 간단히 살펴보자.  
 <br>
 <br>
 
