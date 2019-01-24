@@ -41,25 +41,22 @@ $$
 추가로, 이것이 어떤 의미가 있는지 **KL Divergence**와의 관계를 이용하여 알아보자. [Kullback-Leibler Divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)는 **한 확률분포가 다른 확률분포와 서로 얼마나 다른지를 측정하는 척도**이다. 두 확률분포가 완전히 같다면 KL Divergence는 $0$이 된다. 그 식은 다음과 같다.
 
 $$
-D_{KL} (P \mid \mid Q)=- \sum_{x} P(x) \log(\frac{Q(x)}{P(x)})=- \mathbb{E}_P \log(\frac{Q(x)}{P(x)})
+D_{KL} (P \mid \mid Q)=- \sum_{x} P(x) \log ( \frac{Q(x)}{P(x)} ) =-\mathbb{E}P \log(\frac{Q(x)}{P(x)})
 $$
 
-training data의 empirical distribution, $\hat{p}_{data}$와 우리가 만든 모형의 분포, $p_{model}$ 사이의 KL Divergence를 구하면 아래와 같다. 우리는 $N$개의 점으로 이루어진 training data가 이미 주어진 것으로 생각하므로, 어떤 모형 $p_{model}$이 최적일지, 그리고 $\theta$가 어떤 값을 가져야 $p_{model}$이 주어진 training data를 잘 설명할지를 고민하는 현재의 상황에서, $\hat{p}_{data}$는 변하지 않는 주어진 분포이다. 따라서 아래의 식에 표기할 때 $\theta$에 대한 dependence를 주지 않았다.
+training data의 empirical distribution, $\hat{p}_{data}$와 우리가 만든 모형의 분포, $p_{model}$ 사이의 KL Divergence를 구하면 아래와 같다. 우리는 $N$개의 점으로 이루어진 training data가 이미 주어진 것으로 생각하므로, 어떤 모형 $p_{model}$이 최적일지, 그리고 $\theta$가 어떤 값을 가져야 $p_{model}$이 주어진 training data를 잘 설명할지를 고민하는 현재의 상황에서, $ \hat{p}{data}$는 변하지 않는 주어진 분포이다. 따라서 아래의 식에 표기할 때 $\theta$에 대한 dependence를 주지 않았다.
 
 $$
 D_{KL} (\hat{p}_{data} \mid \mid p_{model})
-=
- - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \Big( \frac{p_{model}(y_i \mid x_i,\theta)}{\hat{p}_{data}(y_i \mid x_i)} \Big)
+= - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \Big( \frac{p_{model}(y_i \mid x_i,\theta)}{\hat{p}_{data}(y_i \mid x_i)} \Big)
 $$
 
 $$
-=
- - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \big( p_{model}(y_i \mid x_i,\theta) \big) + \mathbb{E}_{x,y \sim \hat{p}_{data}} \log \big( \hat{p}_{data}(y_i \mid x_i) \big)
+= - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \big( p_{model}(y_i \mid x_i,\theta) \big) + \mathbb{E}_{x,y \sim \hat{p}_{data}} \log \big( \hat{p}_{data}(y_i \mid x_i) \big)
 $$
 
 $$
-=
- - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \big( p_{model}(y_i \mid x_i,\theta) \big) + constant
+= - \mathbb{E}_{x,y \sim \hat{p}_{data}}  \log \big( p_{model}(y_i \mid x_i,\theta) \big) + constant
 $$
 
 Likelihood를 maximize하는 것은 우리가 만든 모형의 분포 $p_{model}$이 training set의 분포 $\hat{p}_{data}$를 가장 잘 설명하도록 만드는 parameter, $\theta$를 고르는 일이다. 쉽게 말해서, $p_{model}$과 $\hat{p}_{data}$의 차이를 최소화하고 싶다는 것이다. KL Divergence는 두 확률분포, $\hat{p}_{data}$와 $p_{model}$가 얼마나 서로 다른지를 나타낸다. 따라서, **Likelihood를 maximize하는 $\theta$를 고르는 것**은 $\hat{p}_{data}$와 $p_{model}$ 사이의 **KL Divergence를 최소화하는 $p_{model}$을, KL Divergence를 최소화하는 $\theta$를 고르는 것**이 된다. 이는 식으로도 확인할 수 있다.  
