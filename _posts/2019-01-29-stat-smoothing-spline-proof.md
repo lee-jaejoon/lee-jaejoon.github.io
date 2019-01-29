@@ -8,7 +8,7 @@ comments: true
 이 포스트는 Smoothing spline에 대한 기본적인 이해를 갖고 있는 독자를 대상으로 한다. Piecewise polynomial, natural cubic spline, smoothing spline 등의 개념이 익숙치 않다면 The Elements of Statistical Learning의 Chapter 5.1 ~ 5.4, 혹은 이를 정리한 나의 포스트(**[Link](https://lee-jaejoon.github.io/ESL-5/)**)를 참고하면 도움이 될 것이다.  
 <br>
 <br>
-# Regression Problem with Curvature Constraint
+## Regression Problem with Curvature Constraint
 
 Observed data, $(x_1,y_1),(x_2,y_2),...,(x_N,y_N)$를 통해 regression function을 추정하기 위하여, 아래와 같은 식을 최소화하는 $\hat{f}$를 찾는 문제를 생각해보자. $f$는 $[a,b]$에서 정의되고, $f'' (t)^2 $가 적분가능한 임의의 함수이다.
 
