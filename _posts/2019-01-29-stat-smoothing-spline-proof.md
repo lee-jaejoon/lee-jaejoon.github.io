@@ -9,7 +9,7 @@ comments: true
 <br>
 # Regression Problem with Curvature Constraint
 
-Observed data, $(x_1,y_1),(x_2,y_2),...,(x_N,y_N)$를 통해 regression function을 추정하기 위하여, 아래와 같은 식을 최소화하는 $\hat{f}$를 찾는 문제를 생각해보자. $f$는 $[a,b]$에서 정의되고, $f''(t)^2 $가 적분가능한 임의의 함수이다.
+Observed data, $(x_1,y_1),(x_2,y_2),...,(x_N,y_N)$를 통해 regression function을 추정하기 위하여, 아래와 같은 식을 최소화하는 $\hat{f}$를 찾는 문제를 생각해보자. $f$는 $[a,b]$에서 정의되고, $f'' (t)^2 $가 적분가능한 임의의 함수이다.
 
 $$
 \hat{f}=\text{arg}\min_{f} \enspace \sum_{i=1}^{N} { \{ y_i-f(x_i) \} }^2 + \lambda \int_a^b { \{ f''(t) \} }^2 dt
@@ -119,6 +119,6 @@ $$
 <br>
 
 # Reference
-> Hastie, T., Tibshirani, R.,, Friedman, J. (2001). The Elements of Statistical Learning. New York, NY, USA: Springer New York Inc.. 
+> Hastie, T., Tibshirani, R.,, Friedman, J. (2001). The Elements of Statistical Learning. New York, NY, USA: Springer New York Inc..  
 > http://publish.illinois.edu/liangf/files/2016/05/Note_splines.pdf
 
