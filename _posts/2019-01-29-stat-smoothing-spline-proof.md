@@ -24,7 +24,7 @@ $$
 	 * $\lambda=0$일 때, $f$는 전혀 smoothing되지 않고 모든 observed points $(x_1,y_1),...,(x_N,y_N)$를 지나가는 곡선이 될 것.
 	 * $\lambda=\infty$일 때, $f$는 이계도함수가 $0$이 되어야하므로 least square로 직선(일차함수)을 fit한 결과가 나올 것.
 
-따라서, 주어진 $\lambda$에 대해서, 위 식을 최소화하는 함수 $\hat{f}$는 observed data와의 fit도 좋으면서, curvature도 크지 않은 **smooth**한 함수가 될 것이다. 그런데 위의 문제에서는 $f''(t)^2 $가 적분가능하다는 것 외에는 $f$에 대해 어떠한 제한도 두지 않았다. **$f''(t)^2 $가 적분가능한 함수는 무수히 많을 것이고, 이를 모두 고려하는 것은 불가능하다.** 우리는 위 식을 최소화하는 함수, $\hat{f}$를 어떻게 찾아야 할까?  
+따라서, 주어진 $\lambda$에 대해서, 위 식을 최소화하는 함수 $\hat{f}$는 observed data와의 fit도 좋으면서, curvature도 크지 않은 **smooth**한 함수가 될 것이다. 그런데 위의 문제에서는 $f'' (t)^2 $가 적분가능하다는 것 외에는 $f$에 대해 어떠한 제한도 두지 않았다. **$f'' (t)^2 $가 적분가능한 함수는 무수히 많을 것이고, 이를 모두 고려하는 것은 불가능하다.** 우리는 위 식을 최소화하는 함수, $\hat{f}$를 어떻게 찾아야 할까?  
 <br>
 <br>
 
@@ -33,7 +33,7 @@ $$
 다행히도 위 최소화 문제는 **$x_1,x_2, ...,x_N$에서 knot을 갖는 natural cubic spline**을 **유일한 해**로 갖는다는 것이 밝혀져 있다 (증명 **[Reinsch (1967)](https://link.springer.com/content/pdf/10.1007/BF02162161.pdf)**). 따라서 우리는 $x_1,x_2, ...,x_N$에서 knot을 가지면서 위 식을 최소화하는 Natural cubic spline을 **Smoothing spline**이라고 정의한다. 하지만 training data의 input point들에서 knot을 갖는 natural cubic spline이 항상 위 최소화 문제의 해가 된다는 것은 직관적으로도 쉽게 다가오지 않는다. 또한, 엄밀한 증명(**[Reinsch (1967)](https://link.springer.com/content/pdf/10.1007/BF02162161.pdf)**)을 읽고 이해하는 것도 쉽지 않은 일이다. 그래서 이 포스트에서는 아래와 같은 Theorem을 증명함으로써 이에 대한 Heuristic derivation을 소개하고자 한다.  
 
 ### Theorem
-$[a,b]$에서 정의되고 $g''^2$가 적분가능한 한 함수 $g$를 생각해보자. 그리고 $\tilde{g}$를 $[a,b]$ 내의 $N$개의 data points $x_1, x_2, ..., x_N$에서 knot을 갖고, 아래 식을 만족하는 natural cubic spline이라고 하자. ($a < x_1 < x_2 < ...< x_N < b$)
+$[a,b]$에서 정의되고 $g'' ^2$가 적분가능한 한 함수 $g$를 생각해보자. 그리고 $\tilde{g}$를 $[a,b]$ 내의 $N$개의 data points $x_1, x_2, ..., x_N$에서 knot을 갖고, 아래 식을 만족하는 natural cubic spline이라고 하자. ($a < x_1 < x_2 < ...< x_N < b$)
 
 $$
 g(x_i)=\tilde{g}(x_i) \enspace , \enspace \enspace \text{for} \enspace  i=1,2,...,N
@@ -60,6 +60,7 @@ $$
 
 ### Proof of the Theorem
 임의의 $x \in [a,b]$에 대해, $h(x)=g(x)-\tilde{g}(x)$로 정의된 함수를 $h$라고 하자. $g(x)=h(x)+\tilde{g}(x)$이므로,
+
 $$
 \enspace \enspace \enspace \enspace \int_a^b g''^2(t)dt = \int_a^b h''(t)^2+2 h''(t) \tilde{g}''(t)+\tilde{g}''^2(t) dt \enspace \enspace \cdots \cdots(a)
 $$
@@ -74,7 +75,7 @@ $$
 = h'(b) \tilde{g}''(b) -h'(a) \tilde{g}''(a) - \int_a^b h'(t) \tilde{g}'''(t) dt
 $$
 
-natural cubic spline은 boundary knot (가장 바깥쪽에 있는 knot. 즉, $x_1,x_N$)의 바깥에서 linear한 cubic spline으로 정의된다. 즉,  $[a,x_1]$과 $[x_N,b]$에서 $g(x)$는 일차함수 꼴이며, 두번 미분하면 0이 된다. 따라서, $\tilde{g}''(a)=\tilde{g}''(b)=0$이므로,
+natural cubic spline은 boundary knot (가장 바깥쪽에 있는 knot. 즉, $x_1,x_N$)의 바깥에서 linear한 cubic spline으로 정의된다. 즉,  $[a,x_1]$과 $[x_N,b]$에서 $g(x)$는 일차함수 꼴이며, 두번 미분하면 0이 된다. 따라서, $\tilde{g}'' (a)=\tilde{g}'' (b)=0$ 이므로,
 
 $$
 \int_a^b h''(t) \tilde{g}''(t) dt = - \int_a^b h'(t) \tilde{g}'''(t) dt
@@ -90,7 +91,8 @@ $$
 = - \tilde{g}'''(a+)\int_a^{x_1} h'(t)  dt - \tilde{g}'''(x_1 +) \int_{x_1}^{x_2} h'(t) dt - \cdots - \tilde{g}'''(x_N +)\int_{x_N}^{b} h'(t) dt
 $$
 
-위에서 언급한 것과 같이, $[a,x_1]$과 $[x_N,b]$에서 $g(x)$는 일차함수 꼴이며, 세 번 미분하면 0이 된다. $ \tilde{g}'''(a+)= \tilde{g}'''(x_N +)=0$. 따라서,
+위에서 언급한 것과 같이, $[a,x_1]$과 $[x_N,b]$에서 $g(x)$는 일차함수 꼴이며, 세 번 미분하면 0이 된다. $ \tilde{g}''' (a+)= \tilde{g}''' (x_N +)=0$. 따라서,
+
 $$
 = c_1 \int_{x_1}^{x_2} h'(t) dt - \cdots +c_{N-1} \int_{x_{N-1}}^{x_N} h'(t) dt
 $$
