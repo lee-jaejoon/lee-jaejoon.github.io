@@ -80,7 +80,7 @@ $$
 = h'(b) \tilde{g}''(b) -h'(a) \tilde{g}''(a) - \int_a^b h'(t) \tilde{g}'''(t) dt
 $$
 
-![image](https://user-images.githubusercontent.com/45325895/52011282-df76e800-251a-11e9-9bc0-8576a1459140.png){: .center-image}
+![image](https://user-images.githubusercontent.com/45325895/52011566-aab76080-251b-11e9-90e8-8c4c3221f9ca.png){: .center-image}
 
 위 그림의 예에서 볼 수 있듯이, natural cubic spline은 boundary knot (가장 바깥쪽에 있는 knot. 즉, $x_1,x_N$)의 바깥에서는 직선인(linear한) cubic spline으로 정의된다. 위 그림은 세 개의 수직 점선이 knot을 나타낸다. boundary knot의 바깥쪽에서는 natural cubic spline이 직선인 것을 볼 수 있다. 즉,  $[a,x_1]$과 $[x_N,b]$에서 $g(x)$는 일차함수 꼴이며, 두번 미분하면 0이 된다. 따라서, $\tilde{g}'' (a)=\tilde{g}'' (b)=0$ 이므로,
 
