@@ -34,10 +34,14 @@ $$
 다행히도 위 최소화 문제는 **$x_1,x_2, ...,x_N$에서 knot을 갖는 natural cubic spline**을 **유일한 해**로 갖는다는 것이 밝혀져 있다 (증명 **[Reinsch (1967)](https://link.springer.com/content/pdf/10.1007/BF02162161.pdf)**). 따라서 우리는 $x_1,x_2, ...,x_N$에서 knot을 가지면서 위 식을 최소화하는 Natural cubic spline을 **Smoothing spline**이라고 정의한다. 하지만 training data의 input point들에서 knot을 갖는 natural cubic spline이 항상 위 최소화 문제의 해가 된다는 것은 직관적으로도 쉽게 다가오지 않는다. 또한, 엄밀한 증명(**[Reinsch (1967)](https://link.springer.com/content/pdf/10.1007/BF02162161.pdf)**)을 읽고 이해하는 것도 쉽지 않은 일이다. 그래서 이 포스트에서는 아래와 같은 Theorem을 증명함으로써 이에 대한 Heuristic derivation을 소개하고자 한다.  
 
 ## Theorem
-$[a,b]$에서 정의되고 $g'' ^2$가 적분가능한 한 함수 $g$를 생각해보자. 그리고 $\tilde{g}$를 $[a,b]$ 내의 $N$개의 data points $x_1, x_2, ..., x_N$에서 knot을 갖고, 아래 식을 만족하는 natural cubic spline이라고 하자. ($a < x_1 < x_2 < ...< x_N < b$)
+$[a,b]$에서 정의되고 $g'' ^2$가 적분가능한 한 함수 $g$를 생각해보자. 그리고 $\tilde{g}$를 $[a,b]$ 내의 $N$개의 data points $x_1, x_2, ..., x_N$에서 knot을 갖고, 아래 식을 만족하는 natural cubic spline이라고 하자.
 
 $$
 g(x_i)=\tilde{g}(x_i) \enspace , \enspace \enspace \text{for} \enspace  i=1,2,...,N
+$$
+
+$$
+a < x_1 < x_2 < ...< x_N < b
 $$
 
 그렇다면 다음이 만족한다.
