@@ -45,7 +45,7 @@ $$
 cross-entropy cost function을 최소화하는 것은 우리의 모델 $p_{model}$의 likelihood를 최대화하는 것과 같다는 것을 확인했다. 추가로, cross entropy cost function 혹은 negative log-likelihood cost function을 더 깊게 이해하기 위해, 이것이 **KL Divergence**와는 어떤 관계가 있는지 알아보자. [Kullback-Leibler Divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)는 **한 확률분포가 다른 확률분포와 서로 얼마나 다른지를 측정하는 척도**이다. 두 확률분포가 완전히 같다면 KL Divergence는 $0$이 된다. 그 식은 다음과 같다.
 
 $$
-D_{KL} (P \mid \mid Q)=- \sum_{x} P(x) \log ( \frac{Q(x)}{P(x)} ) =-\mathbb{E}P \log(\frac{Q(x)}{P(x)})
+D_{KL} (P \mid \mid Q)=- \sum_{x} P(x) \log ( \frac{Q(x)}{P(x)} ) =-\mathbb{E}_P \log(\frac{Q(x)}{P(x)})
 $$
 
 training data의 empirical distribution, $\hat p_{data}$와 우리가 만든 모형의 분포, $p_{model}$ 사이의 KL Divergence를 구하면 아래와 같다. 우리는 $N$개의 점으로 이루어진 training data가 이미 주어진 것으로 생각하므로, 어떤 모형 $p_{model}$이 최적일지, 그리고 $\theta$가 어떤 값을 가져야 $p_{model}$이 주어진 training data를 잘 설명할지를 고민하는 현재의 상황에서, $ \hat p_{data}$는 변하지 않는 주어진 분포이다. 따라서 아래의 식에 표기할 때 $\theta$에 대한 dependence를 주지 않았다.
