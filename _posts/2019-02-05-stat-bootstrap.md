@@ -6,7 +6,7 @@ comments: true
 ---
 > Contents  
 > [1. Introduction](#1-introduction)  
-> [2. Theoretical Background of Bootstrap](#2-theoretical-background-of-bootstrap)  
+> [2. Theoretical Background of Bootstrap Method](#2-theoretical-background-of-bootstrap-method)  
 > [3. R Example](#3-r-example)  
 > [4. Application](#4-application)  
   
@@ -60,7 +60,7 @@ $$
 <br>
 <br>
 
-# 2. Theoretical Background of Bootstrap
+# 2. Theoretical Background of Bootstrap Method
 
 Bootstrap은 위에서 본 것과 같이 대단히 쉽고 만능인 것처럼 보인다. 그러나 bootstrap은 그 적용에 있어 주의해야 할 부분이 있고, 그를 위해서는 bootstrap을 통한 통계량의 분포 추정이 왜 가능한 것인지를 알아야 한다. 위의 예시에서 우리의 목표는 random sample $X_1, X_2, \cdots , X_{100}$의 $10^{th}$ order statistic, $Y$의 분포(sampling distribution)를 구하는 것이었다. 좀더 구체적으로 여기서는 random sample로부터 만들어진 통계량 $Y$의 **분산**, $Var(Y)$을 구하는 것을 목표로 설정하자.  
 
