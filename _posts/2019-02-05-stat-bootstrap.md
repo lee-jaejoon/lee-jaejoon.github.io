@@ -272,7 +272,7 @@ pexp(0.4373017, 1/15)
 ```
 ![image](https://user-images.githubusercontent.com/45325895/52261384-9258a300-296c-11e9-8eac-d4f4185f0454.png)
 
-$20$개의 관찰치를 갖는 random sample 중, $6$th percentile보다 작은 값이 세 개나 나왔기 때문에 표본평균의 값이 $15$보다 크게 낮은 값이 나온 것이다. 이제 bootstrap을 수행하기 위해, 200개의 bootstrap sample을 생성하고, 각 bootstrap sample로부터 표본평균의 값을 구해 히스토그램을 그려 보았다.
+$20$개의 관찰치를 갖는 random sample 중, $6$th percentile보다 작은 값이 세 개나 나왔기 때문에 표본평균의 값이 $15$보다 크게 낮은 값이 나온 것이다. 이제 bootstrap을 수행하기 위해, $200$개의 bootstrap sample을 생성하고, 각 bootstrap sample로부터 표본평균의 값을 구해 히스토그램을 그려 보았다.
 ```r
 result <- rep(0,200)
 for(i in 1:200){
@@ -286,9 +286,9 @@ plot(seq(0,100,0.001), dgamma(seq(0,100,0.001), 20, scale = 15/20),cex=0.5,xlim=
 ```
 ![image](https://user-images.githubusercontent.com/45325895/52261768-bff21c00-296d-11e9-981c-0194ba5134d8.png){: .center-image}
 
-원래 이론적으로는, 평균이 15인 20개의 지수분포의 표본평균은 $Gamma(20,\frac{15}{20})$를 따른다. 히스토그램 위에 그려진 곡선은 이 $Gamma(20,\frac{15}{20})$의 true density를 그린 것이다. 그러나 200개의 bootstrap sample로 얻은 히스토그램은 true density보다 작은 값으로 치우쳐 있는 것을 확인할 수 있다. 이는 처음 우리가 생성한 random sample이 낮은 값으로 치우친 random sample이었기 때문에, 그로부터 resampling을 수행한 bootstrap의 결과 역시 낮은 값으로 치우치게 된 것이다. 이는 원래의 random sample이 모집단을 잘 반영하지 못한다면, 그 random sample의 empirical distribution을 이용하는 bootstrap의 추정 결과 또한 그럴 확률이 높다는 것을 의미한다. 따라서 이는 bootstrap을 적용함에 있어서 주의해야할 점이라고 할 수 있다.  
+원래 이론적으로는, 평균이 $15$인 지수분포 $20$개의 표본평균은 $Gamma(20,\frac{15}{20})$를 따른다. 히스토그램 위에 그려진 곡선은 이 $Gamma(20,\frac{15}{20})$의 true density를 그린 것이다. 그러나 $200$개의 bootstrap sample로 얻은 히스토그램은 true density보다 작은 값으로 치우쳐 있는 것을 확인할 수 있다. 이는 처음 우리가 생성한 random sample이 낮은 값으로 치우친 random sample이었기 때문에, 그로부터 resampling을 수행한 bootstrap의 결과 역시 낮은 값으로 치우치게 된 것이다. 이는 원래의 random sample이 모집단을 잘 반영하지 못한다면, 그 random sample의 empirical distribution을 이용하는 bootstrap의 추정 결과 또한 그럴 확률이 높다는 것을 의미한다. 따라서 이는 bootstrap을 적용함에 있어서 주의해야할 점이라고 할 수 있다.  
 
-그러나 이 예제의 경우 random sample의 크기가 20으로 매우 작은 크기의 sample이었다. 위에서 본 것과 같이, Random sample의 크기 $N$이 더 큰 상황에서는 empirical distribution이 모집단의 누적분포함수에 수렴할 것이므로 이 예제에서와 같은 문제가 발생할 가능성은 더 낮아질 것으로 예상할 수 있다.  
+그러나 이 예제의 경우 random sample의 크기가 $20$으로 매우 작은 크기의 sample이었다. 위에서 본 것과 같이, Random sample의 크기 $N$이 더 큰 상황에서는 empirical distribution이 모집단의 누적분포함수에 수렴할 것이므로 이 예제에서와 같은 문제가 발생할 가능성은 더 낮아질 것으로 예상할 수 있다.  
 <br>
 <br>
 <br>
