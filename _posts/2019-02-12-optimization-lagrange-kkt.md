@@ -5,7 +5,7 @@ tags: [Optimization]
 comments: true
 ---
 
-통계학 혹은 머신러닝의 대부분의 모형에서 모형의 학습은, 어떤 목적함수를 최소화(혹은 최대화)하여 모형의 parameter의 최적 값을 찾음으로써 이루어진다. Lagrangian method는 제약 하 최적화 문제를 가장 대표적인 방법 중 하나이다. 이 포스트에서는 Lagrange dual problem에 대한 이해, 그리고 그 과정에서 필요한 최적화 이론의 몇 가지 개념들을 함께 소개하고자 한다. 또한 포스트의 후반부에서는 Karush-Kuhn-Tucker 조건에 대해 소개한다. strong duality가 보장이 되었을 때, Karush-Kuhn-Tucker 조건은 어떤 벡터들이 최적화 문제의 primal solution과 dual solution이 되는 것과 필요충분 관계의 조건이 된다는 점에서 매우 의미가 있는 조건이다.
+통계학 혹은 머신러닝의 대부분의 모형에서, 모형의 학습은 목적함수를 최소화(혹은 최대화)하여 모형의 parameter의 최적 값을 찾음으로써 이루어진다. Lagrangian method는 제약 하 최적화 문제를 가장 대표적인 방법 중 하나이다. 이 포스트에서는 Lagrange dual problem에 대한 이해, 그리고 그 과정에서 필요한 최적화 이론의 몇 가지 개념들을 함께 소개하고자 한다. 또한 포스트의 후반부에서는 Karush-Kuhn-Tucker 조건에 대해 소개한다. strong duality가 보장이 되었을 때, Karush-Kuhn-Tucker 조건은 어떤 벡터들이 최적화 문제의 primal solution과 dual solution이 되는 것과 필요충분 관계의 조건이 된다는 점에서 매우 의미가 있는 조건이다.
 
 # 1. Lagrange Dual Problem
 
