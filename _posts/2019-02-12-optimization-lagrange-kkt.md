@@ -461,3 +461,17 @@ $$
 $$
 
 (최적화 문제가 strong duality를 만족하게 하는 조건의 대표적인 예는 위에서 소개한 Slater's condition이 있다.)
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+# Reference
+> http://www.stat.cmu.edu/~ryantibs/convexopt/lectures/kkt.pdf  
+> https://www.math.ucdavis.edu/~sqma/MAT258A_Files/2-convex.pdf  
+> http://web.stanford.edu/class/ee364b/lectures/subgradients_notes.pdf
+
+
