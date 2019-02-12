@@ -301,7 +301,7 @@ plot(seq(0,100,0.001), dgamma(seq(0,100,0.001), 20, scale = 15/20),cex=0.5,xlim=
 위에서 소개한 것과 같이, Bootstrap은 통계량의 분포를 analytic하게 구할 수 없는 상황에서, random sample이 생성되는 과정을 모방함으로써, 통계량의 분포를 근사할 수 있게 해주는 대안이 된다. 이는 식의 도출로 analytical 표준오차(standard error)를 구하는 것이 불가능한 추정량(estimator) 및 검정통계량(test statistic)의 표준오차 및 신뢰구간을 구할 수 있게 해준다.
 
 ## Bootstrap Prediction Error
-모형의 선택(Selection)과 평가(Assessment)를 위해서, 우리는 prediction error, 혹은 test error라고도 불리는 extra-sample error를 추정해야한다. 통계 모형 역시 true data generating function을 추정하는 추정량이기 때문에, 큰 틀에서는 3.1에서 소개한 것과 같은 맥락이다. 하지만 단순히 bootstrap 후 loss의 평균을 구하는 것이 아니라, $.632$ estimator, $.632+$ estimator와 같이 test error를 정확히 추정하기 위한 방법들이 연구되어있다. 이들은 실제로 test error를 구하는 데 있어서, cross validation과 비슷한 수준의 성능을 보여주는 것으로 알려져 있다.
+모형의 선택(Selection)과 평가(Assessment)를 위해서, 우리는 prediction error, 혹은 test error라고도 불리는 extra-sample error를 추정해야한다. 통계 모형 역시 true data generating function을 추정하는 추정량이기 때문에, 큰 틀에서는 Bootstrap Standard Error를 구하는 것과 같은 맥락이다. 하지만 단순히 bootstrap 후 loss의 평균을 구하는 것이 아니라, $.632$ estimator, $.632+$ estimator와 같이 test error를 정확히 추정하기 위한 방법들이 연구되어있다. 이들은 실제로 test error를 구하는 데 있어서, cross validation과 비슷한 수준의 성능을 보여주는 것으로 알려져 있다.
 
 ## Bagging
 **B**ootstrap **Agg**regat**ing**, 부트스트랩 합치기. 위에서와 같이 모수 추정이나 예측의 정확성을 평가하기 위한 목적이 아니라, 추정 혹은 예측 자체의 성능을 개선시키는데 bootstrap을 사용하는 방법이다. 주어진 training data로부터 bootstrap sample을 resampling한 후, 각 bootstrap sample 내에서 fit된 모형들의 예측을 평균내는 방식으로 이루어진다. (classification인 경우는 다수결 원칙으로 결정.) Bagging에 대한 자세한 내용은 The Elements of Statistical Learning의 chapter 8을 정리한 이 링크의 포스트에서 자세히 다루도록 하겠다. **[Link](https://lee-jaejoon.github.io/ESL-8/#87-bagging)**
