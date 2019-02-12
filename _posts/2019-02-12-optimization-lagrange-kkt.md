@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Lagrangian Dual Problem & Karush-Kuhn-Tucker Conditions"
+title: "Lagrange Dual Problem & Karush-Kuhn-Tucker Conditions"
 tags: [Optimization]
 comments: true
 ---
 
-통계학 혹은 머신러닝의 대부분의 모형에서 모형의 학습은, 어떤 목적함수를 최소화(혹은 최대화)하여 모형의 parameter의 최적 값을 찾음으로써 이루어진다. Lagrangian method는 제약 하 최적화 문제를 가장 대표적인 방법 중 하나이다. 이 포스트에서는 Lagrangian dual problem에 대한 이해, 그리고 그 과정에서 필요한 최적화 이론의 몇 가지 개념들을 함께 소개하고자 한다. 또한 포스트의 후반부에서는 Karush-Kuhn-Tucker 조건에 대해 소개한다. strong duality가 보장이 되었을 때, Karush-Kuhn-Tucker 조건은 어떤 벡터들이 최적화 문제의 primal solution과 dual solution이 되는 것과 필요충분 관계의 조건이 된다는 점에서 매우 의미가 있는 조건이다.
+통계학 혹은 머신러닝의 대부분의 모형에서 모형의 학습은, 어떤 목적함수를 최소화(혹은 최대화)하여 모형의 parameter의 최적 값을 찾음으로써 이루어진다. Lagrangian method는 제약 하 최적화 문제를 가장 대표적인 방법 중 하나이다. 이 포스트에서는 Lagrange dual problem에 대한 이해, 그리고 그 과정에서 필요한 최적화 이론의 몇 가지 개념들을 함께 소개하고자 한다. 또한 포스트의 후반부에서는 Karush-Kuhn-Tucker 조건에 대해 소개한다. strong duality가 보장이 되었을 때, Karush-Kuhn-Tucker 조건은 어떤 벡터들이 최적화 문제의 primal solution과 dual solution이 되는 것과 필요충분 관계의 조건이 된다는 점에서 매우 의미가 있는 조건이다.
 
-# 1. Lagrangian Dual Problem
+# 1. Lagrange Dual Problem
 
 다음과 같은 최적화 문제를 해결하는 것이 목표라고 하자. "원래" 해결하고자 했던 문제라는 뜻에서 이를 *Primal problem*이라고 부른다.
 
@@ -23,7 +23,7 @@ $$
 \end{equation*}
 $$
 
-이 최적화 문제는 convex optimization problem이 아니어도 된다. 다만 만약 primal problem이 convex problem인 경우 Lagrangian dual problem이 어떻게 되는지는 뒤에서 한 번 더 다뤄보겠다. 위 primal problem으로부터, 아래와 같은 함수 $L(\mathbf{x}, \mathbf{u}, \mathbf{v})$를 정의하자. 
+이 최적화 문제는 convex optimization problem이 아니어도 된다. 다만 만약 primal problem이 convex problem인 경우 Lagrange dual problem이 어떻게 되는지는 뒤에서 한 번 더 다뤄보겠다. 위 primal problem으로부터, 아래와 같은 함수 $L(\mathbf{x}, \mathbf{u}, \mathbf{v})$를 정의하자. 
 
 $$
 L(\mathbf{x}, \mathbf{u}, \mathbf{v})=f(\mathbf{x})+\sum_{i=1}^{m} u_i h_i(\mathbf{x}) +\sum_{j=1}^{r} v_j \ell_j(\mathbf{x})
@@ -121,7 +121,7 @@ $$
 
 이를 **strong duality**라고 한다. Lagrange dual problem을 구하는 것은, $f^\ast$의 하한을 최대화 하는 것과 같은데, strong duality는 하한을 최대한 밀어올렸을 때의 값이 primal problem의 optimal value $f^\ast$와 같아짐을 의미한다.  
   
-이와 같은 **strong duality**가 성립하도록 하는 충분조건안 **Slater's condition**을 소개하고자 한다. 이는 충분조건이므로, 어떤 최적화 문제가 Slater's condition을 만족한다면 이 문제는 strong duality가 성립하지만, strong duality가 성립하는 모든 최적화 문제가 Slater's condition을 만족하는 것은 아니다.
+이와 같은 **strong duality**가 성립하도록 하는 충분조건인 **Slater's condition**을 소개하고자 한다. 이는 충분조건이므로, 어떤 최적화 문제가 Slater's condition을 만족한다면 이 문제는 strong duality가 성립하지만, strong duality가 성립하는 모든 최적화 문제가 Slater's condition을 만족하는 것은 아니다.
 
  * **Slater's condition** : 만약 primal problem이 convex optimization problem이고 $( \text{i.e., }f, h_1, \cdots, h_m$이 convex function, $\ell_1, \cdots, \ell_r$이 affine function$)$, strictly feasible한 $( \text{i.e., }h_1(\mathbf{x})<0,\cdots,h_m(\mathbf{x})<0, \ell_1(\mathbf{x})=0,\cdots,\ell_r(\mathbf{x})=0)$ input point $\mathbf{x}$가 존재한다면, strong duality가 만족한다.
 
