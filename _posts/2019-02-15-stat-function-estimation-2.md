@@ -114,7 +114,7 @@ Reproducing kernel Hilbert space는 다음과 같이 정의된다.
 
 먼저 Riesz representation theorem의 의미를 충분히 설명한 다음, 이 theorem의 증명을 소개하겠다. 
 
-#### Statement
+### Statement
 Riesz representation theorem의 statement는 다음과 같다.
 
  > Let $\mathcal H$ be a Hilbert space over $\mathbb{R}$. If $T \in \mathcal H^\ast$, then there exists a unique vector $u$ in $\mathcal H$ such that
@@ -143,9 +143,9 @@ $$
 즉, $\mathcal H$에서 $\mathbb{R}$로 가는 어떤 linear continuous function을 잡더라도, 그 **"linear continuous function에 input $v$를 넣는 것"**은 **"$v$를 Hilbert space $\mathcal H$ 내의 한 벡터 $u$와 내적시키는 것"**과 같다는 것이다. 그렇기 때문에 임의의 linear continuous function $T : \mathcal H \rightarrow \mathbb{R} $를 $T(v)=\langle v,u \rangle_\mathcal H$의 형태로 **나타낼 수 있다**, **represent할 수 있다**는 것이 Riesz representation theorem의 의미이다.  
 
 
-#### Proof
+### Proof
 
-#### Existence
+### Existence
 
 만약 $T$가 zero functional이라면, $u=\mathbf{0}$일 때 위 theorem이 성립한다.
 
@@ -169,7 +169,7 @@ $$
 
 으아아아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
 
-#### Uniqueness
+### Uniqueness
 
 으아아아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ  
 
@@ -231,13 +231,13 @@ $$
 ### Properties of Reproducing Kernel
 
 위와 같이 정의된 reproducing kernel $K:\mathcal X \times \mathcal X \rightarrow \mathbb{R}$는 symmetric하고 positive definite인 성질이 있다.
-#### Symmetry
+### Symmetry
 
 $$
 K(x,y)=\langle K_x,K_y \rangle_\mathcal H =\langle K_y,K_x \rangle_\mathcal H=K(y,x)
 $$
 
-#### Positive-definiteness
+### Positive-definiteness
 
 For any $n \in \mathbb{N}$, $x_1,\cdots,x_n \in \mathcal X$, $c_1, \cdots, c_n \in \mathbb{R}$,
 
@@ -276,8 +276,8 @@ Moore-Arnoszajn theorem의 statement는 다음과 같다.
  >  
  > 집합 $\mathcal X$에서 정의된 symmetric, positive definite kernel $K$에 대해, $\mathcal X$의 원소를 넣으면 실수 값을 반환하는 함수들의 Hilbert space이고, $K$를 reproducing kernel로 갖는 $\mathcal H_K$가 **유일하게** 정의된다.
 
-#### Proof
-#### Existence
+### Proof
+### Existence
 Symmetric, positive definite를 만족하는 kernel $K$가 주어졌다고 가정하자. 이를 통해, 모든 $x \in \mathcal X$에 대해, 함수 $K_x: \mathcal X \rightarrow \mathbb{R}$를 다음과 같이 정의하자.
 
 $$
@@ -310,7 +310,7 @@ $$
 
 따라서, Symmetric, positive definite를 만족하는 kernel $K$가 주어졌을 때, $K$를 reproducing kernel로 갖는 reproducing kernel Hilbert space $\mathcal H$를 만들 수 있다.
 
-#### Uniqueness
+### Uniqueness
 
 $\mathcal G$가 $K$를 reproducing kernel로 갖는 또다른 Hilbert space라고 하자. 임의의 $x,y \in \mathcal X$에 대해, reproducing property에 의해 다음 식이 만족한다.
 
