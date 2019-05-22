@@ -110,6 +110,7 @@ Reproducing kernel Hilbert space는 다음과 같이 정의된다.
 
 어렵다. 이 정의를 읽고 "아, RKHS가 이런거구나"하고 이해할 수 있는 사람은 거의 없을 것이다. reproducing kernel Hilbert space는 이 정의로부터 얻을 수 있는 다음 theorem을 통해 이해할 수 있다.
 
+
 ## 2. Riesz Representation Theorem
 
 먼저 Riesz representation theorem의 의미를 충분히 설명한 다음, 이 theorem의 증명을 소개하겠다. 
@@ -178,7 +179,7 @@ $$
 
 그럼 Riesz representation theorem은 reproducing kernel Hilbert space에서 어떤 의미를 가질까?  
 
-Reproducing kernel Hilbert space의 정의에서, 우리는 $\mathcal H$를 a Hilbert space of real-valued function, 즉 실수 값을 반환하는 함수의 Hilbert space로 보았다. 즉 reproducing kernel Hilbert space를 생각할 때는 Hilbert space $\mathcal H$의 원소가 함수라는 것을 항상 생각해야 한다.(그렇지 않으면 절대로 이해할 수 없다.) 잊지 말자. 우리는 함수를 객체로 생각한다 $\cdots$ $\mathcal H$의 원소들은 각각 다 함수다 $\cdots$ 우리는 함수를 객체로 생각한다 $\cdots$ $\mathcal H$의 원소들은 각각 다 함수다 $\cdots \cdots$  
+Reproducing kernel Hilbert space의 정의에서, 우리는 $\mathcal H$를 a Hilbert space of real-valued function, 즉 실수 값을 반환하는 함수의 Hilbert space로 보았다. 즉 reproducing kernel Hilbert space를 생각할 때는 Hilbert space $\mathcal H$의 원소가 함수라는 것을 항상 생각해야 한다.(그렇지 않으면 절대로 이해할 수 없다.) 잊지 말자. 우리는 함수를 객체로 생각한다... $\mathcal H$의 원소들은 각각 다 함수다... 우리는 함수를 객체로 생각한다... $\mathcal H$의 원소들은 각각 다 함수다......  
   
 위에서 소개한 evaluation functional을 생각해보자. Evaluation functional $L_x$는 $f \in \mathcal H$를 받아 $f(x) \in \mathbb{R}$를 반환하는 함수였다. 그리고 우리는 evaluation functional $L_x$가 linear하다는 것을 위에서 확인하였다. 또한 reproducing kernel Hilbert space의 정의에 따라 $\mathcal H$에서 정의된 evaluation functional은 continuous하다. 따라서, 
 
@@ -272,12 +273,13 @@ $$
 
 Moore-Arnoszajn theorem의 statement는 다음과 같다.
 
- > Suppose $K$ is a symmetric, positive definite kernel on a set $\mathcal X$. Then there is a **unique** Hilbert space $\mathcal H_K$ of functions on $\mathcal X$ for which $K$ is a reproducing kernel.  
+ > Suppose $K$ is a symmetric, positive definite kernel on $\mathcal X \times \mathcal X$. Then there is a **unique** Hilbert space $\mathcal H_K$ of functions on $\mathcal X$ for which $K$ is a reproducing kernel.  
  >  
  > 집합 $\mathcal X$에서 정의된 symmetric, positive definite kernel $K$에 대해, $\mathcal X$의 원소를 넣으면 실수 값을 반환하는 함수들의 Hilbert space이고, $K$를 reproducing kernel로 갖는 $\mathcal H_K$가 **유일하게** 정의된다.
 
 ### Proof
 ### Existence
+#### Constructing pre-Hilbert space $\mathcal{H}_0$
 Symmetric, positive definite를 만족하는 kernel $K$가 주어졌다고 가정하자. 이를 통해, 모든 $x \in \mathcal X$에 대해, 함수 $K_x: \mathcal X \rightarrow \mathbb{R}$를 다음과 같이 정의하자.
 
 $$
@@ -290,37 +292,188 @@ $$
 g_1= \sum_{i=1}^{m} \alpha_i K_{x_i} \text{ , }  g_2= \sum_{j=1}^{n} \beta_j K_{x'_j}
 $$
 
-Symmetric, positive definite kernel $K$를 이용하여, 집합 $\mathcal H_0$의 inner product를 다음과 같이 정의할 수 있다.
+Symmetric, positive definite kernel $K$를 이용하여, 공간 $\mathcal H_0$의 inner product를 다음과 같이 정의하자.
 
 $$
 \langle g_1, g_2 \rangle_{\mathcal H_0}= \sum_{i=1}^{m} \sum_{j=1}^{n} \alpha_i \beta_j  K(x_i , x'_j)
 $$
 
-$K$가 Symmetric, positive definite kernel이기 때문에, $\langle \cdot , \cdot \rangle_{\mathcal H_0}$가 inner product의 조건을 만족한다는 것은 어렵지 않게 확인할 수 있다. $\mathcal H$가 $\mathcal H_0$의 inner product로 도출된 **[completion](https://en.wikipedia.org/wiki/Complete_metric_space#Completion)**이라고 하자. $\mathcal H$는 inner product space의 completion이므로, complete inner product space, 즉 Hilbert space가 된다. 이 때 $\mathcal H$의 원소는 다음과 같이 나타낼 수 있다. $\langle f,f \rangle_\mathcal H < \infty$은 Cauchy-Schwartz 부등식을 사용하여 보일 수 있다.
+$K$가 Symmetric, positive definite kernel이기 때문에, $\langle \cdot , \cdot \rangle_{\mathcal H_0}$가 inner product의 조건을 만족한다는 것은 어렵지 않게 확인할 수 있다. 또한 공간 $\mathcal H_0$가 reproducing property를 만족하는 지 확인해보자. 임의의 $x \in \mathcal X , f \in \mathcal H_0$에 대해 다음이 만족한다.
 
 $$
-f =  \sum_{i=1}^{\infty} \alpha_i K_{x_i} \text{ , } \enspace \text{ where } \langle f,f \rangle_\mathcal H =\sum_{i=1}^{\infty} \alpha_i^2 K(x_i,x_i)< \infty
+f=\sum_{i=1}^{m} \alpha_i K_{x_i} \in \mathcal{H}_0 \enspace \text{ , i.e. , } \enspace \enspace f(\cdot)=\sum_{i=1}^{m} \alpha_i K_{x_i}(\cdot)=\sum_{i=1}^{m} \alpha_i K(x_i,\cdot)
 $$
 
-이와 같이 정의된 공간 $\mathcal H$가 reproducing property를 만족하는지 확인해보자. 마지막 등식은 $K_{x_i}(\cdot)=K(x_i, \cdot)$ 때문에 만족한다.
-
 $$
-\langle f,K_x \rangle_\mathcal H = \left\langle \sum_{i=1}^{\infty} \alpha_i K_{x_i} ,K_x \right\rangle_\mathcal H =\sum_{i=1}^{\infty} \alpha_i   K(x_i ,x)=f(x)
+\langle f,K_x \rangle_{\mathcal{H}_0} = \left\langle \sum_{i=1}^{m} \alpha_i K_{x_i} ,K_x \right\rangle_{\mathcal{H}_0} =\sum_{i=1}^{m} \alpha_i   K(x_i ,x)=f(x) \enspace \enspace \text{ : reproducing property}
 $$
 
-따라서, Symmetric, positive definite를 만족하는 kernel $K$가 주어졌을 때, $K$를 reproducing kernel로 갖는 reproducing kernel Hilbert space $\mathcal H$를 만들 수 있다.
+즉, 위의 과정으로 construct된 inner product space $\mathcal{H}_0$는 completeness를 제외한 reproducing kernel Hilbert space의 모든 성질을 만족하는 공간이다. 다만 아직 completeness를 만족하지 않으므로, inner product space $\mathcal{H}_0$는 Hilbert space가 아니다.
+<br>
+
+#### Extending $\mathcal{H}_0$ to $\mathcal{H}$
+
+Cauchy-Schwartz 부등식을 이용하면 다음과 같은 사실을 얻을 수 있다.
+
+$$
+\forall x \in \mathcal X, \enspace \left| f(x) \right| = \left| \langle f,K_x \rangle_{\mathcal{H}_0} \right| \leq  \left\lVert f \right\lVert_{\mathcal{H}_0} K(x,x)^{\frac{1}{2}}
+$$
+
+$\mathcal{H}_0$의 Cauchy sequence $\{ f_n \}_{n \in \mathbb N} $를 생각해보자. 위의 Cauchy-Schwartz 부등식을 사용하면 다음 사실을 얻을 수 있다.
+
+$$
+\forall x \in \mathcal X,\text{ } m, n \in \mathbb N,\enspace \left| f_m(x) - f_n(x) \right| \leq  \left\lVert f_m - f_n \right\lVert_{\mathcal{H}_0} K(x,x)^{\frac{1}{2}}
+$$
+
+따라서 $\{ f_n \}_{n \in \mathbb N}$이 $\mathcal{H}_0$ 위의 Cauchy sequence 이면, 임의의 $x \in \mathcal X$에 대해, $\{ f_n(x) \}_{n \in \mathbb N}$는 $\mathbb R$ 위의 Cauchy sequence가 되며 limit, $f(x)$, 를 갖는다. 여기서 $\mathcal H$를 다음과 같이 정의하자.
+
+$$
+\mathcal H = \{ f : \mathcal X \rightarrow \mathbb R \mid f \text{ is a pointwise limit of Cauchy sequence in }\mathcal H_0 \}
+$$
+
+즉, $f \in \mathcal H$는 다음을 만족한다.
+
+$$
+\exists \{ f_n \}_{n \in \mathbb N} \subset \mathcal H_0 \text{ such that } \{ f_n \}_{n \in \mathbb N} \text{ is Cauchy in }\mathcal H_0 \text{, and }f(x)= \lim_{n \rightarrow \infty} f_n(x)
+$$
+
+이제 우리는 $\mathcal H_0$의 inner product의 limit으로 $\mathcal H$의 inner product를 정의하고, $\mathcal H$가 symmetric, positive definite $K$를 reproducing kernel로 갖는 reproducing kernel Hilbert space임을 보일 것이다.  
+  
+  
+먼저 $\mathcal H_0$의 두 Cauchy sequence $\{ f_n \} , \{ g_n \}$에 대해, $\langle f_n, g_n \rangle_{\mathcal H_0}$가 수렴함을 보이자.
+
+$$
+\begin{align*}
+\left\lvert \langle f_m,g_m \rangle_{\mathcal H_0} - \langle f_n,g_n \rangle_{\mathcal H_0} \right\rvert &\leq \left\lvert \langle f_m,g_m \rangle_{\mathcal H_0} - \langle f_m,g_n \rangle_{\mathcal H_0} \right\rvert
++ \left\lvert \langle f_m,g_n \rangle_{\mathcal H_0} - \langle f_n,g_n \rangle_{\mathcal H_0} \right\rvert \\
+&= \left\lvert \langle f_m,g_m - g_n \rangle_{\mathcal H_0} \right\rvert
++ \left\lvert \langle f_m - f_n,g_n \rangle_{\mathcal H_0} \right\rvert \\
+&\leq \left\lVert f_m  \right\lVert_{\mathcal{H}_0} \left\lVert g_m - g_n \right\lVert_{\mathcal{H}_0}  + \left\lVert f_m - f_n \right\lVert_{\mathcal{H}_0} \left\lVert g_n \right\lVert_{\mathcal{H}_0} 
+\end{align*}
+$$
+
+$\{ f_n \} , \{ g_n \}$이 $\mathcal H_0$의 Cauchy sequence임을 이용하면, $\lim_{n \rightarrow \infty} \left\lVert f_n \right\lVert =\lim_{n \rightarrow \infty} \left\lVert g_n \right\lVert =0$임을 쉽게 확인할 수 있다. 또한, $\mathcal H_0$의 원소는 $K_x$ 형태의 함수의 finite linear combination이므로 그 norm이 bounded이다. 따라서, $\mathcal H_0$의 두 Cauchy sequence $\{ f_n \} , \{ g_n \}$에 대해,  $\{ \langle f_n,g_n \rangle_{\mathcal H_0} \}$는 $\mathbb R$의 Cauchy sequence이고, 그러므로 수렴한다.  
+  
+  
+이에 더해, $\{ \langle f_n,g_n \rangle_{\mathcal H_0} \}$의 limit가 $\{ f_n \} , \{ g_n \}$의 pointwise limit $f,g$에만 depend한다는 것을 보이자. 그를 위해 각각 $f, g$를 pointwise limit으로 갖는 $\mathcal H_0$의 Cauchy sequence $\{ f'_n \} , \{ g'_n \}$를 생각해보자.
+
+$$
+\begin{align*}
+\left\lvert \langle f_n,g_n \rangle_{\mathcal H_0} - \langle f'_n,g'_n \rangle_{\mathcal H_0} \right\rvert &\leq \left\lvert \langle f_n,g_n \rangle_{\mathcal H_0} - \langle f_n,g'_n \rangle_{\mathcal H_0} \right\rvert
++ \left\lvert \langle f_n,g'_n \rangle_{\mathcal H_0} - \langle f'_n,g'_n \rangle_{\mathcal H_0} \right\rvert \\
+&= \left\lvert \langle f_n,g_n - g'_n \rangle_{\mathcal H_0} \right\rvert
++ \left\lvert \langle f_n - f'_n,g'_n \rangle_{\mathcal H_0} \right\rvert \\
+&\leq \left\lVert f_n  \right\lVert_{\mathcal{H}_0} \left\lVert g_n - g'_n \right\lVert_{\mathcal{H}_0}  + \left\lVert f_n - f'_n \right\lVert_{\mathcal{H}_0} \left\lVert g'_n \right\lVert_{\mathcal{H}_0} 
+\end{align*}
+$$
+
+위에서와 마찬가지로, $\lim_{n \rightarrow \infty} \left\lVert f_n \right\lVert =\lim_{n \rightarrow \infty} \left\lVert g'_n \right\lVert =0$이고, $\{ f_n - f'_n\} , \{ g_n -g'_n\}$ 역시 $\mathcal H_0$의 Cauchy sequence이므로 그 norm은 bounded이다. 따라서 같은 pointwise limit을 갖는 Cauchy sequence $\{ f_n \} , \{ f'_n \}$과 $\{ g_n \} , \{ g'_n \}$에 대해 다음이 성립한다.
+
+$$
+\lim_{n \rightarrow \infty} \langle f_n,g_n \rangle_{\mathcal H_0} =\lim_{n \rightarrow \infty} \langle f'_n,g'_n \rangle_{\mathcal H_0}
+$$
+
+즉, $\mathcal H_0$의 두 Cauchy sequence의 inner product 값의 limit는 각 Cauchy sequence의 pointwise limit에만 depend한다.  
+  
+  
+이제 위 사실들을 이용하여 공간 $\mathcal H$에서의 inner product를 다음과 같이 정의할 수 있다. 
+
+$$
+\langle f,g \rangle_\mathcal H = \lim_{n \rightarrow \infty} \langle f_n,g_n \rangle_{\mathcal H_0} , \enspace \enspace f,g \in \mathcal H 
+$$
+
+$$
+\text{where }\{ f_n \} , \{ g_n \} \text{ are Cauchy sequences in } \mathcal H_0 \text{ that have } f,g \text{ as pointwise limit, respectively.}
+$$
+
+$\mathcal H_0$의 inner product의 limit으로 정의된 $\mathcal H$의 inner product, $\langle \cdot , \cdot \rangle_\mathcal H$가 inner product의 성질을 만족한다는 것은 어렵지 않게 보일 수 있다.
+  
+<br>
+
+#### Completeness of $\mathcal{H}$
+
+공간 $\mathcal H$에 속하는 함수는 $\mathcal H_0$의 Cauchy sequence의 pointwise limit으로 정의되기 때문에, 임의의 $f \in \mathcal H$에 대해 다음이 만족한다.
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} \left\lVert f-f_n \right\rVert_\mathcal H &= \lim_{n \rightarrow \infty} \langle f-f_n , f-f_n \rangle_\mathcal H \\
+&= \lim_{m \rightarrow \infty} \lim_{n \rightarrow \infty} \langle f_m-f_n , f_m-f_n \rangle_{\mathcal H_0} \\
+&= \lim_{m \rightarrow \infty} \lim_{n \rightarrow \infty} \left\lVert f_m-f_n \right\rVert_{\mathcal H_0} \\
+&= 0
+\end{align*}
+$$
+
+이는 모든 $f \in \mathcal H$가 $\mathcal H_0$의 limit point임을 나타낸다. 따라서, $\mathcal H_0$ is dense in $\mathcal H$이다. 이 사실을 이용하여 $\mathcal{H}$의 completeness를 보이자. $\mathcal H$의 임의의 Cauchy sequence $\{ f_n \}_{n \in \mathbb N} $를 생각해보자. $\mathcal H_0$가 $\mathcal H$ 안에서 dense하므로, 다음을 만족하는 $\mathcal H_0$ 위의 sequence $\{ f'_n \}_{n \in \mathbb N} $가 존재한다.
+
+$$
+\lim_{n \rightarrow \infty} \left\lVert f_n-f'_n \right\rVert_{\mathcal H}=0
+$$
+
+$\{ f_n \}_{n \in \mathbb N}$이 $\mathcal H$의 Cauchy sequence라는 사실과, 바로 위의 사실에 의해, 임의의 양수 $\epsilon$과 그에 depend하며 충분히 큰 $N_\epsilon$에 대해 다음이 만족한다.
+
+$$
+\begin{align*}
+m,n \geq N_\epsilon \Rightarrow \left\lVert f'_m-f'_n \right\rVert_{\mathcal H_0} &= \left\lVert f'_m-f'_n \right\rVert_{\mathcal H} \\ 
+&\leq \left\lVert f'_m-f_m \right\rVert_{\mathcal H} + \left\lVert f_m-f_n \right\rVert_{\mathcal H} + \left\lVert f_n-f'_n \right\rVert_{\mathcal H} \\
+&\leq \epsilon \enspace \enspace 
+\end{align*}
+$$
+
+즉 $\{ f'_n \}_{n \in \mathbb N} $는 $\mathcal H_0$의 Cauchy sequence이고, 그 pointwise limit을 $f$라고 하면 $f$는 $\mathcal H$의 원소가 된다. 이 때 다음이 만족한다.
+
+$$
+\lim_{n \rightarrow \infty} \left\lVert f-f'_n \right\rVert_\mathcal H = 0
+$$
+
+따라서 다음 사실을 얻을 수 있다.
+
+$$
+\lim_{n \rightarrow \infty} \left\lVert f-f_n \right\rVert_\mathcal H = \lim_{n \rightarrow \infty} \left\lVert f-f'_n \right\rVert_\mathcal H + \lim_{n \rightarrow \infty} \left\lVert f'_n-f_n \right\rVert_\mathcal H =0
+$$
+
+즉 $\mathcal H$의 임의의 Cauchy sequence $\{ f_n \}_{n \in \mathbb N} $가 $f \in \mathcal H$로 수렴한다는 것을 보인 것이다. 이는 공간 $\mathcal H$가 complete하다는 것을 의미한다. 따라서 $\mathcal H$는 complete inner product space, 즉 Hilbert space가 된다.  
+  
+<br>  
+
+#### Does the reproducing property hold in $\mathcal H$?
+
+Symmetric, positive definite를 만족하는 kernel $K$에 대해, $\mathcal H_0$에서 reproducing property가 성립하는 것을 위에서 확인하였다. 그리고 $\mathcal H_0$의 completion으로 Hilbert space $\mathcal H$를 정의하였다. 그렇다면 $\mathcal H$에서도 kernel $K$에 대해 reproducing property가 성립할까? 
+
+$$
+\begin{align*}
+f(x) &= \lim_{n \rightarrow \infty} f_n(x)\\
+&= \lim_{n \rightarrow \infty} \langle f_n,K_x \rangle_{\mathcal{H}_0} \\
+&= \langle f,K_x \rangle_{\mathcal{H}} \enspace \enspace 
+\end{align*}
+$$
+
+$\mathcal H_0$의 inner product의 limit으로 $\mathcal H$의 inner product를 정의했기 때문에 위와 같이 $\mathcal H$에서도 kernel $K$에 대해 reproducing property가 성립한다는 것을 알 수 있다.  
+<br>
+<br>
 
 ### Uniqueness
 
-$\mathcal G$가 $K$를 reproducing kernel로 갖는 또다른 Hilbert space라고 하자. 임의의 $x,y \in \mathcal X$에 대해, reproducing property에 의해 다음 식이 만족한다.
+
+$\mathcal G$가 $K$를 reproducing kernel로 가지며 $\mathcal H_0$를 포함하는 reproducing kernel Hilbert space라고 하자. $\mathcal G$는 complete한 공간이고 $\mathcal H_0$를 포함한다. 또한 $\mathcal H$는 $\mathcal H_0$의 completion이므로, $\mathcal H \subset \mathcal G$가 성립한다.
+
+반대 방향의 포함관계는 아래와 같이 보일 수 있다. 임의의 $x,y \in \mathcal X$에 대해, reproducing property에 의해 다음 식이 만족한다.
 
 $$
 \langle K_x , K_y \rangle_\mathcal H =K(x,y) =\langle K_x , K_y \rangle_\mathcal G
 $$
 
-으아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+$\mathcal H_0=\text{span} \{ K_x : x \in \mathcal X \}$이므로, inner product의 linearity에 의해 $\langle \cdot, \cdot \rangle_\mathcal H, \langle \cdot , \cdot \rangle_\mathcal G$는 $\mathcal H_0$ 위에서는 같은 함수이다. 또한 $\mathcal H_0$의 inner product의 limit으로 inner product를 확장하기 때문에, $\mathcal H \cap \mathcal G$에서도  $\langle \cdot, \cdot \rangle_\mathcal H, \langle \cdot , \cdot \rangle_\mathcal G$는 같은 함수이다.   
+  
+임의의 $g \in \mathcal G$는 $g=g_\mathcal H + g_{\mathcal H^\perp}, \enspace g_\mathcal H \in \mathcal H, g_{\mathcal H^\perp} \in \mathcal H^\perp$로 나타낼 수 있고, 이 때 reproducing property에 의해 다음이 성립한다.
 
+$$
+g(x)=\langle K_x , g \rangle = \langle K_x , g_\mathcal H \rangle+ \langle K_x ,  g_{\mathcal H^\perp} \rangle = \langle K_x , g_\mathcal H \rangle = g_\mathcal H (x) \in \mathcal H
+$$
 
+이는 $\mathcal G \subset \mathcal H$를 의미하며, 세 번째 등호는 $\mathcal H_0$에 속하는 $K_x$와 $\mathcal H^\perp$에 속하는 $g_{\mathcal H^\perp}$가 서로 orthogonal하다는 것을 이용한 것이다. 따라서 $\mathcal H = \mathcal G$이다. 즉, 어떤 symmetric, positive definite kernel $K$를 reproducing kernel로 갖는 reproducing kernel Hilbert space는 유일하다.  
+  
+<br>
+<br>
 
 ## 6. Examples of Positive-definite Kernels
 
@@ -343,23 +496,121 @@ K(x,y)=(x^Ty +1)^d  , \enspace d \in \mathbb{N}
 $$
 
 <br>
-## 7. Integral Operator
-## 8. Mercer Theorem
-## 9. Feature Maps
 
-# Summary
+## 중간 Summary
 
 ![image](https://user-images.githubusercontent.com/45325895/52788494-79ef3380-30a4-11e9-9338-a4e22dcb0e76.png){: .center-image}
 
 Symmetric, positive definite인 kernel $K: \mathcal X \times \mathcal X \rightarrow \mathbb{R}$는 $\mathcal X$의 두 원소($x,y$)를 input으로 받아 실수($K(x,y)$)를 함숫값으로 반환하는 함수이다. Symmetric, positive definite kernel은 어떤 적절한 vector space의 두 원소를 내적하는 것으로도 볼 수 있다. 이 적절한 vector space를 reproducing kernel Hilbert space라고 부른다. 놀라운 점은, 임의의 reproducing kernel Hilbert space는 symmetric, positive-definite한 reproducing kernel을 유일하게 정의하고, 반대로 임의의 symmetric, positive-definite kernel은 고유한 reproducing kernel Hilbert space를 정의한다는 것이다.
 
+## 7. Integral Operator
+## 8. Mercer Theorem
+## 9. Feature Maps
+
 <br>
+
+# Representer Theorem
+
+이와 같이 함수를 원소로 갖는 reproducing kernel Hilbert space와 reproducing property는 여러 적용분야를 갖는데, 그 중 하나가 통계모형의 학습을 관측된 데이터 하에서의 **함수추정**으로 보는 것이다. 여기서는 해당 내용을 간단하게 소개하고자 한다.  
+<br>
+
+모형의 학습을 위한 다음 최적화 문제를 생각해보자.
+
+$$
+\begin{align*}
+\hat f &= \underset{f \in \mathcal H}{\text{arg min}} \enspace V(f) + \lambda \mathcal R(f)\\
+&=\underset{f \in \mathcal H}{\text{arg min}} \sum_{i=1}^{n} L(y_i, f(x_i)) + \lambda \mathcal R(f)
+\end{align*}
+$$
+
+$V(f)=\sum_{i=1}^{n} L(y_i, f(x_i))$는 관측된 $n$개의 데이터에 대한 empirical risk, 즉 loss function을 empirical distribution에 대해 기댓값을 취한 것이다. 여기서는 convex한 loss를 가정하자. $ \mathcal R(f)$는 regularizer를 의미하며, $\lambda$는 두 항의 trade-off의 정도를 결정하는 regularization parameter이다. $\mathcal H $는 symmetric, positive definite kernel $K$에 의해 정의된 reproducing kernel Hilbert space이다. $\mathcal H$에 속하는 함수 중 위 최적화문제의 해가 되는 함수를 찾을 것이다. 여기서 $\mathcal H$는 infinite dimensional space일 수도 있다.  
+<br>
+
+### Statement
+
+Representer theorem의 statement는 다음과 같다.
+
+> Regularized empirical functional $V(f) + \lambda \lVert f \rVert_\mathcal H$를 최소화하는 minimizer $\hat{f_\lambda}$는 다음과 같이 나타낼 수 있다.
+> 
+> $$
+> \hat{f_\lambda}=\sum_{i=1}^{n} c_i K_{x_i} \text{ , or equivalently, } \enspace \hat{f_\lambda}(x)=\sum_{i=1}^{n} c_i K(x_i,x) 
+> $$
+> 
+> $$
+> \text{where } c_1, \cdots, c_n \in \mathbb R
+> $$
+
+이는 무한 차원일 수도 있는 $\mathcal H$ 위에서의 최적화 문제를, $\mathbb R^n$ 상에서의 최적화 문제로 바라볼 수 있다는 것을 의미한다.  
+<br>
+
+### Sketch of the proof
+
+다음과 같이 $\mathcal H$의 subspace $\mathcal H_0$, $\mathcal H_1$를 정의히자.
+
+$$
+\mathcal H_0 = \text{span} \{ K_{x_1} , \cdots , K_{x_n} \}
+$$
+
+$$
+\mathcal H_1 = \{ f \in \mathcal H : f(x_i)=0, i=1,\cdots, n \}
+$$
+
+Reproducing property에 의해, $\mathcal H_1$의 임의의 원소 $f$에 대해 다음이 성립한다.
+
+$$
+\left\langle f,  K_{x_i} \right\rangle_{\mathcal H} = f(x_i)=0 \enspace , \enspace \text{for all } i=1, \cdots,n
+$$
+
+$$
+\Rightarrow \enspace \left\langle f, \sum_{i=1}^{n} c_i K_{x_i} \right\rangle_{\mathcal H}= \sum_{i=1}^{n} c_i \left\langle f,  K_{x_i} \right\rangle_{\mathcal H}=0  \enspace , \enspace \text{for all } c_i \in \mathbb R, i=1, \cdots,n
+$$
+
+따라서, $\mathcal H_1$은 $\mathcal H_0$의 orthogonal complement이다. (좀 더 엄밀하게는 $\mathcal H_0^\perp$의 임의의 원소 $f$에 대해 $f(x_i)=0, i=1,\cdots, n $가 성립하는 지도 증명해야한다.) 따라서 $\mathcal H$ 내의 임의의 함수 $f$는 다음과 같이 분해될 수 있다.
+
+$$
+f=f_0 + f_0^\perp , \enspace \text{ where }f_0 \in \mathcal H_0 , f_0^\perp \in \mathcal H_0^\perp
+$$
+
+이 때 다음과 같은 사실을 얻을 수 있다.
+
+$$
+\lVert f \rVert_{\mathcal H}^2 = \lVert f_0 + f_0^\perp \rVert_{\mathcal H}^2 = \lVert f_0 \rVert_{\mathcal H}^2+\lVert f_0^\perp \rVert_{\mathcal H}^2
+$$
+
+또한, $ f_0^\perp \in \mathcal H_0^\perp = \mathcal H_1$이므로, $f_0^\perp(x_i)=0, i=1,\cdots, n$이 성립한다. 그에 따라,
+
+$$
+f(x_i)=f_0(x_i) + f_0^\perp(x_i)=f_0(x_i)
+$$
+
+$$
+V(f)=\sum_{i=1}^{n} L(y_i, f(x_i))=\sum_{i=1}^{n} L(y_i, f_0(x_i))=V(f_0)
+$$
+
+따라서, 임의의 $f=f_0 + f_0^\perp \in \mathcal H$에 대해 다음 부등식이 만족한다.
+
+$$
+\begin{align*}
+V(f) + \lambda \lVert f \rVert_\mathcal H &= V(f_0) + \lambda \lVert f_0 \rVert_\mathcal H +\lambda \lVert f_0^\perp \rVert_\mathcal H \\
+&\geq V(f_0) + \lambda \lVert f_0 \rVert_\mathcal H
+\end{align*}
+$$
+
+따라서, $V(f) + \lambda \lVert f \rVert_\mathcal H$를 최소화하는 minimizer $\hat{f_\lambda}$는 $\mathcal H_0$의 원소여야 한다. 다시 말해서, minimizer $\hat{f_\lambda}$는 다음의 형태임을 알 수 있다.
+
+$$
+ \hat{f_\lambda}=\sum_{i=1}^{n} c_i K_{x_i} \text{ , or equivalently, } \enspace \hat{f_\lambda}(x)=\sum_{i=1}^{n} c_i K(x_i,x) 
+$$
+<br>
+
+
+<br>
+<br>
+
+
 
 # Reference
  > Gockenbach, M. S. (2010). Finite-dimensional linear algebra. CRC Press.
  > https://en.wikipedia.org/wiki/Reproducing_kernel_Hilbert_space  
  > http://www.mit.edu/~9.520/spring06/Classes/class03.pdf
-
-
-
 
