@@ -4,7 +4,7 @@ title: Jaejoon Lee
 permalink: /about/
 ---
 
-통계학을 공부하고 있는 대학원생입니다. 
+베이지안 통계학을 공부하고 있는 대학원생입니다. 
 
 
 
