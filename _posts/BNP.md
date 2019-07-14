@@ -1,0 +1,338 @@
+---
+layout: post
+title: "Introduction to Bayesian Nonparametrics"
+tags: [Bayesian Statistics]
+comments: true
+---
+
+# 1. Exchangeability and De Finetti's Theorem
+## Exchangeability
+확률변수의 infinite sequence $X_1, \cdots , X_n ,\cdots$가 다음을 만족할 때, 그 sequence $X_1, \cdots , X_n ,\cdots$를 *exchangeable*, 혹은 *infinitely exchangeable*하다고 한다.
+
+$$
+\forall n \in \mathbb N, \text{ } (X_1, \cdots , X_n)  \stackrel{d}{=} (X_{\pi(1)}, \cdots , X_{\pi(n)}) \text{ for all }\pi \in S(n),
+$$
+
+$$
+\text{where } S(n) \text{ is the collection of all permutations of } \{ 1, \cdots , n \}
+$$
+
+즉, Exchangeability는 확률변수의 infinite sequence의 marginal 분포가 permutation에 invariant하다는 것을, 더 쉽게 이야기한다면 우리의 자료가 재정렬되더라도 분포가 같다는 것을 의미한다. 통계학의 많은 분석 기법은 IID(independent and identically distributed) 상황을 가정한다. 실제로 IID를 만족하는 $(X_1, \cdots , X_N)$은 항상 exchangeable하다. 그러나 exchangeable한 확률변수들은 항상 IID인 것은 아니다. 이는 다음과 같은 반례를 들 수 있다.
+
+> Let $(X_1, \cdots , X_N)$ be iid random variables, and $X_0$ be a random variable independent to all $(X_1, \cdots , X_N)$. Then $(X_0 + X_1, \cdots , X_0 + X_N)$ is exchangeable but not independent anymore.
+
+## De Finetti's Theorem
+
+De Finetti 정리는 베이지안 통계학에서 parameter를 확률변수로 보고, 또 prior distribution을 부여하는 것에 정당성을 부여해준다는 점에서 큰 의미를 갖는 정리이다. De Finetti 정리의 간소화된 statement는 아래와 같다.
+> If $(X_1, \cdots , X_N)$ are infinitely exchangeable, then the joint probability $p(X_1, \cdots , X_N)$ has a representation as a mixture:
+> 
+> $$
+> p(X_1, \cdots , X_N)= \int \left( \prod_{i=1}^{N} p(X_i \mid \theta ) \right) d \pi(\theta)
+> $$
+> 
+> for some random variable $\theta$.
+
+다시 말해서, 어떤 확률변수들 $(X_1, \cdots , X_N)$에 대해 exchangeability를 가정한다면, 다음과 같은 사실이 만족한다.
+
+ * $(X_1, \cdots , X_N)$의 joint distribution에는 underlying parameter가 있다.
+ * 그리고 그 parameter $\theta$는 어떤 분포를 갖는 확률변수이다. 이를 prior distribution으로 부르자.
+ * 우리의 자료는 그 parameter에 대해 conditionally independent하다.
+	 * parameter가 한 값으로 고정되면 자료들 $(X_1, \cdots , X_N)$가 서로 independent하다는 의미이다.
+
+여기서 parameter $\theta$는 Euclidean vector space 위의 "$\mathbb R^k$-valued random variable"로 한정되지 않고, probability measure의 space, $\mathfrak M = M(\mathcal X)$ 위의 "probability measure-valued random variable"로 이해할 수 있다. 이를 도식으로 나타내면 아래와 같다.
+
+Parametric setting 하에서 parameter 확률변수 $\theta$에 대한 prior distribution $\pi$는 아래와 같은 induced probability measure이다.
+
+![image](https://user-images.githubusercontent.com/45325895/60751877-50ee2180-9ff8-11e9-851a-ccba1460d6f7.png){: .center-image}
+
+Parametric 가정이 없는 일반적인 상황에 대해 이야기하기 위해서는, 먼저 random measure의 정의에 대해 알아야 한다. 어떤 measurable space $(\mathfrak X, \mathcal X)$과 probability space $(\Omega,\mathcal F, \phi)$에 대해, **random measure**는 다음을 만족하는 mapping $P:\Omega \times \mathcal X \rightarrow \mathbb R$을 의미한다.
+ * 각 $\omega \in \Omega$에 대해, $P(\omega, \cdot)$는 $(\mathfrak X, \mathcal X)$에서 정의된 probability measure이다.
+ * 각 $A \in \mathcal X$에 대해, $P(\cdot, A)$는 real-valued random variable, 즉 measurable function이다.
+
+다음 두 가지 사실을 기억하자.
+
+ * $\omega \mapsto P(\omega, \cdot)$는 $\Omega$에서 $\mathfrak M$으로 가는 map.
+ * 임의의 $A \in \mathcal X$에 대해, $P(\cdot, A)$는 real-valued random variable.
+
+
+모형에 대한 parametric 가정이 없는 일반적인 상황에서는 모수공간 $\Theta$가 아닌 probability measure들의 collection, $\mathfrak M$ 위에 prior distribution, $\Pi$를 정의하고자 한다. 따라서, $\Omega$에서 $\mathfrak M$으로 가는 map으로서의 random measure $\omega \mapsto P(\omega, \cdot)$를 고려하는 것이다.
+![image](https://user-images.githubusercontent.com/45325895/60751891-90b50900-9ff8-11e9-8504-f75d07387594.png){: .center-image}
+
+
+위와 같이 모형에 대한 parametric 가정이 없는 일반적인 상황에서의 De Finetti 정리의 statement는 아래와 같다.
+
+> Let $(\mathfrak X, \mathcal X)$ be a Polish space and $\mu$ be a probability measure on $\mathfrak X^\infty$. Then $X_1, X_2, \cdots$ is exchangeable if and only if there is a unique probability measure $\Pi$ on $M(\mathfrak X)$ such that for all $n \in \mathbb N$ and for any Borel sets $B_1, B_2, \cdots , B_n$,
+> 
+> $$
+> \mu( \{ X_1 \in B_1, \cdots X_n \in B_n \}) = \int_{M(\mathbb R)} \prod_{i=1}^{n} P(B_i) d \Pi(P)
+> $$
+
+여기서 $(\mathfrak X ,\mathcal X)$를 Polish space, 즉 complete, separable, metrizable topological space로 가정하는 이유는 RCPD의 existence떄문. **(내용 보충 필요)**
+
+# 2. Bayesian Finite Mixture Model
+
+## 2.1 Finite Mixture Model
+
+Bayesian nonparametric을 이용한 mixture model을 설명하기에 앞서, 기본적인 Bayesian finite mixture model에 대해서 살펴보고자 한다. Bayesian이 아닌 일반적인 mixture model을 이용한 clustering은 아래와 같은 generative 과정으로 나타낼 수 있다.
+
+ * $\pi = (\pi_1 , \cdots , \pi_K)$의 분포로부터, $K$개의 cluster 중 하나를 고른다. 
+ * 선택된 cluster의 확률분포로부터 data를 generate한다.
+
+만약 $K$개의 cluster들이 같은 parametrized family의 분포를 따른다면, 위의 generative process로부터 다음과 같은 finite mixture model을 얻을 수 있다.
+
+$$
+p(x \mid \phi, \pi)= \sum_{k=1}^{K} \pi_k \text{ } p(x \mid \phi_k)
+$$
+
+예를 들면, finite Gaussian mixture의 경우, $\phi_k = (\mu_k, \Sigma_k)$이고 $ p(x \mid \phi_k)$는 $(\mu_k, \Sigma_k)$를 mean과 covariance로 갖는 gaussian distribution일 것이다.
+
+$$
+p(x \mid (\mu, \Sigma), \pi)= \sum_{k=1}^{K} \pi_k \text{ } \mathcal N(x \mid \mu_k, \Sigma_k)
+$$
+
+Bayesian mixture model로의 확장을 위해서 이를 아래와 같이 다른 방법으로 나타내보자. 다음과 같은 probability measure $G$를 정의한다.
+
+$$
+G = \sum_{k=1}^{K} \pi_k \text{ } \delta_{\phi_k} , \text{ where } \delta_{\phi_k} \text{ is a dirac measure given } \phi_k
+$$
+
+즉 $G$는 $\phi_k$에 $\pi_k$의 확률값을 부여하는 probability measure이다. $i=1,\cdots , N$에 대해, 다음과 같은 sample generating process를 생각해보자. 
+
+![image](https://user-images.githubusercontent.com/45325895/61167998-d0906900-a581-11e9-86bf-bc29416d2c3f.png){: .center-image}
+
+$$
+\begin{align*}
+\theta_i &\sim G \\
+x_i &\sim p(\cdot \mid \theta_i)
+\end{align*}
+$$
+
+
+각 $\theta_i$는 $\{ \phi_1 ,\cdots , \phi_K \}$ 중 하나의 값을 가지며, 같은 $\phi_k$의 값을 갖는 $\theta_i$들의 집합을 $k$th cluster로 이해할 수 있다.  
+
+## 2.2 Bayesian Finite Mixture Model
+
+이제 finite mixture model의 parameter $\phi_1, \cdots , \phi_K , \pi_1, \cdots , \pi_K$에 prior distribution을 부여하고자 한다. 여기서도 각 cluster들은 같은 parametric family의 분포를 갖는다고 가정하자.  
+  
+먼저 $\phi_k$에 대한 prior distribution을 생각해보자. 각 cluster distribution의 parameter인 $\phi_k$에 대한 prior distribution은 그 cluster가 어떤 parametric family의 분포를 갖는지에 따라 결정된다. 예를 들면 Gaussian mixture model의 경우는, conjugacy를 위해 mean $\mu_k$와 covariance $\Sigma_k$에 대해 normal/inverse-gamma prior를 부여할 것이다. 이를 $\phi_k \sim G_0$로 나타내자.  
+  
+Cluster probability인 $\pi_k$에 대한 prior distribution은 symmetric Dirichlet prior를 부여할 수 있다.
+
+$$
+(\pi_1, \cdots , \pi_K) \sim \text{Dirichlet}(\alpha_0 / K , \cdots , \alpha_0 / K )
+$$
+
+그 이유는 다음과 같다.
+
+ * $(\pi_1, \cdots , \pi_K)$는 데이터가 어느 cluster에 assign되는지에 대한 확률이므로, 합해서 $1$이 되어야 한다.
+ * Symmetry는 각 mixture component(cluster)의 labeling을 permutation하더라도 model이 달라지지 않도록 하는 역할을 한다.
+ * Dirichlet distribution의 parameter들은 concentration parameter의 역할을 한다.
+	 * Concentration parameter는 각 확률변수의 값이 얼마나 고르게 분포해있는지를 결정하는 parameter이다. Concentration parameter의 값이 클 수록 서로 유사한 값이 나올 확률이 크며, 그 값이 작을 수록 확률변수가 더 sparse한 분포를 갖는다.
+ * Dirichlet distribution의 parameter를 mixture component의 수, $K$로 나누어 준 것은 Dirichlet parameter의 총 합($\alpha_0$)을 concentration parameter로 정의하는 convention을 따른 것이다. 이 경우, concentration parameter가 $\alpha_0=K$일 때 Dirichlet distribution이 uniform distribution over $K-1$ simplex가 된다.
+
+Bayesian finite mixture model의 sample generating process는 다음과 같이 나타낼 수 있다.
+
+![image](https://user-images.githubusercontent.com/45325895/61168633-089ca980-a58c-11e9-9c00-ac3de1a430ed.png){: .center-image}
+
+$$
+\begin{align*}
+\phi_k &\sim G_0 \\
+\pi &\sim \text{Dirichlet}(\alpha_0 / K , \cdots , \alpha_0 / K) \\
+G &= \sum_{k=1}^{K} \pi_k \text{ } \delta_{\phi_k} \\
+\theta_i &\sim G \\
+x_i &\sim p(\cdot \mid \theta_i)
+\end{align*}
+$$
+
+여기서 짚고 넘어갈 부분은 $i$번째 observation의 cluster를 결정하는 probability measure $G = \sum_{k=1}^{K} \pi_k \text{ } \delta_{\phi_k}$이 위의 finite mixture model에서처럼 고정된(deterministic) measure가 아니라, $\phi_k , \pi_k$들이 어떻게 뽑히느냐에 따라 달라지는 random measure라는 점이다.
+
+## 2.3 Inference of Bayesian Finite Mixture Model
+
+우리는 Bayesian finite mixture model의 parameter인 $\pi_k, \phi_k$에 대해 Bayesian inference를 수행하고자 한다. 즉, $\pi_k, \phi_k$의 posterior 분포를 구하고자 한다. 그런데 지금까지 construct한 mixture model의 likelihood는 아래와 같다.
+
+$$
+L( \phi, \pi \mid \mathbf x )= \prod_{i=1}^{N} \sum_{k=1}^{K} \pi_k \text{ } p(x_i \mid \phi_k)
+$$
+
+이는 $K^N$개의 항을 가지므로 computational cost가 굉장히 높다. 이 문제를 해결하기 위해서 latent variable $z_i$를 도입하여 likelihood를 다르게 표현할 것이다. $z_i$는 $i$번째 observation이 어떤 mixture component에 포함되는 지를 나타내는 latent variable이다. 
+
+$$
+z_i \in \{ (1,0,\cdots ,0)^T, (0,1,\cdots ,0)^T, \cdots, (0,0,\cdots ,1)^T \} \subset \mathbb R^k
+$$
+
+이 latent variable $z_i$를 도입한 likelihood는 다음과 같다.
+
+$$
+\begin{align*}
+L( \phi, \pi \mid \mathbf x, \mathbf z ) &= \prod_{i=1}^{N} p(x_i, z_i \mid \phi, \pi)\\
+&=\prod_{i=1}^{N} \prod_{k=1}^{K} p(x_i, z_{ik}=1 \mid \phi, \pi)^{z_{ik}} \\  
+&= \prod_{i=1}^{N} \prod_{k=1}^{K} p(z_{ik} = 1 \mid \phi, \pi)^{z_{ik}} p(x_i \mid z_{ik}=1 , \phi, \pi)^{z_{ik}} \\
+&= \prod_{i=1}^{N} \prod_{k=1}^{K} \pi_k^{z_{ik}} \text{ } p(x_i \mid \phi_k)^{z_{ik}}
+\end{align*}
+$$
+
+Gibbs sampling를 이용하여 posterior approximation을 수행할 수 있다. posterior을 추정해야하는 parameter들은 아래와 같다.
+
+$$
+\phi_1 , \cdots , \phi_K , \pi , z_1, \cdots , z_N 
+$$
+
+$\phi_k$의 prior, $G_0$은 conjugate prior로 설정되어 있을 것이다. $\phi_k$의 conditional은 다음과 같이 구할 수 있다. 
+
+$$
+\begin{align*}
+p( \phi_k \mid \phi_{\backslash k}, \pi, \mathbf z , \mathbf x) &= p( \phi_k \mid \pi, \mathbf z , \mathbf x) \\
+&\propto p( \phi_k \mid \pi, \mathbf z ) p(  \mathbf x \mid \pi, \mathbf z , \phi_k) \\
+&= p( \phi_k ) p(  \mathbf x \mid \mathbf z , \phi_k) \\
+&= p( \phi_k ) \prod_{i=1}^{N} p(  x_i \mid z_i , \phi_k) \\
+&\propto p( \phi_k ) \prod_{i:z_{ik}=1} p(  x_i \mid z_i , \phi_k) \\
+\end{align*}
+$$
+
+첫 번째 항 $p( \phi_k )$는 $\phi_k$의 prior, $G_0$를 의미한다. 두 번째 항 $ \prod_{i:z_{ik}=1} p(  x_i \mid z_i , \phi_k)$은 cluster assign을 결정하는 latent variable $z_i$가 주어졌을 때 $k$번째 cluster에 포함되는 observation만이, 그 식에 $\phi_k$를 포함하고 있다는 것을 의미한다. 예를 들어 만약 이 mixture model이 Gaussian mixture model이었다면, prior $G_0$는 Gaussian-inverse-Wishart prior였을 것이고, conjugacy에 따라 $\phi_k$의 posterior도 update된 parameter의 Gaussian-inverse-Wishart 분포를 따랐을 것이다.
+
+$\pi$의 conditional은 다음과 같이 구할 수 있다. $n_k = \sum_{i=1}^{N}I(z_{ik}=1)$이라고 하자.
+
+$$
+\begin{align*}
+p(\pi \mid \mathbf x, \mathbf z , \phi) &\propto p(\mathbf x , \mathbf z \mid \phi , \pi) p(\pi \mid \phi) \\
+&= L( \phi, \pi \mid \mathbf x, \mathbf z ) p(\pi ) \\
+&\propto \left[ \prod_{i=1}^{N} \prod_{k=1}^{K} \pi_k^{z_{ik}} \right]  \prod_{k=1}^{K} \pi_k^{(\alpha_0 /K)-1} \\
+&= \prod_{k=1}^{K} \pi_k^{(\alpha_0 /K)+n_k-1} \\
+&\sim \text{Dirichlet}(\alpha_0 /K+n_1, \cdots , \alpha_0 /K+n_K)
+\end{align*}
+$$
+
+$z_i$의 conditional은 다음과 같이 구할 수 있다.
+
+$$
+\begin{align*}
+p(z_{ik} = 1 \mid \phi, z_{\backslash i}, \pi, \mathbf x) &= p(z_{ik} = 1 \mid \phi, \pi, x_i)\\
+&\propto p(z_{ik} = 1 \mid \phi, \pi) p(x_i \mid z_{ik} = 1, \phi, \pi) \\
+&= \pi_k \text{ } p(x_i \mid \phi_k, \pi_k) \\
+&= \pi_k \text{ } p(x_i \mid \phi_k) \\
+\end{align*}
+$$
+
+$$
+\therefore \enspace p(z_{ik} = 1 \mid \phi, z_{\backslash i}, \pi, \mathbf x) \stackrel{let}{=} p_{ik} = \frac{\pi_k \text{ } p(x_i \mid \phi_k)}{\sum_{l=1}^{K} \pi_l \text{ } p(x_i \mid \phi_l)} ,\enspace \text{ for }k=1, \cdots , K, i= 1, \cdots , N
+$$
+
+도출한 conditional을 이용하여 Gibbs sampling을 이용해 Bayesian finite mixture model의 posterior inference를 수행하는 과정은 아래와 같다.
+
+ * Initial value $\phi_1^{(0)} , \cdots , \phi_K^{(0)} , \pi^{(0)} , z_1^{(0)}, \cdots , z_N^{(0)} $를 설정한다.
+ * For $k=1, \cdots , K$, $\phi_k$를 update한다. 
+
+$$
+\phi_k^{(j+1)} \sim \phi \mid \pi^{(j)}, \mathbf z^{(j)}, \mathbf x
+$$
+
+ * $\pi_k$를 update한다. 
+
+$$
+\pi^{(j+1)} \sim \pi \mid \phi^{(j+1)}, \mathbf z^{(j)}, \mathbf x \\
+\Rightarrow  \text{Dirichlet}(\alpha_0 /K+n_1, \cdots , \alpha_0 /K+n_K)
+$$ 
+
+ * For $i=1, \cdots , N$, $z_i$를 update한다. 
+
+$$
+z_i^{(j+1)} \sim z_i \mid \phi^{(j+1)}, \pi^{(j+1)}, \mathbf x \\
+\Rightarrow  \text{Categorical}(p_{i1}^{(j+1)}, \cdots , p_{iK}^{(j+1)})
+$$
+
+ * $j =j+1.$ Repeat until convergence
+
+## 2.4 Model Selection for Finite Mixture Models
+
+Finite mixture model의 개념과 그에 대한 inference에 대해 소개하였다. 지금까지는 mixture component의 개수인 $K$가 고정된 상수라고 가정하고 논의를 진행하였는데, 이 $K$의 최적 값은 어떻게 고를 수 있을까? 다양한 방법들이 있다. Cross-validation, bootstrap, AIC, BIC, DIC, MDL, covariance penalties, bridge sampling, etc. 혹은 $K$에도 parametric prior를 부여하고 Bayesian model selection method를 사용할 수도 있다.
+
+Dirichlet process, Chinese restaurant process는 이에 대한 nonparametric Bayesian 관점에서의 대안을 제시한다.
+
+# 3. Dirichlet Process Mixture Model
+## 3.1 Going Nonparametric
+
+먼저 다음 두 개념의 차이에 대해 소개하고자 한다.
+
+ * (Latent) Component : 잠재적(latent) 그룹.
+ * Cluster : 우리가 보유한 자료에 실현된(realized) component.
+
+총 1000개의 종이 있는 나비와 같이 실제 *latent component*의 갯수가 1000개인 data generating process를 예시로 생각해보자. 실제로는 1000개의 종이 있지만, 이는 latent structure이고 우리는 관측된 자료에 실현된 *component*, 즉 cluster만을 관측할 뿐이다. 만약 100마리의 나비를 채집했을 때 총 25종의 나비가 관측되었다면, 우리의 데이터에는 25개의 *cluster*가 존재하는 것이다. 이 때 mixture model을 이용해 자료를 분석한다면, *cluster*의 갯수 $K$는 $25$가 되어야할 것이다. 이후 100마리의 나비를 추가로 채집한다면, 처음 관측했던 25 종류의 나비에 더해 추가로 관측되는 종들이 있을 것이다. 또한 채집한 나비의 수가 점점 증가할 수록, 관측된 자료로 실현된 *latent component*, 즉 *cluster*의 수는 점점 실제 *latent component*의 수에 수렴할 것이다.  
+  
+Finite mixture model에서는 mixture component가 고정된 상수라고 가정한다. 이 가정은 위 예시의 상황과 같이 데이터가 늘어남에 따라 mixture component 역시 늘어나는 상황에서는 적절하지 못한 가정이 될 것이다. 또다른 예로는 Topic modeling의 경우를 들 수 있다. 우리의 자료가 더 많은 단어 및 문서를 포함할 수록, 실현된 latent component, 즉 cluster의 수는 늘어날 것이다.  
+  
+그렇다면 충분히 큰 상수 $K$를 mixture component의 개수로 사전에 설정하는 것은 어떨까? 우리는 자료가 생성되는 실제 latent structure에 대한 정보를 알 수 없으므로, 얼마나 큰 $K$가 충분히 큰 것인지 알 수 있는 방법이 없다. $K$가 충분히 크도록 하기 위해서 $K$를 $\infty$로 보내는 것은 어떨까? Finite mixture modeling에서처럼 $G = \sum_{k=1}^{\infty} \pi_k \text{ } \delta_{\phi_k} $에서 $\theta_i$를 생성하는 것이다. 그를 위해서는 $\sum^{\infty}_1 \pi_k = 1$인 $\pi_k$를 construct할 방법이 필요하다.
+
+## 3.2 Stick-breaking Process
+
+다음과 같이 Beta 분포를 따르는 확률변수들의 infinite sequence, $\{ \beta_k \}_1^\infty$에 대해 생각해보자.
+
+$$
+\beta_k \stackrel{\text{iid}}{\sim} \text{Beta}(1, \alpha_0) \text{ , } \enspace k=1,2, \cdots 
+$$
+
+그리고 이로부터 다음과 같이 확률변수 $\pi_k$를 정의하자.
+
+$$
+\begin{align*}
+\pi_1 &= \beta_1 \\
+\pi_k &= \beta_k \prod_{\ell=1}^{k-1} (1-\beta_\ell) \text{ , } \enspace k=2,3, \cdots 
+\end{align*}
+$$
+
+즉 확률변수 $\pi_k$는 길이가 1인 *stick*을 다음과 같이 쪼개는 것으로 이해할 수 있다.
+
+$$
+\beta_1 + \beta_2(1-\beta_1) + \beta_3[1-\{\beta_1 + \beta_2(1-\beta_1) \}] + \cdots = 1
+$$
+
+$\sum \pi_k = 1$(with probability $1$)이라는 것은 다음과 같이 쉽게 확인할 수 있다.
+
+$$
+\begin{align}
+1-\sum_{k=1}^{\infty} \pi_k  &= 1-\beta_1 - \beta_2(1-\beta_1) - \beta_3(1-\beta_1)(1-\beta_2) + \cdots  \\
+&= (1-\beta_1)[ 1 - \beta_2 - \beta_3(1-\beta_2) + \cdots ] \\
+&= \prod_{k=1}^{K} (1-\beta_k) \\
+&\longrightarrow 0 \enspace \enspace \text{ almost surely, as }K \rightarrow 0
+\end{align}
+$$
+
+즉 이는 $[0,1]$을 나누는 infinite partition, $\pi_k$를 construct한 것이다. 이를 다음과 같이 나타낸다.
+
+$$
+\pi = (\pi_1, \pi_2 , \cdots) \sim \text{GEM}(\alpha_0)
+$$
+
+이제 $\text{GEM}(\alpha_0)$를 따르는 $\pi$로부터 random measure $G = \sum_{k=1}^{\infty} \pi_k \text{ } \delta_{\phi_k} $를 정의할 수 있다. 확률변수 $\pi_1, \pi_2 , \cdots$는 $\alpha_0$의 값에 따라 다르게 생성되는데, 이에 대해서 확인하고 넘어가자.
+
+![image](https://user-images.githubusercontent.com/45325895/61171296-a7d39800-a5b0-11e9-9d79-ff4e2f16b7a6.png){: .center-image}
+![image](https://user-images.githubusercontent.com/45325895/61171307-c5086680-a5b0-11e9-937f-4307efd67ef1.png){: .center-image}
+
+위 두 그림은 각각 $\text{Beta}(1,0.5)$와 $\text{Beta}(1,10)$의 그래프이다. $\alpha_0$ 값이 작을 수록 $\beta_k \sim \text{Beta}(1, \alpha_0)$는 1에 가까운 값을 가질 확률이 더 높다는 것을 알 수 있다. 또한 그에 따른 $\pi_k$는 $\alpha_0$ 값이 큰 경우와 비교했을 때 상대적으로, 처음 몇 항의 합이 $[0,1]$의 대부분을 차지할 것이다.
+
+
+Stick-breaking process를 이용하여 $[0,1]$의 infinite partition을 얻는 과정을 알아보았다. 또한, 이를 통해 얻은 $\pi \sim \text{GEM}(\alpha_0)$를 infinite component에 대한 mixture probability로 사용하여 다음과 같이 random measure $G$를 정의할 수 있다.
+
+$$
+G = \sum_{k=1}^{\infty} \pi_k \text{ } \delta_{\phi_k}
+$$
+
+이 때의 mixture model을 나타내면 아래와 같다.
+
+![image](https://user-images.githubusercontent.com/45325895/61171579-a1dfb600-a5b4-11e9-9611-938170ff6584.png){: .center-image}
+
+$$
+\begin{align*}
+\phi_k &\sim G_0 \text{ , } \enspace k = 1,2,\cdots\\
+\pi &\sim \text{GEM}(\alpha_0)\\
+G &= \sum_{k=1}^{\infty} \pi_k \text{ } \delta_{\phi_k} \\
+\theta_i &\sim G \\
+x_i &\sim p(\cdot \mid \theta_i)
+\end{align*}
+$$
+
+## 3.4 Dirichlet Process
+
+위에서와 마찬가지로 $\mathfrak M$은 Polish space $(\mathfrak X, \mathcal X)$ 위에서 정의된 probability measure들의 set이다. Dirichlet process의 정의는 아래와 같다.
+
+A random measure $P$ on $(\mathfrak X, \mathcal X)$ is said to possess a Dirichlet process distribution $\text{DP}(\alpha)$ with a base measure $\alpha$
