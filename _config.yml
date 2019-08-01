@@ -21,7 +21,7 @@ avatar: https://user-images.githubusercontent.com/45325895/50405004-d85d0b80-07f
 # it from the list(Delete '- name: ' and 'url: ', too!)
 navigation:
   - name: Blog
-    url: /
+    url: / 
   - name: About
     url: /about
   - name: Archive
