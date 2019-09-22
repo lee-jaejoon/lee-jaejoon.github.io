@@ -121,7 +121,7 @@ $$
 또한 같은 방법으로 분모인 $ p (\mathbf Z_{-dn}, \mathbf W_{-dn} \vert \alpha, \eta)$도 구할 수 있다.
 
 $$
-p(\mathbf Z_{-dn} , \mathbf W_{-dn} \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime}^{-dn})}{\text{Beta}(\alpha )}
+p(\mathbf Z_{-dn} , \mathbf W_{-dn} \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{d^\prime=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime}^{-dn})}{\text{Beta}(\alpha )}
 $$
 
 $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$은 $d$번째 document의 $n$번째 word와 topic variable을 제외하고 구한 $\Xi_{i,j},  \Omega_{d,i}$이다. 이제 우리는 다음과 같이 conditional을 적을 수 있다.
