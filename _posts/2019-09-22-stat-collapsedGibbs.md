@@ -7,7 +7,7 @@ comments: true
 
 이 포스트는 [**"Griffiths, Steyvers - Finding scientific topics, 2004"**](https://www.pnas.org/content/pnas/101/suppl_1/5228.full.pdf?__=)의 내용을 발췌독 및 정리한 것이다. 이 paper는 collapsed Gibbs sampler를 이용해 LDA의 inference를 보다 효과적으로 수행하는 방법을 제시한다. 
 
-## Introduction
+# Introduction
 
 앞에서는 $p(\mathbf w \vert \alpha, \beta)$의 계산은 다루기 힘들기 때문에 variational Bayes 방법을 사용하여 model hyperparameter를 추정하였다. 여기서는 다소 다른 접근법을 소개한다. Collapsed Gibbs sampler를 이용한 LDA는 앞의 방법들처럼 $\beta, \theta$를 추정해야 할 parameter로 보지 않고, multinomial-Dirichlet conjugacy를 이용하여 integrate out한다. 그 다음, 관측된 document $\mathbf w$에 대한 topic variable $\mathbf z$의 posterior distribution $p(\mathbf z \vert \mathbf w)$를 Gibbs sampling을 통해 추정한다. $\beta, \theta$에 대한 추정치는 이 posterior로부터 얻을 수 있다.
 
@@ -26,7 +26,7 @@ $$
 
 
 
-## Deriving conditionals
+# Deriving conditionals
 
 어떤 한 document 내에서, $d$번째 document의 $n$번째 word에 대한 topic assignment $z_{dn}$의 conditional은 다음과 같다.
 
@@ -137,11 +137,11 @@ p(z_{dn} \vert \mathbf Z_{-dn}, \mathbf W, \alpha, \eta) &\propto  \frac{p(\math
 $$
 
 
-Conditional을 구하고자 하는 $\textcolor{green}{\tilde d}$번째 document의 $n$번째 word가 $\textcolor{blue}{\tilde j}$이고, 이 word는 topic $\textcolor{red}{\tilde i}$에서 생성되었다고 하자. $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$은 한 word(observation)을 제외하고 구한 $\Xi_{i,j},  \Omega_{d,i}$이므로, 다음이 만족한다.
+Conditional을 구하고자 하는 $\tilde d$번째 document의 $n$번째 word가 $\tilde j$이고, 이 word는 topic $\tilde i$에서 생성되었다고 하자. $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$은 한 word(observation)을 제외하고 구한 $\Xi_{i,j},  \Omega_{d,i}$이므로, 다음이 만족한다.
 
 $$
-\text{If }i=\textcolor{red}{\tilde i}, j=\textcolor{blue}{\tilde j}, \quad \Xi_{i,j}^{-\textcolor{green}{\tilde d} n} = \Xi_{i,j} -1 . \quad \text{else same.}\\
-\text{If }d= \textcolor{green}{\tilde d},i=\textcolor{red}{\tilde i}, \quad \Omega_{d,i}^{-\textcolor{green}{\tilde d}n} = \Omega_{d,i}-1. \quad \text{else same.}
+\text{If }i=\tilde i, j=\tilde j, \quad \Xi_{i,j}^{-\tilde d n} = \Xi_{i,j} -1 . \quad \text{else same.}\\
+\text{If }d= \tilde d,i=\tilde i, \quad \Omega_{d,i}^{-\tilde dn} = \Omega_{d,i}-1. \quad \text{else same.}
 $$
 
 
@@ -149,11 +149,11 @@ $$
 
 $$
 \begin{align*}
-\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{\textcolor{red}{\tilde i}})}{\text{Beta}(\eta +\Xi_{\textcolor{red}{\tilde i}}^{-\textcolor{green}{\tilde d}n})} 
-&= \frac{\text{Beta}(\eta +\Xi_{\textcolor{red}{\tilde i}})}{\text{Beta}(\eta +\Xi_{\textcolor{red}{\tilde i}}^{-\textcolor{green}{\tilde d}n})}  \\
-&=\frac{\Gamma(\sum_{j=1}^{V} \eta_j + \Xi_{\textcolor{red}{\tilde i},\bullet}^{-\textcolor{green}{\tilde d}n} )}{\Gamma(\sum_{j=1}^{V} \eta_j + \Xi_{\textcolor{red}{\tilde i},\bullet} )} \frac{\prod_{j=1}^{V}\Gamma(\eta_j +\Xi_{\textcolor{red}{\tilde i},j} )}{\prod_{j=1}^{V}\Gamma(\eta_j +\Xi_{\textcolor{red}{\tilde i},j}^{-\textcolor{green}{\tilde d}n} )} \\
-&=\frac{1}{\sum_{j=1}^{V} \eta_j + \Xi_{\textcolor{red}{\tilde i},\bullet}^{-\textcolor{green}{\tilde d}n} } \frac{\eta_\textcolor{blue}{\tilde j} +\Xi_{\textcolor{red}{\tilde i},\textcolor{blue}{\tilde j}}^{-\textcolor{green}{\tilde d}n} }{1} \\
-&=\frac{\eta_\textcolor{blue}{\tilde j} +\Xi_{\textcolor{red}{\tilde i},\textcolor{blue}{\tilde j}}^{-\textcolor{green}{\tilde d}n} }{\sum_{j=1}^{V} (\eta_j + \Xi_{\textcolor{red}{\tilde i},j}^{-\textcolor{green}{\tilde d}n} )} 
+\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_i)}{\text{Beta}(\eta +\Xi_i^{-\tilde dn})} 
+&= \frac{\text{Beta}(\eta +\Xi_{\tilde i})}{\text{Beta}(\eta +\Xi_{\tilde i}^{-\tilde dn})}  \\
+&=\frac{\Gamma(\sum_{j=1}^{V} \eta_j + \Xi_{\tilde i,\bullet}^{-\tilde dn} )}{\Gamma(\sum_{j=1}^{V} \eta_j + \Xi_{\tilde i,\bullet} )} \frac{\prod_{j=1}^{V}\Gamma(\eta_j +\Xi_{\tilde i,j} )}{\prod_{j=1}^{V}\Gamma(\eta_j +\Xi_{\tilde i,j}^{-\tilde dn} )} \\
+&=\frac{1}{\sum_{j=1}^{V} \eta_j + \Xi_{\tilde i,\bullet}^{-\tilde dn} } \frac{\eta_{\tilde j} +\Xi_{\tilde i,\tilde j}^{-\tilde dn} }{1} \\
+&=\frac{\eta_{\tilde j} +\Xi_{\tilde i,\tilde j}^{-\tilde dn} }{\sum_{j=1}^{V} (\eta_j + \Xi_{\tilde i,j}^{-\tilde dn} )} 
 \end{align*}
 $$
 
@@ -161,10 +161,10 @@ $$
 
 $$
 \begin{align*}
-\prod_{d=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d})}{\text{Beta}(\alpha +  \Omega_{d}^{-\textcolor{green}{\tilde d} n})}  &= \frac{\text{Beta}(\alpha +  \Omega_{\textcolor{green}{\tilde d}})}{\text{Beta}(\alpha +  \Omega_{\textcolor{green}{\tilde d}}^{-\textcolor{green}{\tilde d} n})} \\
-&= \frac{\Gamma(\sum_{i=1}^{k}\alpha_i +  \Omega_{\textcolor{green}{\tilde d},\bullet}^{-\textcolor{green}{\tilde d}n})}{\Gamma(\sum_{i=1}^{k}\alpha_i +  \Omega_{\textcolor{green}{\tilde d},\bullet})} \frac{\prod_{i=1}^{k} \Gamma(\alpha_i +  \Omega_{\textcolor{green}{\tilde d},i})}{\prod_{i=1}^{k} \Gamma(\alpha_i +  \Omega_{\textcolor{green}{\tilde d},i}^{-\textcolor{green}{\tilde d}n})} \\
-&= \frac{1}{\sum_{i=1}^{k}\alpha_i +  \Omega_{\textcolor{green}{\tilde d},\bullet}^{-\textcolor{green}{\tilde d}n}} \frac{\alpha_\textcolor{red}{\tilde i} +  \Omega_{\textcolor{green}{\tilde d},\textcolor{red}{\tilde i}}^{-\textcolor{green}{\tilde d}n}}{1} \\
-&= \frac{\alpha_\textcolor{red}{\tilde i} +  \Omega_{\textcolor{green}{\tilde d},\textcolor{red}{\tilde i}}^{-\textcolor{green}{\tilde d}n}}{\sum_{i=1}^{k}(\alpha_i +  \Omega_{\textcolor{green}{\tilde d},i}^{-\textcolor{green}{\tilde d}n})}
+\prod_{d=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d})}{\text{Beta}(\alpha +  \Omega_{d}^{-\tilde d n})}  &= \frac{\text{Beta}(\alpha +  \Omega_{\tilde d})}{\text{Beta}(\alpha +  \Omega_{\tilde d}^{-\tilde d n})} \\
+&= \frac{\Gamma(\sum_{i=1}^{k}\alpha_i +  \Omega_{\tilde d,\bullet}^{-\tilde dn})}{\Gamma(\sum_{i=1}^{k}\alpha_i +  \Omega_{\tilde d,\bullet})} \frac{\prod_{i=1}^{k} \Gamma(\alpha_i +  \Omega_{\tilde d,i})}{\prod_{i=1}^{k} \Gamma(\alpha_i +  \Omega_{\tilde d,i}^{-\tilde dn})} \\
+&= \frac{1}{\sum_{i=1}^{k}\alpha_i +  \Omega_{\tilde d,\bullet}^{-\tilde dn}} \frac{\alpha_{\tilde i} +  \Omega_{\tilde d,\tilde i}^{-\tilde dn}}{1} \\
+&= \frac{\alpha_{\tilde i} +  \Omega_{\tilde d,\tilde i}^{-\tilde dn}}{\sum_{i=1}^{k}(\alpha_i +  \Omega_{\tilde d,i}^{-\tilde dn})}
 \end{align*}
 $$
 
@@ -173,23 +173,23 @@ $$
 
 $$
 \begin{align*}
-p(z_{\textcolor{green}{\tilde d}n}=\textcolor{red}{\tilde i} \vert \mathbf Z_{-\textcolor{green}{\tilde d}n}, \mathbf W, \alpha, \eta) &\propto  \frac{p(\mathbf Z , \mathbf W \vert \alpha, \eta)}{p( \mathbf Z_{-\textcolor{green}{\tilde d}n}, \mathbf W_{-\textcolor{green}{\tilde d}n} \vert  \alpha, \eta)} \\
+p(z_{\tilde dn}=\tilde i \vert \mathbf Z_{-\tilde dn}, \mathbf W, \alpha, \eta) &\propto  \frac{p(\mathbf Z , \mathbf W \vert \alpha, \eta)}{p( \mathbf Z_{-\tilde dn}, \mathbf W_{-\tilde dn} \vert  \alpha, \eta)} \\
 
-&=\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta +\Xi_{i}^{-\textcolor{green}{\tilde d}n})}\prod_{d=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d})}{\text{Beta}(\alpha +  \Omega_{d}^{-\textcolor{green}{\tilde d}n})} \\
+&=\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta +\Xi_{i}^{-\tilde dn})}\prod_{d=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d})}{\text{Beta}(\alpha +  \Omega_{d}^{-\tilde dn})} \\
 &=
-\frac{\eta_\textcolor{blue}{\tilde j} +\Xi_{\textcolor{red}{\tilde i},\textcolor{blue}{\tilde j}}^{-\textcolor{green}{\tilde d}n} }{\sum_{j=1}^{V} (\eta_j + \Xi_{\textcolor{red}{\tilde i},j}^{-\textcolor{green}{\tilde d}n} )} 
-\frac{\alpha_\textcolor{red}{\tilde i} +  \Omega_{\textcolor{green}{\tilde d},\textcolor{red}{\tilde i}}^{-\textcolor{green}{\tilde d}n}}{\sum_{i=1}^{k}(\alpha_i +  \Omega_{\textcolor{green}{\tilde d},i}^{-\textcolor{green}{\tilde d}n})}
+\frac{\eta_{\tilde j} +\Xi_{\tilde i,\tilde j}^{-\tilde dn} }{\sum_{j=1}^{V} (\eta_j + \Xi_{\tilde i,j}^{-\tilde dn} )} 
+\frac{\alpha_{\tilde i} +  \Omega_{\tilde d,\tilde i}^{-\tilde dn}}{\sum_{i=1}^{k}(\alpha_i +  \Omega_{\tilde d,i}^{-\tilde dn})}
 \end{align*}
 $$
 
 
-## Algorithm
+# Algorithm
 
 도출한 conditional을 가지고 Gibbs sampling을 수행하는 것은 어렵지 않다. 눈여겨볼 부분은 conditional 식을 알고리즘에 적용하는데 필요한 것은 $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$, 즉 **'$i$ 번째 topic에 word $j$가 지정된 횟수'**와 '**$d$ 번째 document 내에서 $i$ 번째 topic으로부터 생성된 단어의 수**'뿐이다. Collapsed Gibbs sampling을 이용한 LDA의 수행 과정은 다음과 같다.
 
 
 
-**1. Initialization**
+## 1. Initialization
 
 * Count variable, $\Xi_{i,j}, \Xi_{i,\bullet},  \Omega_{d,i}, \Omega_{d,\bullet}$을 $0$으로 설정.
 
@@ -206,7 +206,7 @@ $$
 * $\mathtt{end} \text{ }\mathtt{for}$
 
 
-**2. Run Gibbs sampling**
+## 2. Run Gibbs sampling
 
 * $\mathtt{while}$ not converged, $\mathtt{do}$
   * $\mathtt{for}$ all documents $d = 1, \cdots , D$, $\mathtt{do}$
