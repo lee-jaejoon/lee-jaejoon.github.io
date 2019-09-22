@@ -5,6 +5,7 @@ tags: [Statistics]
 comments: true
 ---
 
+이 포스트는 [**"Griffiths, Steyvers - Finding scientific topics, 2004"**](https://www.pnas.org/content/pnas/101/suppl_1/5228.full.pdf?__=)의 내용을 발췌독 및 정리한 것이다. 이 paper는 collapsed Gibbs sampler를 이용해 LDA의 inference를 수행하는 방법을 제시한다. 
 
 ## Introduction
 
