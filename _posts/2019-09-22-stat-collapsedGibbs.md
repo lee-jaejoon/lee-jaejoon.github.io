@@ -98,7 +98,7 @@ d\boldsymbol\theta^{(1:D)} \\
 &= 
 \left[ \frac{\Gamma(\sum_{i=1}^{k} \alpha_i)}{\prod_{i=1}^{k}\Gamma(\alpha_i)} \right]^D
 \int_{\boldsymbol\theta^{(1:D)}}   
-\left( \prod_{d=1}^{D} \prod_{i=1}^{k} \theta_{di}^{(\alpha_i +  \sum_{n=1}^{N_d}z_{{d^\prime}n}^{i}) -1} \right)
+\left( \prod_{d=1}^{D} \prod_{i=1}^{k} \theta_{di}^{(\alpha_i +  \sum_{n=1}^{N_d}z_{ d^\prime n}^i) -1} \right)
 d\boldsymbol\theta^{(1:D)} \\
 \text{Let } \Omega_{d,i} = \sum_{n=1}^{N_d}z_{dn}^{i} : \text{ the number} \text{ of } &\text{words } \text{of }i\text{th topic in }d\text{th document.}\\
 &= \left[ \frac{\Gamma(\sum_{i=1}^{k} \alpha_i)}{\prod_{i=1}^{k}\Gamma(\alpha_i)} \right]^D
@@ -115,13 +115,13 @@ $$
 따라서 위 식의 분자 $p(\mathbf Z , \mathbf W \vert \alpha, \eta)$는 다음과 같다.
 
 $$
-p(\mathbf Z , \mathbf W \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{{d^\prime}})}{\text{Beta}(\alpha )}
+p(\mathbf Z , \mathbf W \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta )}\prod_{d^\prime=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime})}{\text{Beta}(\alpha )}
 $$
 
 또한 같은 방법으로 분모인 $ p (\mathbf Z_{-dn}, \mathbf W_{-dn} \vert \alpha, \eta)$도 구할 수 있다.
 
 $$
-p(\mathbf Z_{-dn} , \mathbf W_{-dn} \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{{d^\prime}}^{-dn})}{\text{Beta}(\alpha )}
+p(\mathbf Z_{-dn} , \mathbf W_{-dn} \vert \alpha, \eta) = \prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime}^{-dn})}{\text{Beta}(\alpha )}
 $$
 
 $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$은 $d$번째 document의 $n$번째 word와 topic variable을 제외하고 구한 $\Xi_{i,j},  \Omega_{d,i}$이다. 이제 우리는 다음과 같이 conditional을 적을 수 있다.
@@ -129,9 +129,9 @@ $\Xi_{i,j}^{-dn},  \Omega_{d,i}^{-dn}$은 $d$번째 document의 $n$번째 word�
 $$
 \begin{align*}
 p(z_{dn} \vert \mathbf Z_{-dn}, \mathbf W, \alpha, \eta) &\propto  \frac{p(\mathbf Z , \mathbf W \vert \alpha, \eta)}{p( \mathbf Z_{-dn}, \mathbf W_{-dn} \vert  \alpha, \eta)} \\
-&=\frac{\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime})}{\text{Beta}(\alpha )} }
+&=\frac{\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta )}\prod_{d^\prime=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime})}{\text{Beta}(\alpha )} }
 {
-\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{{d^\prime}=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{{d^\prime}}^{-dn})}{\text{Beta}(\alpha )}} \\
+\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i}^{-dn})}{\text{Beta}(\eta )}\prod_{d^\prime=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime}^{-dn})}{\text{Beta}(\alpha )}} \\
 &=\prod_{i=1}^{k} \frac{\text{Beta}(\eta +\Xi_{i})}{\text{Beta}(\eta +\Xi_{i}^{-dn})}\prod_{d^\prime=1}^{D} \frac{\text{Beta}(\alpha +  \Omega_{d^\prime})}{\text{Beta}(\alpha +  \Omega_{d^\prime}^{-dn})} 
 \end{align*}
 $$
