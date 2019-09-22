@@ -17,7 +17,7 @@ $$
 \begin{align*}
 \boldsymbol \theta_d &\sim \text{Dirichlet}(\alpha) \quad \quad \quad d=1,\cdots, D\\
 z_{dn} \vert \boldsymbol \theta_d &\sim \text{Multinomial}(\boldsymbol \theta) \quad \quad  d=1,\cdots, D,\enspace  n= 1,\cdots, N_d \quad \\
-\textcolor{red}{\boldsymbol \beta_i} &\text{ }\textcolor{red}{\sim \text{Dirichlet}(\eta) \quad  \quad \quad i= 1, \cdots, k}\\
+\boldsymbol \beta_i &\text{ }\sim \text{Dirichlet}(\eta) \quad  \quad \quad i= 1, \cdots, k\\
 w_{dn} \vert z_{dn}, \boldsymbol \beta &\sim \text{Multinomial}(\boldsymbol \beta_{z_{dn}}) \quad  d=1,\cdots, D,\enspace  n= 1,\cdots, N_d \quad 
 \end{align*}
 $$
