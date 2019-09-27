@@ -5,7 +5,7 @@ tags: [Statistics]
 comments: true
 ---
 
-이 포스트에서는 Bayes' 정리의 증명을목표로, 그를 위해 필요한 regular conditional distribution 개념을 소개한 후, Bayes' 정리의 증명과정을 소개한다.
+이 포스트에서는 Bayes 정리의 증명을 목표로, 그를 위해 필요한 regular conditional distribution 개념을 소개한 후, Bayes' 정리의 증명과정을 소개한다.
 
 # Regular Conditional Distribution
 
