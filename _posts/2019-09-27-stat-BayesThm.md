@@ -7,9 +7,9 @@ comments: true
 
 이 포스트에서는 Bayes 정리의 증명을 목표로, 그를 위해 필요한 regular conditional distribution 개념을 소개한 후, Bayes' 정리의 증명과정을 소개한다.
 
-# Regular Conditional Distribution
+# 1. Regular Conditional Distribution
 
-## Conditional Expectation / Probability
+## 1.1 Conditional Expectation / Probability
 
 > **(Conditional expectation)** Given a probability space $(\Omega, \mathcal F, \mathbb P)$, let $\mathcal F_0 \subset \mathcal F $ be a sub $\sigma$-algebra of $\mathcal F $, and $X$ be a $\mathcal F$-measurable random variable with $\mathbb E\vert X\vert  < \infty$. The **conditional expectation** of $X$ given $\mathcal F_0$ is any real valued function $h : \Omega \rightarrow \mathbb R$, such that
 >
@@ -36,7 +36,7 @@ $\mathcal F $의 어떤 sub $\sigma$-algebra, $\mathcal F_0$에 대한 $A \in \m
    
 
 
-## Regular Conditional Probability
+## 1.2 Regular Conditional Probability
 
 위에서 정의한 대로, $\text{Pr}(A \vert \mathcal F_0)(\cdot)$은 $\Omega \rightarrow [0,1]$의 $\mathcal F_0$-measurable random variable이다. 이는 임의의 $A \in \mathcal F$에 대해 성립하는 statement이므로 우리는 $\text{Pr}(\cdot \vert \mathcal F_0)(\cdot)$를 $\mathcal F \times \Omega \rightarrow [0,1]$로 볼 수 있다. 또한 더 나아가, 임의의 주어진 $\omega \in \Omega $에 대해, $\text{Pr}( \cdot \vert \mathcal F_0)(\omega)$를 $(\Omega, \mathcal F)$ 위에서 정의된 probability measure로 보고자 한다. **Regular conditional probability**의 정의는 다음과 같다.
 
@@ -60,7 +60,7 @@ $\mathcal F $의 어떤 sub $\sigma$-algebra, $\mathcal F_0$에 대한 $A \in \m
 
 
 
-## Existence of Regular Conditional Distribution
+## 1.3 Existence of Regular Conditional Distribution
 
 어떤 random variable $X:(\Omega, \mathcal F) \rightarrow (\mathfrak X, \mathcal X)$에 대해 regular conditional distribution이 존재하기 위해서는 어떤 조건이 필요할까? 다음 정리는 $\mathcal F$의 sub $\sigma$-algebra $\mathcal F_0$이 주어졌을 때 그에 대한 $X$의 regular conditional distribution이 존재하기 위한 조건을 제시한다.
 
@@ -77,7 +77,7 @@ $\mathcal F $의 어떤 sub $\sigma$-algebra, $\mathcal F_0$에 대한 $A \in \m
 
 
 
-## Motivation for the Definition of Regular Conditional Distribution
+## 1.4 Motivation for the Definition of Regular Conditional Distribution
 
 지금 이 포스트를 통해 conditional probability, regular conditional distribution의 개념을 처음 접했다면, regular conditional distribution의 정의에 등장하는 조건들이 무엇을 의미하는지 와닿지 않을 것이다 (적어도 이해가 빠른 편이 아닌 내겐 그랬다). 
 
@@ -186,11 +186,11 @@ $$
   
   
 
-# Bayes' Theorem
+# 2. Bayes' Theorem
 
 Conditional distribution에 대한 엄밀한 정의와 regular conditional distribution의 개념에 대해 소개했다. 이를 바탕으로 Bayes' 정리에 대한 formal statement와 그 증명을 소개하며 이 포스트를 마친다.
 
-## Statement
+## 2.1 Statement
 
 여기서는 증명 과정에서 notation의 정확성을 위해, parameter random variable을 $\Theta : (\Omega, \mathcal F) \rightarrow (\mathfrak Y, \mathcal Y ) $로 표기하고, 실현된 한 value를 $\theta$로 표기한다.
 
@@ -219,7 +219,7 @@ $$
 
 
 
-## Proof
+## 2.2 Proof
 
 이 증명은 [Schervish - Theory of Statistics (1995)](https://www.springer.com/gp/book/9780387945460)의 Theorem 1.31의 내용을 옮긴 것이다.
 
