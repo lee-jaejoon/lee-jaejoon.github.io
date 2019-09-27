@@ -5,7 +5,7 @@ tags: [Statistics]
 comments: true
 ---
 
-이 포스트에서는 Bayes 정리의 증명을 목표로, 그를 위해 필요한 regular conditional distribution 개념을 소개한 후, Bayes' 정리의 증명과정을 소개한다.
+이 포스트에서는 Bayes 정리의 증명을 목표로, 그를 위해 필요한 regular conditional distribution 개념을 소개한 후, Bayes 정리의 증명과정을 소개한다.
 
 # 1. Regular Conditional Distribution
 
@@ -188,7 +188,7 @@ $$
 
 # 2. Bayes' Theorem
 
-Conditional distribution에 대한 엄밀한 정의와 regular conditional distribution의 개념에 대해 소개했다. 이를 바탕으로 Bayes' 정리에 대한 formal statement와 그 증명을 소개하며 이 포스트를 마친다.
+Conditional distribution에 대한 엄밀한 정의와 regular conditional distribution의 개념에 대해 소개했다. 이를 바탕으로 Bayes 정리에 대한 formal statement와 그 증명을 소개하며 이 포스트를 마친다.
 
 ## 2.1 Statement
 
@@ -210,7 +210,7 @@ $$
 \end{align*}
 $$
 
-이 때 $f_{X\vert\Theta}(x \vert \theta ) $를 likelihood function이라고 하며, random variable $\Theta $의 distribution (induced probability measure) $\mu_\Theta $를 prior distribution이라고 한다. 이와 같은 setting에서 Bayes' 정리는 다음과 같다.
+이 때 $f_{X\vert\Theta}(x \vert \theta ) $를 likelihood function이라고 하며, random variable $\Theta $의 distribution (induced probability measure) $\mu_\Theta $를 prior distribution이라고 한다. 이와 같은 setting에서 Bayes 정리는 다음과 같다.
 
 > **(Bayes' theorem)** Assume the structure above. Let $\mu_{\Theta\vert X}$ be the conditional distribution of $\Theta$ given $X$. Then the following holds.
 >
