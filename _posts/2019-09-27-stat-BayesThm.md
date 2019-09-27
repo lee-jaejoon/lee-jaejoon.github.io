@@ -349,4 +349,4 @@ $$
 \implies \frac{d\mu_{\Theta \vert X}}{d\mu_\Theta} = \frac{f_{X \vert \Theta }(x \vert \theta)}{ \int_{\mathfrak Y} f_{X \vert \Theta}(x \vert \theta ) d \mu_\Theta (\theta)}. 
 $$
 
-이로써 Bayes' Theorem의 모든 statement이 증명되었다.$\quad \quad \square$
+이로써 Bayes' Theorem의 모든 statement가 증명되었다.$\quad \quad \square$
