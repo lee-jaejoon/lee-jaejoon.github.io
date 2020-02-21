@@ -391,4 +391,4 @@ $$
 
 # 6. Putting prior on concentration parameter $\alpha$ of DP prior
 
-DP prior의 concentration parameter $\alpha$에 gamma prior를 부여한다. 내용 추가 예정.
+Auxiliary variable $\eta$를 도입함으로써 DP prior의 concentration parameter $\alpha$에 gamma mixture prior를 부여할 수 있다. 내용 추가 예정.
