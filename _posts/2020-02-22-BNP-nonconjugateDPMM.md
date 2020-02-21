@@ -5,7 +5,7 @@ tags: [Bayesian Nonparametrics]
 comments: true
 ---
 
-## 0. Setting
+# 0. Setting
 
 $$
 \begin{align*}
@@ -29,7 +29,7 @@ $$
 
 
 
-## 1. Algorithm 4 from Neal (2000) : "no gaps" algorithm
+# 1. Algorithm 4 from Neal (2000) : "no gaps" algorithm
 
 "No gaps" 가정은 $K$개의 서로 다른 종류의 label을 갖는 $\mathbf c =(c_1, \cdots, c_n)$이 $1\sim K$의 label을 모두, gap 없이, 갖는다는 가정이다. 이를 이용하여 모수 $\phi$의 prior $G_0$이 non-conjugate인 상황에서 Dirichlet process mixture model의 posterior를 추정하는 알고리즘을 도출할 수 있다.
 
@@ -175,7 +175,7 @@ p(\text{d}\phi_c \vert \phi_{-c}, \mathbf{c}, y) &\propto p(\text{d} \mathbf c, 
 $$
 
 
-## 2. Algorithm 5 from Neal (2000)
+# 2. Algorithm 5 from Neal (2000)
 
 이 알고리즘은 Metropolis-Hastings update를 이용하여 $\mathbf c$의 각 component, $c_i$를 update한다. Target distribution은 $c_i$의 conditional $p(c_i = c \vert \mathbf c_{-i}, y_i, \phi)$이며, proposal distribution $Q(c^\ast \vert c)$는 $c_i$의 conditional prior를 사용한다.
 
@@ -214,7 +214,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
 
 
 
-## 3. Algorithm 6 from Neal (2000)
+# 3. Algorithm 6 from Neal (2000)
 
 이 알고리즘은 Algorithm 5와 마찬가지로 Metropolis-Hastings update을 이용한 알고리즘이다. Markov chain의 state를 $\mathbf c, \phi$가 아닌 $\theta = (\theta_1, \cdots, \theta_n)$으로 두고 수행한다는 점에서 Algorithm 5와 차이가 있다.
 
@@ -249,7 +249,7 @@ Markov chain의 state는 $\theta = (\theta_1, \cdots, \theta_n)$이다. 다음�
 
 
 
-## 4. Algorithm 7 from Neal (2000)
+# 4. Algorithm 7 from Neal (2000)
 
 이 알고리즘은 위 두 알고리즘에서 사용한 Metropolis-Hastings update가 새 component를 더 자주 탐색하도록 proposal distribution에 약간의 수정을 더한 알고리즘이다. 이 proposal distribution은 $c_i$가 singleton인 경우와 그렇지 않은 경우에 따라 다른 분포를 갖는다.
 
@@ -321,7 +321,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
 
 
 
-## 5. Algorithm 8 from Neal (2000)
+# 5. Algorithm 8 from Neal (2000)
 
 2~4.에서 소개한 Algorithm 5~7은 Metropolis-Hastings update를 이용하여 sampling을 수행했다. Algorithm 8은 auxiliary variable을 이용해서 sampling을 수행하는 알고리즘이다. Auxiliary variable을 이용한 sampling을 간단히 소개하자면, target distribution $\pi_x$를 marginal 분포로 갖는 joint distribution $\pi_{xy}$에서 sampling을 수행하고, sampling이 끝나면 auxiliary variable인 $y$를 버리고 $x$의 값만 취하는 방법이다.
 
@@ -388,6 +388,6 @@ $$
 
 
 
-## 6. Putting prior on concentration parameter $\alpha$ of DP prior
+# 6. Putting prior on concentration parameter $\alpha$ of DP prior
 
 DP prior의 concentration parameter $\alpha$에 gamma prior를 부여한다.
