@@ -17,6 +17,7 @@ y_i \vert \mathbf c, \phi &\stackrel{\text{ind}}{\sim} f(y_i \vert \phi_{c_i}) \
 $$
 
 이를 $\theta_i = \phi_{c_i}$와 Dirichlet process prior에서 생성된 $P$를 이용하여 나타내면 다음과 같다.
+
 $$
 \begin{align*}
 y_i \vert \theta_i &\stackrel{\text{ind}}{\sim} f(y_i \vert \theta_i) \\
@@ -78,15 +79,20 @@ $$
 ### Updating $\mathbf c$
 
 $c_i$를 update하기 위해 conditional을 구해보면 다음과 같다.
+
 $$
 p(c_i = c \vert \mathbf{c}_{-i}, \phi, y) \propto f(y_i \vert \phi_c)p(c_i =c \vert \mathbf{c}_{-i})
 $$
-먼저 모든 $j \neq i$에 대해 $c_i \neq c_j$ 가 성립하는 "singleton"의 경우를 생각해보자. $\mathbf{c}_{-i}$의 gap을 메우는 $c_i$의 label 값이 $c_0$라고 하자. 그 때 다음이 성립한다.
+
+먼저 모든 $j \neq i$에 대해 $c_i \neq c_j$ 가 성립하는 "singleton"의 경우를 생각해보자. $\mathbf c_{-i}$의 gap을 메우는 $c_i$의 label 값이 $c_0$라고 하자. 그 때 다음이 성립한다.
+
 $$
 p(c_i = c_0 \vert \mathbf{c}_{-i}) = \frac{p(c_i = c_0 , \mathbf{c}_{-i})}{p( \mathbf{c}_{-i})} \stackrel{\text{no gap}}{=} \frac{p(c_i = c_0 , \mathbf{c}_{-i})}{p( c_i = c_0, \mathbf{c}_{-i})} = 1 \\
 p(c_i = c \vert \mathbf{c}_{-i}) = 0, \quad \forall c \neq c_0
 $$
+
 이 때 우리는  $1/(k^- +1)$의 확률로 $c_i$를 $k^- +1$로 relabel한다.  따라서 다음과 같이 알고리즘이 도출된다.
+
 $$
 \begin{align*}
 p(c_i = c \vert \mathbf{c}_{-i}, y_i, \phi) &\propto f(y_i \vert \phi_{c})p(c_i =c \vert \mathbf{c}_{-i})\\
@@ -112,14 +118,18 @@ n_{-i,c} f(y_i \vert \phi_{c}) \quad  \quad  \text{if }1 \leq c \leq k^- \\
 \end{cases} \\
 \end{align*}
 $$
+
 어떤 $j \neq i$에 대해 $c_i = c_j$가 성립하는 경우에 대해서도 생각해보자. $1 \leq c \leq k^-$에 대해서는 $c_i$의 conditional prior가 다음과 같다.
+
 $$
 \begin{align*}
 p(c_i = c \vert \mathbf{c}_{-i}) &\propto p(c_i =c , \mathbf{c}_{-i})\\
 &=\frac{\alpha^{k^-}n_{-i,c}! \prod_{\ell \neq c}(n_{-i,\ell}-1)!}{(\alpha)_{n\uparrow}k^- !} \quad \quad  \text{if }1 \leq c \leq k^-\\
 \end{align*}
 $$
+
 $c = k^- +1$에 대해서는 다음과 같다.
+
 $$
 \begin{align*}
 p(c_i = c \vert \mathbf{c}_{-i}) &\propto p(c_i =c , \mathbf{c}_{-i})\\
@@ -133,7 +143,9 @@ n_{-i,c}  \quad  \quad  \text{if }1 \leq c \leq k^- \\
 \end{cases} \\
 \end{align*}
 $$
+
 따라서, 이를 정리하면 다음과 같이 $c_i$를 update하는 알고리즘이 도출된다.
+
 $$
 \begin{align*}
 p(c_i = c \vert \mathbf{c}_{-i}) &\propto\begin{cases}n_{-i,c}  \quad  \quad  \text{if }1 \leq c \leq k^- \\\\\frac{\alpha}{k^- +1}  \quad \quad  \text{if }c = k^- +1\\
@@ -152,6 +164,7 @@ $$
 ### Updating $\phi$
 
 $\phi_c$의 conditional은 다음과 같이 구할 수 있다.
+
 $$
 \begin{align*}
 p(\text{d}\phi_c \vert \phi_{-c}, \mathbf{c}, y) &\propto p(\text{d} \mathbf c, \text{d}\phi, \text{d} y) \\
@@ -164,11 +177,14 @@ $$
 
 ## 2. Algorithm 5 from Neal (2000)
 
-이 알고리즘은 Metropolis-Hastings update를 이용하여 $\mathbf c$의 각 component, $c_i$를 update한다. Target distribution은 $c_i$의 conditional $p(c_i = c \vert \mathbf{c}_{-i}, y_i, \phi)$이며, proposal distribution $Q(c^\ast \vert c)$는 $c_i$의 conditional prior를 사용한다.
+이 알고리즘은 Metropolis-Hastings update를 이용하여 $\mathbf c$의 각 component, $c_i$를 update한다. Target distribution은 $c_i$의 conditional $p(c_i = c \vert \mathbf c_{-i}, y_i, \phi)$이며, proposal distribution $Q(c^\ast \vert c)$는 $c_i$의 conditional prior를 사용한다.
+
 $$
 Q(c^\ast \vert c) =p(c_i = c^\ast \vert \mathbf{c}_{-i})
 $$
+
 이 때 Metropolis-Hastings update의 acceptance probability $a(c^\ast, c)$는 다음과 같다.
+
 $$
 \begin{align*}
 a(c^\ast, c) &= \min \left[ 1, \frac{p(c_i = c^\ast \vert \mathbf{c}_{-i}, y_i, \phi)}{p(c_i = c \vert \mathbf{c}_{-i}, y_i, \phi)} \frac{Q(c \vert c^\ast)}{Q(c^\ast \vert c)} \right] \\
@@ -201,6 +217,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
 ## 3. Algorithm 6 from Neal (2000)
 
 이 알고리즘은 Algorithm 5와 마찬가지로 Metropolis-Hastings update을 이용한 알고리즘이다. Markov chain의 state를 $\mathbf c, \phi$가 아닌 $\theta = (\theta_1, \cdots, \theta_n)$으로 두고 수행한다는 점에서 Algorithm 5와 차이가 있다.
+
 $$
 Q(\theta^\ast \vert \theta) =p(\theta_i = \theta^\ast \vert \mathbf{\theta}_{-i}) \propto 
 \begin{cases}
@@ -210,7 +227,9 @@ n_{-i,\theta^\ast} \quad \quad \text{ if } \theta^\ast \in \{\theta_1, \cdots, \
 \end{cases} \\
 \theta_i \vert \mathbf{\theta}_{-i} \sim \frac{1}{n-1+\alpha}\sum_{j\neq i}\delta_{\theta_j}(\cdot) + \frac{\alpha}{n-1+\alpha}G_0(\cdot)
 $$
+
 이 때 Metropolis-Hastings update의 acceptance probability $a(\theta^\ast, \theta)$는 다음과 같다.
+
 $$
 \begin{align*}
 a(c^\ast, c) &= \min \left[ 1, \frac{p(\theta_i = \theta^\ast \vert \theta_{-i}, y_i)}{p(\theta_i = \theta \vert \theta_{-i}, y_i)} \frac{Q(\theta \vert \theta^\ast)}{Q(\theta^\ast \vert \theta)} \right] \\
@@ -233,6 +252,7 @@ Markov chain의 state는 $\theta = (\theta_1, \cdots, \theta_n)$이다. 다음�
 ## 4. Algorithm 7 from Neal (2000)
 
 이 알고리즘은 위 두 알고리즘에서 사용한 Metropolis-Hastings update가 새 component를 더 자주 탐색하도록 proposal distribution에 약간의 수정을 더한 알고리즘이다. 이 proposal distribution은 $c_i$가 singleton인 경우와 그렇지 않은 경우에 따라 다른 분포를 갖는다.
+
 $$
 \text{If }c_i \text{ is not a singleton, }Q(c^\ast \vert c) = 
 \begin{cases} 
@@ -336,6 +356,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
   \\
   \end{align*}
   $$
+  
   * 적어도 한 개 이상의 observation과 연결이 된 $\phi_c$를 남기고 나머지는 버린다.
 
 * For all $c \in \mathbf{c} = \{c_1, \cdots, c_n \}:$
@@ -351,6 +372,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
 ### Derivation
 
 위 알고리즘은 다음과 같은 conditional prior에서 도출된 알고리즘이다.
+
 $$
 \begin{align*}
 p(c_i = c \vert \mathbf c_{-i},\phi_1, \cdots, \phi_h)
