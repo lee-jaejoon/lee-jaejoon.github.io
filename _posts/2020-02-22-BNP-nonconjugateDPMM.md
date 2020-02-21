@@ -297,6 +297,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
   &= \min \left[ 1, \frac{n-1}{\alpha} \frac{f(y_i \vert \phi_{c^\ast})}{f(y_i \vert \phi_{c})}\right] \\ 
   \end{align*}
   $$
+  
   * Reject되었다면 $c_i$의 새 value는 기존의 value와 같은 값을 갖는다.
 
 * Partial Gibbs sampling : For $i=1,\cdots, n, $
