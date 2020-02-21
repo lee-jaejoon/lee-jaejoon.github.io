@@ -391,4 +391,4 @@ $$
 
 # 6. Putting prior on concentration parameter $\alpha$ of DP prior
 
-DP prior의 concentration parameter $\alpha$에 gamma prior를 부여한다.
+DP prior의 concentration parameter $\alpha$에 gamma prior를 부여한다. 내용 추가 예정.
