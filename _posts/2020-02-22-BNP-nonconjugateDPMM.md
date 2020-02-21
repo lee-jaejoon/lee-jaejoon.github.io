@@ -39,7 +39,7 @@ Markov chain의 state는 $\mathbf c = (c_1, \cdots, c_n), \phi = \{ \phi_c : c \
 
 * For $i=1,\cdots, n:$
 
-  *  $c_i$를 제외한 $\mathbf{c}_{-i}$의 서로 다른 label의 개수를 $k^-$라고 하자. $c_j \in \mathbf{c}_{-i}$는 $\{1,\cdots, k^-\}$의 값을 갖는다. 
+  *  $c_i$를 제외한 $\mathbf c_{-i}$의 서로 다른 label의 개수를 $k^-$라고 하자. $c_j \in \mathbf{c}_{-i}$는 $\{1,\cdots, k^-\}$의 값을 갖는다. 
   * 만약 모든 $j \neq i$에 대해 $c_i \neq c_j$ 가 성립한다면, 즉 $c_i$의 label이 $\mathbf{c}_{-i}$에는 없는 "singleton" label이라면, $1/(k^- +1)$의 확률로 $c_i$를 $k^- +1$로 relabel한다. 그에 따라 $\phi_{c_i}$ 역시 $\phi_{k^- +1}$로 재지정된다.
   * 만약 어떤 $j \neq i$에 대해 $c_i = c_j$가 성립한다면, 즉 $c_i$와 같은 label이 $\mathbf{c}_{-i}$에 있다면, $G_0$으로부터 새로 $\phi_{k^- +1}$을 sampling한다.
   * 다음 확률에 따라 $c_i$의 새 value를 생성한다.
