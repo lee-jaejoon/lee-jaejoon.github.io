@@ -1,0 +1,226 @@
+---
+layout: post
+title: "Slice Sampling Methods for Dirichlet Process Mixture Model"
+tags: [Bayesian Nonparametrics]
+comments: true
+---
+
+# 1. Introduction
+
+이 포스트는 Dirichlet process mixture model에 대한 slice sampling 알고리즘을 소개한다. 다음 세 논문의 내용의 일부를 정리하였다.
+
+* *Walker, Sampling the Dirichlet Mixture Model with Slices, 2007.*
+* *Kalli et al., Slice sampling mixture models, 2011.*
+* *Ge et al., Distributed inference for Dirichlet process mixture models, 2015.*
+
+관측치 $y$가 다음과 같이 $\theta$를 parameter로 갖는 분포의 Dirichlet process mixture model에서 생성되었다고 하자.
+
+$$
+\begin{align*}
+y_i \vert P &\stackrel{iid}{\sim} P\\
+P &\sim \text{DP}(\alpha, G_0)\\
+p(y_i \vert P, \alpha) &= \int f(y_i \vert \theta) P(d\theta)\\
+&= \sum_{j=1}^{\infty} w_j f(y_i\vert \theta_j)\\
+&= p(y_i \vert w, \theta, \alpha)
+\end{align*}
+$$
+
+Sethuraman's representation에 의해, $w_j$는 다음과 같이 iid Beta random variable들로부터 construct되고, $\theta$는 $G_0$를 prior로 갖는다.
+
+$$
+\begin{align*}
+v_j\vert \alpha &\stackrel{iid}{\sim} \text{Beta}(1,\alpha) \\
+ w_j &= v_j \prod_{\ell <j} (1-v_\ell) \\
+ \theta_j &\stackrel{iid}{\sim} G_0
+\end{align*}
+$$
+
+
+<br>
+
+# 2. Slice sampler for DPMM (Walker, 2007)
+
+## Introducing latent variable $u, \delta$
+
+Slice sampling은 여기에 latent variable $u$를 도입하여 그 joint distribution에 대한 sampling을 수행한다. 다음과 같은 joint density를 갖는 latent variable $u \in (0,1)$를 도입하자.
+
+$$
+p(y_i, u_i \vert w, \theta, \alpha) = \sum_{j=1}^{\infty} 1\left(u_i < w_j\right) f(y_i \vert \theta_j)
+$$
+
+$u_i$를 Lebesgue measure $\mu$에 대해 적분해보면, $y_i$의 density $p(y_i \vert w, \theta, \alpha)$이 나오는 것을 다음과 같이 쉽게 확인할 수 있다. 피적분함수가 nonnegative이므로 Fubini's theorem을 적용하여 적분기호와 시그마의 순서를 바꿀 수 있다.
+
+$$
+\begin{align*}
+\int p(y_i, u_i \vert w, \theta, \alpha)  \mu(du_i) &= \int \sum_{j=1}^{\infty} 1\left(u_i < w_j\right) f(y_i \vert \theta_j)  \mu(du_i) \\
+&=  \sum_{j=1}^{\infty} \left(\int1\left(u_i < w_j\right)\mu(du_i) \right) f(y_i \vert \theta_j)  \\
+&=  \sum_{j=1}^{\infty} w_j f(y_i \vert \theta_j)  \\
+&=   p(y_i \vert w, \theta, \alpha) \\
+\end{align*}
+$$
+
+따라서 joint density $p(y_i, u_i \vert w, \theta, \alpha)$가 잘 정의된다. 또한 $u_i $의 density도 잘 정의됨을 알 수 있다.
+
+$$
+\begin{align*}
+p(u_i \vert w, \theta, \alpha) &= \int \sum_{j=1}^{\infty} 1\left(u_i < w_j\right) f(y_i \vert \theta_j)   \mu(dy_i) \\
+&=\sum_{j=1}^{\infty} 1\left(u_i < w_j\right) \\
+&\stackrel{let}{=} N_{u_i}
+\end{align*}
+$$
+
+$u_i$가 주어졌을 때 $y_i$의 conditional distribution을 구하면 다음과 같다.
+
+$$
+\begin{align*}
+p(y_i \vert u_i, w, \theta, \alpha) &=\frac{p(y_i, u_i \vert w, \theta, \alpha)}{p(u_i \vert w, \theta, \alpha)}\\
+&= N_u^{-1} \sum_{j=1}^{\infty} 1\left(u_i < w_j\right) f(y_i \vert \theta_j) \\
+&= N_u^{-1} \sum_{j \in A_w(u_i)}f(y_i \vert \theta_j) \\
+\text{ where }A_w(u) &= \{ j : u < w_j \}.
+\end{align*}
+$$
+
+여기서 $i$번째 observation의 group assignment를 나타내는 latent variable $\delta_i  \in \{ 1, 2, \cdots \}$를 도입한다. 그 때의 joint density를 다음과 같이 정의한다.
+
+$$
+p(y_i, u_i, \delta_i \vert w, \theta, \alpha) = 1\left(u_i < w_{\delta_i} \right) f(y_i \vert \theta_{\delta_i})
+$$
+마찬가지로 $\delta_i$를 counting measure $\nu$에 대해 적분해보면, $y_i, u_i$의 joint density $p(y_i, u_i \vert w, \theta, \alpha)$이 나오는 것을 알 수 있다.
+
+$$
+\begin{align*}
+\int p(y_i, u_i, \delta_i \vert w, \theta, \alpha) \nu(d\delta_i) &= \sum_{j=1}^\infty 1\left(u_i < w_j \right) f(y_i \vert \theta_j)\\
+&= p(y_i , u_i \vert w, \theta, \alpha)
+\end{align*}
+$$
+
+
+## Algorithm
+
+위의 joint density를 보면, latent variable들을 포함하여 sampling해야 할 변수는 $u, \theta, w, \delta, \alpha$이다. 다만, 여기서는 $w$ 대신 stick-breaking representation의 $v$를 sampling하기로 한다.
+
+### 1) Conditional of $u$
+
+For $i = 1, \cdots, N,$
+
+$$
+\begin{align*}
+p(u_i \vert u_{-i}, y, \delta, v, \theta, \alpha) &= \frac{p(y, u, \delta \vert v, \theta, \alpha)}{p(y, u_{-i},\delta \vert  v, \theta, \alpha)}\\
+&= \frac{\prod_{l=1}^N p(y_l, u_l, \delta_l \vert v, \theta, \alpha)}{ p(y_i, \delta_i \vert v, \theta, \alpha)\prod_{l=1, l\neq i}^N  p(y_l, u_l,\delta_l \vert  v, \theta, \alpha)}\\
+&= \frac{p(y_i, u_i, \delta_i \vert v, \theta, \alpha)}{p(y_i, \delta_i \vert  v, \theta, \alpha)} \\
+&= \frac{1\left(u_i < w_{\delta_i} \right) f(y_i \vert \theta_{\delta_i})}{w_{\delta_i}f(y_i \vert \theta_{\delta_i})} \\
+&=\frac{1}{w_{\delta_i}}w_{\delta_i} \text{Unif}(u_i ; 0, w_{\delta_i}) \\ 
+&=\text{Unif}(u_i ; 0, w_{\delta_i}) 
+\end{align*}
+$$
+
+다섯 번째 등호는 $1\left(u_i < w_{\delta_i} \right) = w_{\delta_i} \text{Unif}(u_i ; 0, w_{\delta_i})$를 이용했다.
+
+
+
+### 2) Conditional of $\theta$
+
+$$
+\begin{align*}
+p(\theta_j \vert \theta_{-j}, y, u, \delta, v, \alpha) &\propto  p(\theta_j , y, u, \delta\vert \theta_{-j}, v, \alpha) \\
+&= p(\theta_j \vert \theta_{-j}, v, \alpha) p(y, u, \delta \vert \theta, v, \alpha)\\
+&= G_0(\theta_j) \prod_{i=1}^{N} 1\left(u_i < w_{\delta_i} \right) f(y_i \vert \theta_{\delta_i})\\
+&\propto G_0(\theta_j) \prod_{i: \delta_i = j}f(y_i \vert \theta_j)\\
+\end{align*}
+$$
+
+
+
+### 3) Conditional of $v$
+
+$$
+\begin{align*}
+p(v_j \vert v_{-j}, y, u, \delta, \theta, \alpha) &\propto p(v_j \vert v_{-j},  \theta, \alpha) p(y, u, \delta\vert v, \theta, \alpha) \\
+&= p(v_j \vert \alpha) \prod_{i=1}^{N} 1\left(u_i < w_{\delta_i} \right) f(y_i \vert \theta_{\delta_i}) \\
+&\propto p(v_j \vert \alpha)\prod_{i=1}^{N} 1\left(u_i < v_{\delta_i} \prod_{\ell <\delta_i} (1-v_\ell)\right) \\
+&=\begin{cases}
+\text{Beta}(v_j ; 1, \alpha), \cdot 1(a_j<v_j<b_j)\quad \text{ if }j \leq \delta^\ast.\\
+  \\
+\text{Beta}(v_j ; 1, \alpha), \quad \text{ if }j > \delta^\ast.\\
+\end{cases} \\
+\text{where }a_j = \max_{i:\delta_i = j} &\left[\frac{u_i}{\prod_{\ell < j } (1-v_\ell)}\right],\\
+b_j = \min_{i:\delta_i > j} &\left[ 1-\frac{u_i}{v_{\delta_i}\prod_{\ell < j ,\ell \neq j} (1-v_\ell)} \right] = 1-\max_{i:\delta_i > j}\left[\frac{u_i}{v_{\delta_i}\prod_{\ell < j ,\ell \neq j} (1-v_\ell)}\right]. \\
+\end{align*}
+$$
+
+$\delta^\ast = \max_i \delta_i$라고 하자. $v$와 $\theta$는 infinite-dimensional parameter이지만, $\delta^\ast$보다 작은 index $j$의 $v_j, \theta_j$들만이 관측치와 연관되어 sampling에 영향을 준다는 것을 알 수 있다.
+
+
+
+### 4) Conditional of $\delta$
+
+$$
+\begin{align*}
+p(\delta_i \vert \delta_{-i}, y, u,\theta, v,\alpha) &\propto p(y,u,\delta \vert\theta, v,\alpha) \\
+&\propto 1\left(u_i < w_{\delta_i} \right) f(y_i \vert \theta_{\delta_i}) \\
+&\propto 1\left(\delta_i \in A_w(u_i)\right) f(y_i \vert \theta_{\delta_i}) \\
+\end{align*}
+$$
+
+이 때 1)에서 확인했듯 $u_i$는 $(0,w_{\delta_i})$에서 sample되므로, $u_i$보다 $w_j$가 더 큰 index $j$들의 집합 $A_w(u_i)$는 항상 empty set이 아니다. 위 conditional의 형태에 따르면, $u_i < w_j$를 만족하는 group $j$를 모아놓고, 그 안에서 likelihood값 $f(y_i \vert \theta_j)$에 비례하여 $ \delta_i$의 새 값을 sampling한다.
+
+그렇다면 $u_1, \cdots, u_N$에 대해, 몇번째 group까지 $\theta_j, v_j$를 뽑아두어야 할까? 다음 두 가지 사실을 확인하자.
+
+$$
+\sum_{j=1}^{k^i}w_j > 1-u_i \implies \forall j>k_i,\enspace u_i > w_j. \\
+\sum_{j=1}^{k^\ast}w_j > 1-\min_i u_i \implies \forall i=1,\cdots, N,\enspace \forall j>k^\ast,\enspace u_i > w_j.
+$$
+
+즉 "$1$에서 지난 iteration에서 sample된 것 중 가장 작은 $u_i$를 뺀 값"보다 $\sum_{j=1}^{k^\ast}w_j$의 값이 더 커지도록 하는 $k^\ast$까지 $\theta_j, v_j$를 뽑으면 된다. 이 부분은 latent variable $u$를 도입하여, **infinite dimensional parameter $v, \theta$를 매 iteration마다 유한개만 sampling하고도, 모형 내 모수들의 exact posterior를 sampling할 수 있게 해준다**는 점에서 의미가 있다.
+
+
+
+### 5) Conditional of $\alpha$
+
+**[이전 포스트](https://lee-jaejoon.github.io/BNP-nonconjugateDPMM/#6-putting-prior-on-concentration-parameter-alpha-of-dp-prior)**에서 소개된 Escobar & West (1995)의 방법을 이용하여 Dirichlet process prior의 concentration parameter $\alpha$에 대한 sampling을 수행할 수 있다.
+
+
+<br>
+
+
+# 3. Slice-efficient sampler for DPMM (Kalli et al., 2011)
+
+이 알고리즘은 위에서 소개한 Walker (2007)의 알고리즘의 "Blocked Gibbs sampler" 버전이다. Kalli et al. (2011)은 $u$와 $v$를 block으로 처리하여 DPMM에 대한 slice sampling을 수행하는 방법을 소개한다. 도입한 latent variable이나 다른 모수들에 대한 conditional은 동일하므로, 위 알고리즘과 달라진 부분만을 소개하겠다.
+
+
+
+## Algorithm
+
+### 1) Conditional of $\theta$
+
+위와 동일.
+
+### 2) Conditional of $(u,v)$
+
+먼저 $u$를 condition에서 제외한 $p(v \vert y, \delta, \theta, \alpha)$를 sampling한 후 $p(u \vert y, \delta, v,\theta, \alpha)$를 sampling하여, $p(u,v \vert y, \delta, \theta, \alpha)$를 sampling하는 것이 된다.
+
+$$
+\begin{align*}
+p(v_j \vert v_{-j}, y, \delta, \theta, \alpha) &\propto p(v \vert v_{-j}, \theta, \alpha) p( y, \delta \vert v, \theta, \alpha) \\
+&= p(v \vert \alpha)p( y, \delta \vert v, \theta, \alpha) \\
+&= \text{Beta}(v_j ; 1, \alpha) \cdot \prod_{i=1}^N w_{\delta_i} f(y_i \vert \theta_{\delta_i}) \\
+&\propto \text{Beta}(v_j ; 1, \alpha) \cdot\prod_{i=1}^N \left( v_{\delta_i} \prod_{\ell < \delta_i} (1-v_\ell)\right) \\
+&= \text{Beta}\left(v_j ; 1+\sum_{i=1}^{N}1(\delta_i = j), \alpha +\sum_{i=1}^{N}1(\delta_i > j)\right) 
+\end{align*}
+$$
+
+$p(u \vert y, \delta, v,\theta, \alpha)$는 위에서 소개한 것과 동일하다.
+
+### 3) Conditional of $\delta$
+
+위와 동일.
+
+### 4) Conditional of $\alpha$
+
+위와 동일.
+
+<br>
+
+# 4. Improved Slice sampler for DPMM (Ge, 2015)
+
+추가 예정.
