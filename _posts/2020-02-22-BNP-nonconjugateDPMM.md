@@ -4,7 +4,9 @@ title: "Sampling Methods for Dirichlet Process Mixture Models under Non-conjugat
 tags: [Bayesian Nonparametrics]
 comments: true
 ---
-
+이 포스트는 non-conjugate prior 하에서 Dirichlet process mixture model의 posterior sampling을 수행하는 알고리즘들을 소개한다. 다음 두 논문의 내용의 일부를 정리한 것이다.
+* *Neal, Markov Chain Sampling Methods for Dirichlet Process Mixture Models, 2000.*
+* *Escobar & West, Bayesian Density Estimation and Inference Using Mixtures, 1995.*
 # 0. Setting
 
 $$
@@ -391,7 +393,7 @@ $$
 
 # 6. Putting prior on concentration parameter $\alpha$ of DP prior
 
-Auxiliary variable $\eta$를 도입하여, DP prior의 concentration parameter $\alpha$에 gamma prior를 부여하고 이에 대한 sampling을 수행할 수 있다. 위에서 소개된 알고리즘들에 아래의 sampling step을 추가하면 된다.
+Escobar & West (1995)에 소개된 것처럼, Auxiliary variable $\eta$를 도입하여 DP prior의 concentration parameter $\alpha$에 gamma prior를 부여하고 이에 대한 sampling을 수행할 수 있다. 위에서 소개된 알고리즘들에 아래의 sampling step을 추가하면 된다.
 
 $$
 \alpha \sim \text{Gamma}(a,b)
