@@ -391,4 +391,60 @@ $$
 
 # 6. Putting prior on concentration parameter $\alpha$ of DP prior
 
-Auxiliary variable $\eta$를 도입함으로써 DP prior의 concentration parameter $\alpha$에 gamma mixture prior를 부여할 수 있다. 내용 추가 예정.
+Auxiliary variable $\eta$를 도입하여, DP prior의 concentration parameter $\alpha$에 gamma prior를 부여하고 이에 대한 sampling을 수행할 수 있다. 위에서 소개된 알고리즘들에 아래의 sampling step을 추가하면 된다.
+
+$$
+\alpha \sim \text{Gamma}(a,b)
+$$
+
+$\alpha$의 conditional을 구하면 다음과 같다.
+
+$$
+\begin{align*}
+p(\alpha \vert y, \mathbf c,\phi) &\propto p(\alpha \vert \mathbf c, \phi) p(y \vert \alpha, \mathbf c, \phi) \\
+&= p(\alpha \vert \mathbf c) p(y \vert \mathbf c, \phi) \\
+&\propto p(\alpha \vert \mathbf c)  \\
+&\propto p(\alpha) p(\mathbf c \vert \alpha ) \\
+&= p(\alpha) \frac{\alpha^K \prod_{j=1}^{K}(n_j -1)!}{(\alpha)_{N \uparrow} K!} \\
+&\propto p(\alpha) \frac{\alpha^K}{\alpha(\alpha+1)\cdots (\alpha+N-1)} \\
+&= p(\alpha) \frac{\Gamma(\alpha)}{\Gamma(\alpha+N)} \alpha^K \\
+&\propto p(\alpha) \frac{\Gamma(\alpha)\Gamma(N)}{\Gamma(\alpha+N)} \alpha^K \\
+&= p(\alpha) \frac{\Gamma(\alpha)\Gamma(N)}{\Gamma(\alpha+N)} \frac{\Gamma(\alpha+N+1)}{\Gamma(\alpha+N+1)} \frac{\Gamma(\alpha+1)}{\Gamma(\alpha+1)}\alpha^K \\
+&= p(\alpha) \alpha^{K-1} (\alpha+N)\text{Beta}(\alpha+1, N) \\
+\end{align*}
+$$
+
+여기서 $\text{Beta}(\alpha+1, N)$을 따르는 auxiliary variable, $\eta$를 도입하면 다음과 같이 나타낼 수 있다.
+
+$$
+\begin{align*}
+p(\alpha \vert y, \mathbf c,\phi) &\propto p(\alpha) \alpha^{K-1} (\alpha+N)\text{Beta}(\alpha+1, N) \\
+&= p(\alpha) \alpha^{K-1} (\alpha+N) \int \eta^\alpha(1-\eta)^{N-1}d\eta \\
+\end{align*}
+$$
+
+여기서 $\alpha$의 Gamma prior를 이용하여 식을 나타내면 다음과 같다.
+
+$$
+\begin{align*}
+p(\alpha) &\propto \alpha^{a-1}e^{-b\alpha}\\
+p(\alpha, \eta\vert y, \mathbf c,\phi) &\propto p(\alpha) \alpha^{K-1} (\alpha+N) \eta^\alpha(1-\eta)^{N-1} \\
+&= \alpha^{a+K-1}e^{-b\alpha} \eta^\alpha(1-\eta)^{N-1} + N\alpha^{a+K-2}e^{-b\alpha} \eta^\alpha(1-\eta)^{N-1} \\
+
+\end{align*}
+$$
+
+$\alpha$의 conditional에서 sampling을 수행하는 것이 목적이므로, 다음과 같이 $\alpha$와 $\eta$를 각각의 conditional에서 sampling한 후, $\alpha$의 결과만을 저장하고 auxiliary variable $\eta$의 결과는 버린다.
+
+$$
+\begin{align*}
+p(\eta \vert y, \alpha, \mathbf c, \phi) &\propto p(\alpha, \eta\vert y, \mathbf c,\phi)\\
+&\propto \eta^\alpha(1-\eta)^{N-1} \\
+&\propto \text{Beta}(\alpha+1,N) \\
+p(\alpha\vert y, \eta,  \mathbf c,\phi) &\propto p(\alpha, \eta\vert y, \mathbf c,\phi)\\
+&\propto \alpha^{a+K-1}e^{-b\alpha} \eta^\alpha + N\alpha^{a+K-2}e^{-b\alpha} \eta^\alpha \\
+&= \alpha^{a+K-1}e^{-(b-\log \eta)\alpha} + N\alpha^{a+K-2}e^{-(b-\log \eta)\alpha}  \\
+&= \frac{\Gamma(a+K)}{(b-\log \eta)^{a+K}} \text{Gamma}(a+K,b-\log \eta) \\
+& \quad \enspace+ N\frac{\Gamma(a+K-1)}{(b-\log \eta)^{a+K-1}} \text{Gamma}(a+K-1,b-\log \eta) \\
+\end{align*}
+$$
