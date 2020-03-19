@@ -256,7 +256,7 @@ $$
 
 $$
 A(\theta) = \sup_{\mu \in \mathcal M} \Big\{ \langle \theta, \mu \rangle - A^\ast (\mu)\Big\} \\
-\mathcal M = \left\{ \mu \in \mathbb R^d \enspace \Big\vert \enspace \exist p(\cdot) \enspace \text{ s.t. } \enspace \mathbb E_p[ \phi(X_\mathcal V) ]= \mu  \right\}
+\mathcal M = \left\{ \mu \in \mathbb R^d \enspace \Big\vert \enspace \exists p(\cdot) \enspace \text{ s.t. } \enspace \mathbb E_p[ \phi(X_\mathcal V) ]= \mu  \right\}
 $$
 
 * 이제 우리는 확률분포의 특정 class로 최적화 수행 범위를 제한하고, 그 class 내에서 가장 목표 확률 분포와 가장 가까운 variational distribution을 찾는다.
