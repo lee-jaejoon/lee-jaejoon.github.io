@@ -113,7 +113,7 @@ $$
 * 한 변수를 marginalize out하면 marginalize out된 변수와 인접한 모든 변수들은 clique가 되는 효과가 있다.
   * Node 2,3,4가 node 5와 인접한 다음 상황에서 node 5를 marginalize하면, 아래와 같이 Node 2,3,4가 하나의 clique가 되는 효과.
 
-![image-20200319141214804](https://user-images.githubusercontent.com/45325895/77082439-664c9400-6a3f-11ea-99b8-da018fe1f4c0.png)
+![image-20200319141214804](https://user-images.githubusercontent.com/45325895/77082439-664c9400-6a3f-11ea-99b8-da018fe1f4c0.png){: .center-image}
 
 $$
 \begin{align*}
@@ -148,7 +148,7 @@ $$
 
 * Children node보다 parent node가 먼저 marginalize out되지 않는 elimination order를 생각해보자.
 
-![image-20200319141108602](https://user-images.githubusercontent.com/45325895/77082539-8f6d2480-6a3f-11ea-9ce8-b5ab5b67f911.png)
+![image-20200319141108602](https://user-images.githubusercontent.com/45325895/77082539-8f6d2480-6a3f-11ea-9ce8-b5ab5b67f911.png){: .center-image}
 
 * 위와 같이 node $j$와 node $i$가 child-parent 관계이고, 이 때 node $j$를 marginalize out하여 전달되는 *message*를 다음과 같이 recursive하게 나타낸다.
 
@@ -231,7 +231,7 @@ $$
 A^\ast (\mu) = \sup_{\theta \in \Theta} \Big\{ \langle \theta, \mu \rangle - A(\theta)\Big\}
 $$
 
-![image-20200319170839933](https://user-images.githubusercontent.com/45325895/77082624-af9ce380-6a3f-11ea-8698-7ba5daef6bbe.png)
+![image-20200319170839933](https://user-images.githubusercontent.com/45325895/77082624-af9ce380-6a3f-11ea-8698-7ba5daef6bbe.png){: .center-image}
 
 * Fenchel conjugate dual function은 다음과 같이 이해할 수 있다.
   * $x^\ast =-4$에 대한 $f^\ast(x^\ast)$의 값은, original 함수 $f(x)$와 같은 공간에 원점을 지나고 기울기가 $x^\ast = -4$인 직선을 그렸을 때, 그 직선을 함수값 축 방향으로 얼마나 평행 이동해야 $f(x)$와 접하게 되는지를 나타낸다.
