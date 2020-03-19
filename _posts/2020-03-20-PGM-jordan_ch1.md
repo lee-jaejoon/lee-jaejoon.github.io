@@ -24,7 +24,7 @@ comments: true
 * *Chordal graph*는 graph 내의 4개 이상의 node로 이루어진 모든 cycle은 항상 chord를 갖는 graph를 의미한다.
   * Chordal graph의 모든 induced cycle은 3개의 node를 가져야 하며, 이를 통해 chordal graph를 정의하기도 한다.
 
-
+<br>
 
 # Chapter 1. Graphical Models
 
@@ -36,13 +36,15 @@ comments: true
 * Graphical model의 formalism은 빈도주의자 혹은 베이지안 중 어느 관점에 근거한 것인지 정확히 분별하기 힘들지만, 결합확률분포를 조작하는 방법이나 계층적 잠재 변수 모형을 쉽게 반영할 수 있다는 점에서, graphical model은 주로 베이지안 체계에서 논의/서술된다.
 * Graphical model을 이용해 여러 분야의 복잡한 현상을 나타내는 probabilistic model을 효과적으로 만들 수 있다.
 
-
+<br>
 
 
 
 ## 1.2 Representation
 
 * Graphical model은 크게 *directed graphical model*과 *undirected graphical model*로 나눌 수 있다.
+
+<br>
 
 ### 1.2.1 Directed case
 
@@ -62,6 +64,8 @@ k(x_v \vert x_{\pi_v}) = p(x_v \vert x_{\pi_v})
 $$
 
 * 지금 여기서 data와 parameter를 구분하고 있지 않은데, parameter도 하나의 node로 모형에 반영시켜주면 된다.
+
+<br>
 
 ### 1.2.2 Undirected case
 
@@ -83,7 +87,7 @@ $$
 
 * Clique $C$가 매우 큰 경우가 있기 때문에, clique 내에 factorized distribution의 형태를 가져 그 역시 어떤 다른 함수들의 곱으로 나타나는 potential function을 고려하는 것이 효과적이다.
 
-
+<br>
 
 
 
@@ -102,7 +106,7 @@ $$
 * Marginalization을 수행하는 것의 계산 복잡도를 줄이는 방법을 찾는 것이 주 목표.
   * 이에는 크게 exact algorithms, sampling algorithms, variational algorithms의 접근법이 있다.
   
-
+<br>
 
 
 ### 1.3.1 Exact algorithms
@@ -186,7 +190,7 @@ $$
   * Single node들 간의 message가 아니라 clique 간의 message를 계산하게 됨.
 * 이 때 clique는 원래 graph의 clique이 아니라, 특정 elimination order에 의해 생성된 reconstituted graph의 clique이다.
 
- 
+<br>
 
 ### 1.3.2 Sampling algorithms
 
@@ -199,7 +203,7 @@ $$
   * Directed graphical model에서 어떤 node의 Markov blanket은 그 node의 parent node들의 집합이다.
   * Undirected graphical model에서 어떤 node의 Markov blanket은 그 node의 neighborhood들의 집합이다.
 
-
+<br>
 
 ### 1.3.3 Variational algorithms
 
@@ -268,7 +272,8 @@ $$
 
 * 이와 같이 $A(\theta)$를 approximate, 즉 $p(x_\mathcal V)$를 approximate할 수 있다.
 
-  
+<br>
+<br>
 
 다음 section들은 graphical model의 다양한 application과 대표적인 연구들을 소개한다. 여기서는 생략.
 
