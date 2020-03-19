@@ -28,7 +28,7 @@ comments: true
 
 # Chapter 1. Graphical Models
 
-## 1.1. Introduction
+# 1.1. Introduction
 
 * *Graphical model*은 graph로 정의된 확률분포의 family를 의미한다. 
 
@@ -40,13 +40,13 @@ comments: true
 
 
 
-## 1.2 Representation
+# 1.2 Representation
 
 * Graphical model은 크게 *directed graphical model*과 *undirected graphical model*로 나눌 수 있다.
 
 <br>
 
-### 1.2.1 Directed case
+## 1.2.1 Directed case
 
 * $\mathcal G(\mathcal V, \mathcal E)$ : directed acyclic graph, where $\mathcal V$ are nodes and $\mathcal E$ are the edges.
 * $\{ X_v :v \in \mathcal V \}$ : a collection of random variables indexed by the nodes of the graph.
@@ -67,7 +67,7 @@ $$
 
 <br>
 
-### 1.2.2 Undirected case
+## 1.2.2 Undirected case
 
 * $\mathcal G(\mathcal V, \mathcal E)$ : undirected acyclic graph.
 * $\{ X_v :v \in \mathcal V \}$ : a collection of random variables indexed by the nodes of the graph.
@@ -91,7 +91,7 @@ $$
 
 
 
-## 1.3 Algorithms for probabilistic inference
+# 1.3 Algorithms for probabilistic inference
 
 * Inference를 수행할 때는 directed graph와 undirected graph를 같은 방법으로 처리하는 것이 효과적이다.
 * 이는 directed graph를 undirected graph로 바꿈으로써 수행할 수 있다.
@@ -109,9 +109,9 @@ $$
 <br>
 
 
-### 1.3.1 Exact algorithms
+## 1.3.1 Exact algorithms
 
-### 1.3.1.1 Elimination algorithm
+## 1.3.1.1 Elimination algorithm
 
 * Marginalization을 수행하면 그래프는 어떻게 변화할까?
 * 한 변수를 marginalize out하면 marginalize out된 변수와 인접한 모든 변수들은 clique가 되는 효과가 있다.
@@ -143,12 +143,12 @@ $$
 
 
 
-### 1.3.1.2 Approaches available under tree structure
+## 1.3.1.2 Approaches available under tree structure
 
 * Undirected tree 구조에서 clique는 두 node의 쌍, 혹은 다른 어느 node와도 연결되지 않은 singleton이다.
 * Tree의 joint probability distribution은 potential $\{ \psi(x_i, x_j) : (i,j) \in \mathcal E\}$와 $\{ \psi(x_i) : (i) \in \mathcal V\}$로 parameterize된다.
 
-### 1.3.1.2.1 Sum-product algorithm
+## 1.3.1.2.1 Sum-product algorithm
 
 * Children node보다 parent node가 먼저 marginalize out되지 않는 elimination order를 생각해보자.
 
@@ -183,7 +183,7 @@ $$
 
 
 
-### 1.3.1.2.2 Junction tree algorithm
+## 1.3.1.2.2 Junction tree algorithm
 
 * Elimination algorithm과 sum-product algorithm을 합친 것으로 볼 수 있다.
 * Clique들을 component로 본 *hypergraph*를 tree 구조로 보고 sum-product algorithm을 수행한다.
@@ -192,7 +192,7 @@ $$
 
 <br>
 
-### 1.3.2 Sampling algorithms
+## 1.3.2 Sampling algorithms
 
 * 1.3.1의 방법은 graph theory 혹은 graph의 특정 structure를 이용하여 graphical model의 probabilistic inference를 수행함.
 * *Importance sampling*, *Markov chain Monte Carlo (MCMC)*와 같은 방법을 이용할 수 있다.
@@ -205,7 +205,7 @@ $$
 
 <br>
 
-### 1.3.3 Variational algorithms
+## 1.3.3 Variational algorithms
 
 * *Variational inference*는 어떤 목표 확률 분포에 대한 approximation을 최적화 문제로 바꾸어 해결한다.
 * 목표 확률 분포의 parameter가 아닌, variational parameter로 parameterized된 더 간단한 확률 분포의 class에서 최적화를 수행.
@@ -277,15 +277,15 @@ $$
 
 다음 section들은 graphical model의 다양한 application과 대표적인 연구들을 소개한다. 여기서는 생략.
 
-## 1.4 Bioinformatics
+# 1.4 Bioinformatics
 
-## 1.5 Error-control codes
+# 1.5 Error-control codes
 
-## 1.6 Speech, language and information retrieval
+# 1.6 Speech, language and information retrieval
 
-### 1.6.1 Markov and hidden Markov models
+## 1.6.1 Markov and hidden Markov models
 
-### 1.6.2 Variations on Markovian models
+## 1.6.2 Variations on Markovian models
 
-### 1.6.3 A hierarchical Bayesian model for document collection
+## 1.6.3 A hierarchical Bayesian model for document collection
 
