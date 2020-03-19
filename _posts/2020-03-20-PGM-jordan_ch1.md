@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ch 1. Graphical Models"
+title: "1. Graphical Models"
 tags: [Probabilistic Graphical Model]
 comments: true
 ---
