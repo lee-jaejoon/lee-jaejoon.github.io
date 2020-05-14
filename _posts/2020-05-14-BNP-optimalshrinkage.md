@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dirichlet–Laplace priors for optimal shrinkage"
-tags: [Probabilistic Graphical Model]
+tags: [Bayesian Nonparametrics]
 comments: true
 ---
 
