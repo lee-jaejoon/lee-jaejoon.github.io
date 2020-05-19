@@ -145,7 +145,7 @@ $$
 이 때 $\delta_n = r_n /n$으로 둔다. 그리고 $\Theta_{S,j,n}$의 $jr_n$ net을 $\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j}\}$와 같이 나타내자. 이 때 다음이 만족한다.
 
 $$
-\forall \theta \in \Theta_{S,j,n}, \quad \exist i \enspace \text{ s.t. } \Vert \theta - \theta^{S,j,i}\Vert < jr_n
+\forall \theta \in \Theta_{S,j,n}, \quad \exists i \enspace \text{ s.t. } \Vert \theta - \theta^{S,j,i}\Vert < jr_n
 $$
 
 그럼 이와 같은 $\Theta_{S,j,n}$의 $jr_n$ net $\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j}\}$는 어떻게 만들 수 있을까?
