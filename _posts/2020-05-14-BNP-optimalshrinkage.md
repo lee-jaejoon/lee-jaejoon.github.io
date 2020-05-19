@@ -156,7 +156,7 @@ $$
 N_{S,j} \leq C^{\vert S\vert}
 $$
 
-$\theta^{S,j,i}_S = \phi^{S,j,i}$, $\theta_k^{S,j,i} = 0$ for $k \in S^c$와 같이 $\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j}\}$을 정의하고, 이것이 $\Theta_{S,j,n}$의 $jr_n$ net이 됨을 보이자. 임의의 $\theta \in \Theta_{S,j,n}$를 고르고, 그에 대해 $\Vert \theta_S^{S,j,i} - \theta_S \Vert \leq \frac{1}{2}jr_n$을 만족하는 $1 \leq i\leq N_{S,j}$를 고르자.
+$\theta_S^{S,j,i} = \phi^{S,j,i}$, $\theta_k^{S,j,i} = 0$ for $k \in S^c$와 같이 $\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j}\}$을 정의하고, 이것이 $\Theta_{S,j,n}$의 $jr_n$ net이 됨을 보이자. 임의의 $\theta \in \Theta_{S,j,n}$를 고르고, 그에 대해 $\Vert \theta_S^{S,j,i} - \theta_S \Vert \leq \frac{1}{2}jr_n$을 만족하는 $1 \leq i\leq N_{S,j}$를 고르자.
 
 $$
 \begin{align*}
