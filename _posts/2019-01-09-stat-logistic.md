@@ -137,7 +137,7 @@ $$
 $$
 
 $$
-\beta_{new}=\beta_{old} + {\Big( \frac{\partial^2 l(\beta)}{\partial \beta \partial \beta^T} \biggr\rvert_{\beta=\beta_{old}} \Big)}^{-1} \Big(
+\beta_{new}=\beta_{old} - {\Big( \frac{\partial^2 l(\beta)}{\partial \beta \partial \beta^T} \biggr\rvert_{\beta=\beta_{old}} \Big)}^{-1} \Big(
 \frac{\partial l(\beta)}{\partial \beta_j} \biggr\rvert_{\beta=\beta_{old}}
 \Big)
 $$
