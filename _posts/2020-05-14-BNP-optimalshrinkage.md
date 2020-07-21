@@ -142,7 +142,7 @@ $$
 \Theta_{S,j,n} = \Big\{ \theta \in \mathbb R^n : \text{supp}_{\delta_n}(\theta) = S, 2jr_n \leq \Vert \theta-\theta_0 \Vert_2 \leq 2(j+1)r_n\Big\}
 $$
 
-이 때 $\delta_n = r_n /n$으로 둔다. 그리고 $\Theta_{S,j,n}$의 $jr_n$ net을 $\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j}\}$와 같이 나타내자. 이 때 다음이 만족한다.
+이 때 $\delta_n = r_n /n$으로 둔다. 그리고 $\Theta_{S,j,n}$의 $jr_n$ net을 $\\{ \theta^{S,j,i} : i = 1, \ldots, N_{S,j} \\}$와 같이 나타내자. 이 때 다음이 만족한다.
 
 $$
 \forall \theta \in \Theta_{S,j,n}, \quad \exists i \enspace \text{ s.t. } \Vert \theta - \theta^{S,j,i}\Vert < jr_n
