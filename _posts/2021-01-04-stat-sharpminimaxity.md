@@ -25,7 +25,6 @@ y^{(n)} = \theta^{(n)} + \epsilon, \\
 $$
 
 * 논의의 간결함을 위해, W.L.O.G, let $\sigma^2 = 1$.
-
 * True parameter $\theta^\ast$는 $s^{(n)}$개의 nonzero entry를 갖는 sparse vector.
 * Asymptotically, $s^{(n)}$은 $n$이 증가함에 따라 증가한다고 가정.
 
@@ -58,10 +57,11 @@ $$
 * Shrinkage prior를 평가하는 기준이 되는 이론적 성질은 *posterior contraction rate*이다.
 
   * 예를 들어 $L_2$ posterior contraction rate은 다음을 만족하는 $r_n$으로 정의된다.
-    $$
-    \lim_{n \to \infty } \mathbb E_{\theta^\ast}\Big[ \pi(\Vert \theta- \theta^\ast\Vert \geq r_n \vert y )\Big] = 0, \text{ for any }\theta^\ast. \\
-    \iff \enspace \pi(\Vert \theta- \theta^\ast\Vert \geq r_n \vert y ) \to 0 \quad [\mathbb P_{\theta^\ast}]\enspace a.e., \text{ for any }\theta^\ast.
-    $$
+  
+$$
+\lim_{n \to \infty } \mathbb E_{\theta^\ast}\Big[ \pi(\Vert \theta- \theta^\ast\Vert \geq r_n \vert y )\Big] = 0, \text{ for any }\theta^\ast. \\
+\iff \enspace \pi(\Vert \theta- \theta^\ast\Vert \geq r_n \vert y ) \to 0 \quad [\mathbb P_{\theta^\ast}]\enspace a.e., \text{ for any }\theta^\ast.
+$$
 
   * 해당 prior를 주었을 때 (Bayes estimator 뿐만 아니라) 사후분포 자체가 얼마나 빨리 true parameter로 수렴하는가를 나타내는 개념.
 
@@ -75,15 +75,15 @@ $$
 
   * $\theta^\ast$에 대한 특정 조건 하에서, Dirichlet-Laplace prior는 다음 posterior contraction rate을 갖는다.
 
-  $$
-  r_n \asymp \sqrt{s \log \Big( \frac{n}{s}\Big)}
-  $$
+$$
+r_n \asymp \sqrt{s \log \Big( \frac{n}{s}\Big)}
+$$
 
   * Horseshoe prior는 임의의 $M_n \to \infty $에 대해 다음 posterior contraction rate을 갖는다.
 
-  $$
-  r_n = M_n \sqrt{s \log \Big( \frac{n}{s}\Big)}
-  $$
+$$
+r_n = M_n \sqrt{s \log \Big( \frac{n}{s}\Big)}
+$$
 
 * 아래 최근 연구들에 의하면 $\pi_0$의 tail behavior가 posterior asymptotic에 중요한 역할을 하며, (near-) optimal posterior contraction rate을 얻기 위해서는 polynomially decaying인 $\pi_0$을 선택하는 것이 좋다.
 
@@ -100,9 +100,9 @@ $$
   * $\pi_0$의 polynomial order가 1에 충분히 가깝다면, sharp한 Bayesian minimax를 달성할 수 있다.
     * 다만 이때 sharp minimaxity를 달성하기 위해서 $\tau$를 선택할 때 true sparsity ratio $(s/n)$의 정보가 필요한데, 이는 실제 분석 상황에서는 unknown.
 
-  $$
-  \frac{r_n}{\sqrt{2s \log \Big( \frac{n}{s}\Big)}}\enspace  \text{ sufficiently close to }1
-  $$
+$$
+\frac{r_n}{\sqrt{2s \log \Big( \frac{n}{s}\Big)}}\enspace  \text{ sufficiently close to }1
+$$
 
   * $\tau$에 대한 Beta modelling 방법을 제시한다.
     * 이는 unknown sparsity에 대해 adaptive하게 Bayesian sharply minimax inference를 가능케함.
@@ -178,9 +178,10 @@ $$
 * 임의의 polynomially decaying shrinkage prior는 위 정리의 조건에 맞게 global shrinkage $\tau$를 잘 결정하면 optimal Bayesian contraction rate $O(\{s\log(n/s)\}^{1/2})$을 달성하게 된다.
 
   * 이는 Horseshoe prior에 대해 기존에 증명된 사실보다 더 optimal rate에 가까운 결과.
-    $$
-    O(M_n\{s\log(n/s)\}^{1/2}) \text{ with }M_n \to \infty.
-    $$
+
+$$
+O(M_n\{s\log(n/s)\}^{1/2}) \text{ with }M_n \to \infty.
+$$
 
 * 또한 위 정리를 통해 Bayesian contraction rate의 multiplicative constant가 $\pi_0(\cdot)$의 polynomial order와 positively related임을 알 수 있다.
 
@@ -215,11 +216,13 @@ $$
 ### Statement
 
 *Let a positive constant $\omega$ be given, and $\tau^{\alpha - 1} \geq (1/n)^c \sqrt{\log(n/s)}$ for some $c \in (0,1+\omega/2)$. If $\tau^{\alpha - 1} \prec (s/n)^\alpha \{\log(n/s)\}^{(\alpha+1)/2}$, then*
+
 $$
 \begin{align*}
 &\lim_{n \to \infty} \mathbb E_{\theta^\ast}\Big[ \pi\Big(\Vert \theta- \theta^\ast\Vert \geq C_1(\omega) \sqrt{s\log(n)} \Big\vert D_n \Big)\Big] = 0,  \\
 &\lim_{n \to \infty} \mathbb E_{\theta^\ast}\Big[ \pi\Big(\Vert \theta- \theta^\ast\Vert_1 \geq s \cdot C_2(\omega) \sqrt{\log(n)} \Big\vert D_n \Big)\Big] = 0, \end{align*}\tag{2.3}
 $$
+
 *for the same functions $C_1(\omega), C_2(\omega)$ used in Theorem 2.1.*
 
 
@@ -279,12 +282,14 @@ $$
 ### Statement
 
 *If $\alpha \leq 1 + \omega /2$ , $\pi(\tau) $ satisfies that:* 
+
 $$
 \begin{align*}
 &-\log\pi\Big\{\Big(\frac{s}{n}\Big)^{(1+\omega/2) / (\alpha - 1)} \leq \tau \leq\Big(\frac{s}{n}\Big)^{\alpha/(\alpha - 1) } \Big\} \prec s \log \Big(\frac{n}{s}\Big),\\
 &-\log\pi\Big\{ \tau \geq \Big(\frac{s}{n}\Big)^{\alpha/(\alpha - 1) } \Big\} \succ s \log \Big(\frac{n}{s}\Big),
 \end{align*}
 $$
+
 *and $\max_j \vert \theta_j^\ast\vert \leq ({n}/{s})^{\omega/(5\alpha)}$, then (2.1) and (2.2) still hold.*
 
 
@@ -326,25 +331,26 @@ $$
 $$
 
 * True parameter $\theta^\ast$에 대해서 부과된 조건 $\max_j \vert \theta_j^\ast\vert \leq ({n}/{s})^{\omega/(5\alpha)}$는 다음과 같이 고쳐쓸 수 있다.
-  $$
-  \frac{\log (\max_j \vert \theta_j^\ast\vert)}{\log(n/s)} \leq \frac{\omega}{5\alpha}.
-  $$
-
   * 이때 조건 **[C.1]**에 의해 $\log(n/s) \to \infty $이므로, $n$이 증가함에 따라 true signal $\theta^\ast$의 strength가 커지는 것을 허용하는 조건임을 알 수 있다.
   * 만약 $\log (\max_j \vert \theta_j^\ast\vert) = o(\log(n/s))$, 즉 maximum true signal이 sub-polynomial하게 커진다면, $\omega$를 충분히 0에 가깝게 작게 잡아 sharp minimaxity를 얻을 수 있다.
   * 만약 어떤 $a>0$에 대해 $\max_j \vert \theta_j^\ast\vert \asymp (n/s)^a$, 즉 maximum true signal이 polynomial하게 커진다면, $\omega$를 0에 가깝게 줄이지 못하여 Bayesian contraction rate의 multiplicative constant $C_1(\omega), C_2(\omega)$를 arbitrary하게 줄이는 sharp minimaxity는 달성할 수 없다. 
     * 하지만 이때도 여전히 contraction rate는 minimax rate인 $O(\{s\log(n/s)\}^{1/2})$을 달성한다.
+    
+$$
+\frac{\log (\max_j \vert \theta_j^\ast\vert)}{\log(n/s)} \leq \frac{\omega}{5\alpha}.
+$$
 
 * Dirichlet-Laplace prior는 optimality를 보이는 데 있어, true parameter value 주변에서 prior가 특정 확률 이상을 부여한다는 조건 외에도, $\Vert \theta^\ast\Vert $에 upper bound를 주는 조건을 필요로 한다.
-  $$
-  \Vert \theta^\ast \Vert \leq \sqrt{s} (\log n)^2
-  $$
+
+$$
+\Vert \theta^\ast \Vert \leq \sqrt{s} (\log n)^2
+$$
 
   * $L_1$-norm과 $\max_j \vert \theta_j^\ast\vert$를 기준으로 이는 다음을 나타낸다. (C-S inequality: $\Vert \theta \Vert_1^2 \leq s \Vert \theta \Vert^2$)
 
-  $$
-  \max_j \vert \theta_j^\ast\vert \leq\Vert \theta^\ast \Vert_1 \leq s (\log n)^2
-  $$
+$$
+\max_j \vert \theta_j^\ast\vert \leq\Vert \theta^\ast \Vert_1 \leq s (\log n)^2
+$$
 
   * 이는 본 연구의 조건보다 더 강한 조건
 
@@ -355,16 +361,20 @@ $$
 ### Statement 
 
 *If $\alpha \leq 1 + \omega /2$ , $\pi(\tau) $ satisfies:* 
+
 $$
 \begin{align*}
 &-\log\pi\Big\{\Big(\frac{s}{n}\Big)^{(1+\omega/2) / (\alpha - 1)} \leq \tau \leq\Big(\frac{s}{n}\Big)^{\alpha/(\alpha - 1) } \Big\} \prec s \log \Big(\frac{n}{s}\Big),\\
 &-\log\pi\Big\{ \tau \geq \Big(\frac{s}{n}\Big)^{\alpha/(\alpha - 1) } \Big\} \succ s \log \Big(\frac{n}{s}\Big),
 \end{align*}
 $$
+
 *and the prior of $\tau$ has support as follows:*
+
 $$
 \Big[\Big(\frac{1}{n}\Big)^{c/(\alpha-1)}, \infty\Big)
 $$
+
 *then (2.3) holds.*
 
 
