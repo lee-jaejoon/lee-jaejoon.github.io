@@ -5,10 +5,9 @@ tags: [Statistics]
 comments: true
 ---
 
-* 이 포스트는 다음 논문의 주요 theoretical result를 요약/정리한 것이다.
+Song, Q. (2020). Bayesian shrinkage towards sharp minimaxity. *Electronic Journal of Statistics*, ***14*(2)**, 2714-2741.
 
-  Song, Q. (2020). Bayesian shrinkage towards sharp minimaxity. *Electronic Journal of Statistics*, ***14*(2)**, 2714-2741.
-
+* 이 포스트는 위 논문의 주요 theoretical result를 요약/정리한 것이다.
 * 시간이 허락한다면 아래 결과들에 대한 증명은 추후 포스트에 정리할 예정.
 
 
