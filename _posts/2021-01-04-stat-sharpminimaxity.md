@@ -18,10 +18,12 @@ Song, Q. (2020). Bayesian shrinkage towards sharp minimaxity. *Electronic Journa
 
 * 이 연구는 아래와 같은 sparse normal means model에 대한 것이다.  
 
+
 $$
 y^{(n)} = \theta^{(n)} + \epsilon, \\
 \text{where }\enspace y^{(n)} =(y_1, \ldots, y_n)^T \in \mathbb R^n, \enspace \epsilon \sim \mathcal N(0, \sigma^2 I_n).
 $$
+
 
 * 논의의 간결함을 위해, W.L.O.G, let $\sigma^2 = 1$.
 * True parameter $\theta^\ast$는 $s^{(n)}$개의 nonzero entry를 갖는 sparse vector.
