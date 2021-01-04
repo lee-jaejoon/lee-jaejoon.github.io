@@ -305,7 +305,7 @@ $$
   * $\delta^\prime = -1+((1+\omega/2)/c(\alpha - 1))$
 
 $$
-\tau = \tau_0^c, \quad \tau_0 \sim \Beta(1,n) \enspace \text{for some }c \in\Big(\frac{\alpha}{\alpha-1}, \frac{1+\omega/2}{\alpha - 1}\Big).
+\tau = \tau_0^c, \quad \tau_0 \sim \text{Beta}(1,n) \enspace \text{for some }c \in\Big(\frac{\alpha}{\alpha-1}, \frac{1+\omega/2}{\alpha - 1}\Big).
 $$
 
 $$
