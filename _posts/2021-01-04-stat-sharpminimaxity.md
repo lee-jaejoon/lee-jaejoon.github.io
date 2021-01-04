@@ -17,7 +17,7 @@ comments: true
 
 ### Settings
 
-* 이 연구는 아래와 같은 sparse normal means model에 대한 것이다.
+* 이 연구는 아래와 같은 sparse normal means model에 대한 것이다.  
 
 $$
 y^{(n)} = \theta^{(n)} + \epsilon, \\
