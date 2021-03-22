@@ -4,7 +4,7 @@ title: Jaejoon Lee
 permalink: /about/
 ---
 
-[이재용](https://jylee749.wordpress.com/) 교수님 지도 아래 베이지안 통계학을 공부하고 있는 석사과정 2년차 대학원생입니다. 
+[이재용](https://jylee749.wordpress.com/) 교수님 지도 아래 21년 2월에 석사과정을 마치고, 현재는 직장에 다니고 있습니다. 석사과정 동안은 베이지안 통계학을 공부했으며, 좀더 구체적으로는 이상치가 존재하는 고차원, heavy-tailed data 하에서 베이지안 인자모형을 이용하여 공분산을 추정하는 방법에 대해 연구했습니다. [**[Link]**](https://arxiv.org/abs/2012.04315)
 
 
 
