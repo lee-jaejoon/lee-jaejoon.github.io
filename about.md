@@ -12,6 +12,6 @@ permalink: /about/
 
 
 
-### Contact me
+### Contact
 
 [jaejoonlee94@gmail.com](mailto:jaejoonlee94@gmail.com)
